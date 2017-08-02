@@ -16,31 +16,47 @@ class Menu extends CI_Controller {
 	{
 		$menu ='[{
 				    "id":1,
-				    "text":"Berkas",
+				    "text":"Master Data",
 				    "iconCls":"icon-save",
 				    "children":[{
 				    	"id":"11",
-				        "text":"Berkas",
+				        "text":"Master Status",
 				        "checked":true,
 				        "attributes":{
-				            "url":"berkas",
-				            "view":"berkas"
+				            "url":"mStatus",
+				            "view":"mStatus"
 				        	}
 				        },{
 				        "id":"12",
-				        "text":"Ekspedisi",
+				        "text":"Master Ruang Rapat",
 				        "checked":false,
 				        "attributes":{
-				            "url":"ekspedisi",
-				            "view":"ekspedisi"
+				            "url":"mRuangRapat",
+				            "view":"mRuangRapat"
 				        	}
 				        },{
 				        "id":"13",
-				        "text":"Master Ekspedisi",
+				        "text":"Master Jenis Ekspedisi",
 				        "checked":false,
 				        "attributes":{
-				            "url":"master_ekspedisi",
-				            "view":"master_ekspedisi"
+				            "url":"mJenisEkspedisi",
+				            "view":"mJenisEkspedisi"
+				        	}
+				        },{
+				        "id":"14",
+				        "text":"Master Jenis Kegiatan",
+				        "checked":false,
+				        "attributes":{
+				            "url":"mJenisKegiatan",
+				            "view":"mJenisKegiatan"
+				        	}
+				        },{
+				        "id":"15",
+				        "text":"Master Asal Kegiatan",
+				        "checked":false,
+				        "attributes":{
+				            "url":"mAsalKegiatan",
+				            "view":"mAsalKegiatan"
 				        	}
 				        }]
 				 },{
