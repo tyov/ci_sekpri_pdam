@@ -25,8 +25,12 @@ class BerkasModel extends CI_Model {
 
         	$this->db->limit($rows,$offset);
         	$this->db->order_by($sort,$order);
-			$this->db->select("a.*");
+			$this->db->select("a.ID_BERKAS, a.TGL_TERIMA, convert(varchar(20),a.TGL_TERIMA,120) as TGL_TERIMA_DESC, a.PENERIMA, a.PENGIRIM, a.BAGIAN, a.PERIHAL, a.TGL_AMBIL, convert(varchar(20),a.TGL_AMBIL,120) as TGL_AMBIL_DESC, a.PENGAMBIL, c.nama_lengkap PENERIMA_DESC, d.nama_lengkap PENGIRIM_DESC, e.nama_lengkap PENGAMBIL_DESC, b.nama_bagian BAGIAN_DESC");
 			$this->db->from("TBL_BERKAS a");
+			$this->db->join("(SELECT left(kode_jabatan,4) as KODE, nama_bagian FROM BAGIAN group by left(kode_jabatan,4), nama_bagian) b", "a.BAGIAN = b.KODE");
+			$this->db->join("KARYAWAN c", "a.PENERIMA=c.nip");
+			$this->db->join("KARYAWAN d", "a.PENGIRIM=d.nip");
+			$this->db->join("KARYAWAN e", "a.PENGAMBIL=e.nip");
 
         if($searchKey<>''){
 			$this->db->where($searchKey." like '%".$searchValue."%'");
@@ -105,6 +109,20 @@ class BerkasModel extends CI_Model {
 		}
 		
 		return $result;
+	}
+
+	public function getDataNomor()
+	{
+		$this->db->select('dbo.getNomorDokumen() as NOMOR');
+		$hasil=$this->db->get()->result_array();
+        return $hasil;
+	}
+
+	public function getDataTanggal()
+	{
+		$this->db->select('convert(varchar(20),getDate(),120) as TANGGAL');
+		$hasil=$this->db->get()->result_array();
+		return $hasil;
 	}
 
 }

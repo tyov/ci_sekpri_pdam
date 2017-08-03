@@ -6,7 +6,7 @@ class karyawan extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('karyawanmodel');
+		$this->load->model('karyawanModel');
 	}
 
 	public function index()
@@ -14,9 +14,9 @@ class karyawan extends CI_Controller {
 		
 	}
 
-	public function get_karyawan()
+	public function getKaryawan()
 	{
-		$data=$this->karyawanmodel->getJson();
+		$data=$this->karyawanModel->getJson();
 		echo json_encode($data);
 	}
 

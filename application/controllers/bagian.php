@@ -6,7 +6,7 @@ class Bagian extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('bagianmodel');
+		$this->load->model('bagianModel');
 	}
 
 	public function index()
@@ -14,9 +14,9 @@ class Bagian extends CI_Controller {
 		
 	}
 
-	public function get_bagian()
+	public function getBagian()
 	{
-		$data=$this->bagianmodel->getJson();
+		$data=$this->bagianModel->getJson();
 		echo json_encode($data);
 	}
 

@@ -40,6 +40,18 @@ class Berkas extends CI_Controller {
 		echo json_encode($result);
     }
 
+    public function getNomorBerkas()
+    {
+    	$result=$this->berkasModel->getDataNomor();
+		echo json_encode($result);
+    }
+
+    public function getTanggal()
+    {
+    	$result=$this->berkasModel->getDataTanggal();
+		echo json_encode($result);
+    }
+
 }
 
 /* End of file berkas.php */

@@ -1,53 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>SEKPRI PDAM</title>
-    <script type="text/javascript"> 
-            var base_url = "<?php echo base_url(); ?>";  
-        </script>
-    <link rel="stylesheet" type="text/css" href="./assets/themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="./assets/themes/icon.css">
-    <link rel="stylesheet" type="text/css" href="./assets/themes/color.css">
-    <!--<link rel="stylesheet" type="text/css" href="./assets/demo.css">-->
-    <!--<link rel="stylesheet" type="text/css" href="./assets/fonts/fonts.css">-->
-    <script type="text/javascript" src="./assets/jquery.min.js"></script>
-    <script type="text/javascript" src="./assets/jquery.easyui.min.js"></script>
-    <!--<script type="text/javascript" src="./assets/jquery.easyui.patch.js"></script>-->
-    <link rel="stylesheet" type="text/css" href="./assets/fonts/stylesheet.css">
-    <link rel="stylesheet" type="text/css" href="./assets/fonts/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="./assets/custom.css">
-    
 
-    
-</head>
-
-<body class="easyui-layout">
-     <div data-options="region:'north',border:false" style="height:50px;background:#a1caf4;padding:10px; background-image:url(<?php echo base_url('image/banner.png');?>); background-repeat:no-repeat; background-position:center left;"></div>
-    <div data-options="region:'east',title:'Filter',collapsed:true" style="width:200px;">
-    kiri
-    </div>
-    <div data-options="region:'west',title:'Menu'" style="width:200px;">
-        <?php include('common/sidebar_menu.php') ?>
-    </div>
 <div data-options="region:'center'" style="background:#eee;">
-        <table id="dg" title="Berkas" class="easyui-datagrid" 
+        <table id="dg"  class="easyui-datagrid" 
             url="<?php echo base_url();?>index.php/berkas/get_berkas"
             toolbar="#toolbar"
-            rownumbers="true" pagination="true" border="false" striped="true" fit="true" singleSelect="true" collapsible="false" nowrap="false" pageSize="10" style="width:auto; height: auto;"
+            rownumbers="true" pagination="true" border="false" striped="true" singleSelect="true" nowrap="false" pageSize="10" fitColumns="true" style="width:auto; height: 545px;" 
             >
         <thead>
             <tr>
                 <th field="id_berkas" width="50" halign="center" align="center">No</th>
-                <th field="tgl_terima" width="150" halign="center" align="center">Tanggal Terima</th>
-                <th field="penerima_berkas_desc" width="150" halign="center">Penerima Berkas</th>
-                <th field="pemilik_berkas_desc" width="150" halign="center">Pemilik Berkas</th>
+                <th field="tgl_terima_desc" width="150" halign="center" align="center">Tanggal Terima</th>
+                <th field="penerima_berkas_desc" width="125" halign="center">Penerima Berkas</th>
+                <th field="pemilik_berkas_desc" width="125" halign="center">Pemilik Berkas</th>
                 <th field="keterangan" width="250" halign="center" hidden="true">Keterangan</th>
-                <th field="bagian_desc" width="200" halign="center" >Bagian</th>
-                <th field="isi_berkas" width="400" halign="center" >Isi Berkas</th>
+                <th field="bagian_desc" width="150" halign="center" >Bagian</th>
+                <th field="isi_berkas" width="350" halign="center" >Isi Berkas</th>
                 <th field="penerima_berkas" width="50"  hidden="true">Penerima Berkas</th>
                 <th field="pemilik_berkas" width="50" hidden="true">Pemilik Berkas</th>
                 <th field="bagian" width="50" hidden="true">Bagian</th>
+                <th field="eksp_1" width="50" halign="center">Eksp 1</th>
+                <th field="eksp_2" width="50" halign="center">Eksp 2</th>
+                <th field="eksp_3" width="50" halign="center">Eksp 3</th>
             </tr>
         </thead>
     </table>
@@ -84,9 +56,9 @@
     <div class="menu-sep"></div>
     <div>Exit</div>
     </div>
-</body>
+
 <script type="text/javascript">
-            
+        
     var url;
     function tambahBerkas(){
 
@@ -119,14 +91,6 @@
             }  
         });
 
-        $('#tgl_terima').datetimebox({
-            required:true
-        });
-
-        function checkTime(i) {
-            return (i < 10) ? "0" + i : i;
-        }
-
         // $('#tgl_terima').datetimebox('datebox')
 
     function updateBerkas(){
@@ -136,9 +100,6 @@
                 $('#dlg').dialog('open').dialog('center').dialog('setTitle','Update Berkas');
                 $('#fm').form('load',row);
                 url = '<?php echo base_url(); ?>index.php/berkas/update_berkas/'+row.id_berkas;
-                var tgl_terima = row.tgl_terima;
-                tgl_terima.toString();
-                 $('#tgl_terima').datetimebox('setValue', tgl_terima.toString());
             }
         }
 
@@ -185,5 +146,4 @@
         }
         });
     }
-</script> 
-</html>
+</script>
