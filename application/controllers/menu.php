@@ -65,7 +65,7 @@ class Menu extends CI_Controller {
 				    "iconCls":"icon-save",
 				    "children":[{
 				    	"id":"21",
-				        "text":"Agenda",
+				        "text":"Agenda Ruang Rapat",
 				        "checked":false,
 				        "attributes":{
 				            "url":"Agenda",
@@ -73,7 +73,7 @@ class Menu extends CI_Controller {
 				        	}
 				        },{
 				        "id":"22",
-				        "text":"Master Ruangan",
+				        "text":"Agenda Direksi",
 				        "checked":false,
 				        "attributes":{
 				            "url":"master_ruangan",
