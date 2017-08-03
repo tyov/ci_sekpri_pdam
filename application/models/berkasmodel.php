@@ -113,14 +113,14 @@ class BerkasModel extends CI_Model {
 
 	public function getDataNomor()
 	{
-		$this->db->select('dbo.getNomorDokumen() as NOMOR');
+		$this->db->select('dbo.getNomorDokumen() as nomor');
 		$hasil=$this->db->get()->result_array();
         return $hasil;
 	}
 
 	public function getDataTanggal()
 	{
-		$this->db->select('convert(varchar(20),getDate(),120) as TANGGAL');
+		$this->db->select('convert(varchar(20),getDate(),120) as tanggal');
 		$hasil=$this->db->get()->result_array();
 		return $hasil;
 	}

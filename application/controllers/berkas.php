@@ -11,7 +11,8 @@ class Berkas extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('berkas');
+		$data['berkas']=$this->berkasModel->getDataNomor();
+		$this->load->view('berkas',$data);
 	}
 
 	public function getBerkas()

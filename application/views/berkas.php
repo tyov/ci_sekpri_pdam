@@ -26,7 +26,7 @@
         <form id="fm_master_berkas" method="post" novalidate style="margin:0;padding:20px 50px">
             <div style="margin-bottom:20px;font-size:14px;border-bottom:1px solid #ccc">Data</div>
             <div style="margin-bottom:10px">
-                <input data-options="valueField:'NOMOR',textField:'NOMOR',url:'<?php echo base_url(); ?>index.php/berkas/getNomorBerkas'" name="ID_BERKAS" class="easyui-textbox" readonly="true" prompt="asdasd" label="No Berkas:" style="width:100%" >
+                <input  name="ID_BERKAS" class="easyui-textbox" readonly="true" value="<?php echo $berkas['nomor']; ?>" label="No Berkas:" style="width:100%" >
             </div>
             <div style="margin-bottom:10px">
                <input data-options="valueField:'TANGGAL',textField:'TANGGAL',url:'<?php echo base_url(); ?>index.php/berkas/getTanggal'" name="TGL_TERIMA" class="easyui-textbox" readonly="true" label="Tanggal Terima:" style="width:100%" >
