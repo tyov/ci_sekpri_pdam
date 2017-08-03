@@ -10,7 +10,7 @@ class Menu extends CI_Controller {
 
 	public function index()
 	{
-		echo " ";
+		echo "";
 	}
 	public function getData()
 	{
@@ -83,7 +83,7 @@ class Menu extends CI_Controller {
 				        }]
 				 },{
 				    "id":3,
-				    "text":"Laporan",
+				    "text":"Berkas",
 				    "iconCls":"icon-save",
 				    "children":[{
 				    	"id":"31",

@@ -1,52 +1,46 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-/**
-* 
-*/
-class Berkas extends CI_Controller
-{
-	
+class Berkas extends CI_Controller {
+
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Berkasmodel');
+		$this->load->model('berkasModel');
 	}
 
-	public function index(){
-		//$databerkas['json'] = $this->Berkasmodel->getJson();
-		//$data_berkas['databerkas']=$this->Berkasmodel->tampil_data_berkas();
-		//$data_berkas['datakaryawan']
+	public function index()
+	{
 		$this->load->view('berkas');
 	}
 
-	public function get_berkas()
+	public function getBerkas()
 	{
-		$data['rows']=$this->Berkasmodel->getJson('rows');
-		$data['total']=$this->Berkasmodel->getJson('total');
+		$data['rows']=$this->berkasModel->getJson('rows');
+		$data['total']=$this->berkasModel->getJson('total');
 		echo json_encode($data);
 	}
 
-	public function tambah_berkas(){
-		//echo "test ";
-		$result=$this->Berkasmodel->tambah_berkas();
+	public function newBerkas()
+	{
+		$result=$this->berkasModel->newData();
 		echo json_encode($result);
 	}
 
-	public function hapus_berkas($nomor)
+	public function deleteBerkas()
 	{
-		$result=$this->Berkasmodel->hapus_berkas($nomor);
+		$ID_BERKAS=$this->input->post('ID_BERKAS');
+		$result=$this->berkasModel->deleteData($ID_BERKAS);
 		echo json_encode($result);
 	}
 
-	public function update_berkas($nomor)
+	public function updateBerkas($ID_BERKAS)
 	{
-		$result=$this->Berkasmodel->update_berkas($nomor);
+		$result=$this->berkasModel->updateData($ID_BERKAS);
 		echo json_encode($result);
     }
 
-    public function get_berkas_desc()
-	{
-		$data=$this->Berkasmodel->getJson('rows');
-		echo json_encode($data);
-	}
 }
+
+/* End of file berkas.php */
+/* Location: ./application/controllers/berkas.php */

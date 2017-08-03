@@ -39,13 +39,25 @@ class BerkasModel extends CI_Model {
 
 	public function newData()
 	{
-		$JENIS_EKSPEDISI = htmlspecialchars($_REQUEST['JENIS_EKSPEDISI']);
+		$PENERIMA = htmlspecialchars($_REQUEST['PENERIMA']);
+		$PENGIRIM = htmlspecialchars($_REQUEST['PENGIRIM']);
+		$BAGIAN = htmlspecialchars($_REQUEST['BAGIAN']);
+		$PERIHAL = htmlspecialchars($_REQUEST['PERIHAL']);
+		$TGL_AMBIL = htmlspecialchars($_REQUEST['TGL_AMBIL']);
+		$PENGAMBIL = htmlspecialchars($_REQUEST['PENGAMBIL']);
 
-		//$ID_BERKAS = $this->db->query("select dbo.getNomorJenisEkspedisi() as baru")->row_array();
+		$TGL_TERIMA = $this->db->query("select getDate() as baru")->row_array();
+		$ID_BERKAS = $this->db->query("select dbo.getNomorDokumen() as baru")->row_array();
 
 		$data = array(
-		       // 'ID_BERKAS' => $ID_BERKAS['baru'], -- identity
-		        'JENIS_EKSPEDISI' => $JENIS_EKSPEDISI
+		       	'ID_BERKAS' => $ID_BERKAS['baru'],
+		       	'TGL_TERIMA' => $TGL_TERIMA['baru'],
+		        'PENERIMA' => $PENERIMA,
+		        'PENGIRIM' => $PENGIRIM,
+		        'BAGIAN' => $BAGIAN,
+		        'PERIHAL' => $PERIHAL,
+		        'TGL_AMBIL' => $TGL_AMBIL,
+		        'PENGAMBIL' => $PENGAMBIL
 		);
 
 		if ($this->db->insert('TBL_BERKAS', $data)) {
@@ -57,10 +69,20 @@ class BerkasModel extends CI_Model {
 
 	public function updateData($ID_BERKAS)
 	{
-		$JENIS_EKSPEDISI = htmlspecialchars($_REQUEST['JENIS_EKSPEDISI']);
+		$PENERIMA = htmlspecialchars($_REQUEST['PENERIMA']);
+		$PENGIRIM = htmlspecialchars($_REQUEST['PENGIRIM']);
+		$BAGIAN = htmlspecialchars($_REQUEST['BAGIAN']);
+		$PERIHAL = htmlspecialchars($_REQUEST['PERIHAL']);
+		$TGL_AMBIL = htmlspecialchars($_REQUEST['TGL_AMBIL']);
+		$PENGAMBIL = htmlspecialchars($_REQUEST['PENGAMBIL']);
 
 		$data = array(
-		        'JENIS_EKSPEDISI' => $JENIS_EKSPEDISI
+		        'PENERIMA' => $PENERIMA,
+		        'PENGIRIM' => $PENGIRIM,
+		        'BAGIAN' => $BAGIAN,
+		        'PERIHAL' => $PERIHAL,
+		        'TGL_AMBIL' => $TGL_AMBIL,
+		        'PENGAMBIL' => $PENGAMBIL
 		);
 
 		$this->db->where('ID_BERKAS', $ID_BERKAS);
