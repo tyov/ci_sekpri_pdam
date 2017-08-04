@@ -44,7 +44,7 @@
                 <input name="PERIHAL" class="easyui-textbox" label="Perihal:" style="width:100%; height:100px" data-options="multiline:true">
             </div>
             <div style="margin-bottom:10px">
-                <input name="TGL_AMBIL" class="easyui-datebox" label="Tanggal Ambil:" style="width:100%">
+                <input name="TGL_AMBIL" class="easyui-datetimebox" label="Tanggal Ambil:" style="width:100%">
             </div>
             <div style="margin-bottom:10px">
                 <input data-options="valueField:'nip',textField:'nama_lengkap',url:'<?php echo base_url(); ?>index.php/karyawan/getKaryawan'" name="PENGAMBIL" class="easyui-combobox" label="Pengambil:" style="width:100%">
@@ -55,7 +55,6 @@
         <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="simpanBerkas()" style="width:90px">Save</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg_master_berkas').dialog('close')" style="width:90px">Cancel</a>
     </div>
-
     <div id="mm_master_berkas" class="easyui-menu" style="width:120px;">
     <div data-options="iconCls:'icon-edit'" plain="true" onclick="updateBerkas()">Edit</div>
     <div data-options="iconCls:'icon-remove'" plain="true" onclick="hapusBerkas()">Hapus</div>
@@ -68,7 +67,7 @@
     var url;
     function tambahBerkas(){
         $('#dlg_master_berkas').dialog('open').dialog('center').dialog('setTitle','Tambah Berkas');
-        //$('#fm_master_berkas').form('clear');
+        $('#fm_master_berkas').form('clear');
         url = '<?php echo base_url(); ?>index.php/berkas/newBerkas';
     }
 

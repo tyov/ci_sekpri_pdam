@@ -6,41 +6,37 @@ class Ekspedisi extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('ekspedisimodel');
+		$this->load->model('ekspedisiModel');
 	}
 
 	public function index()
 	{
 		$this->load->view('ekspedisi');
 	}
-
-	public function get_ekspedisi()
+	
+	public function getEkspedisi()
 	{
-		$data['rows']=$this->ekspedisimodel->getJson('rows');
-		$data['total']=$this->ekspedisimodel->getJson('total');
+		$data['rows']=$this->ekspedisiModel->getJson('rows');
+		$data['total']=$this->ekspedisiModel->getJson('total');
 		echo json_encode($data);
 	}
 
-	public function tambah_ekspedisi(){
-		//echo "test ";
-		$result=$this->ekspedisimodel->tambah_ekspedisi();
+	public function newEkspedisi()
+	{
+		$result=$this->ekspedisiModel->newData();
 		echo json_encode($result);
 	}
 
-	public function hapus_ekspedisi($id_ekspedisi)
+	public function deleteEkspedisi()
 	{
-		$this->db->where('id_ekspedisi', $id_ekspedisi);
-		if ($this->db->delete('berkas_ekspedisi')) {
-			$result['error']=false;
-		} else {
-			$result['error']=true;
-		}
+		$ID_EKSPEDISI=$this->input->post('ID_EKSPEDISI');
+		$result=$this->ekspedisiModel->deleteData($ID_EKSPEDISI);
 		echo json_encode($result);
 	}
 
-	public function update_ekspedisi($id_ekspedisi)
+	public function updateEkspedisi($ID_EKSPEDISI)
 	{
-		$result=$this->ekspedisimodel->update_ekspedisi($id_ekspedisi);
+		$result=$this->ekspedisiModel->updateData($ID_EKSPEDISI);
 		echo json_encode($result);
     }
 

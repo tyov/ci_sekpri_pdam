@@ -106,16 +106,8 @@ class Menu extends CI_Controller {
 				        "text":"Ekspedisi",
 				        "checked":false,
 				        "attributes":{
-				            "url":"berkas",
-				            "view":"berkas"
-				        	}
-				        },{
-				       	"id":"33",
-				        "text":"Master Laporan",
-				        "checked":false,
-				        "attributes":{
-				            "url":"berkas",
-				            "view":"berkas"
+				            "url":"ekspedisi",
+				            "view":"ekspedisi"
 				        	}
 				        }]
 				 }
