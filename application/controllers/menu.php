@@ -58,6 +58,14 @@ class Menu extends CI_Controller {
 				            "url":"mAsalKegiatan",
 				            "view":"mAsalKegiatan"
 				        	}
+				        },{
+				        "id":"16",
+				        "text":"Master Agenda Direksi",
+				        "checked":false,
+				        "attributes":{
+				            "url":"mAgendaDireksi",
+				            "view":"mAgendaDireksi"
+				        	}
 				        }]
 				 },{
 				    "id":2,

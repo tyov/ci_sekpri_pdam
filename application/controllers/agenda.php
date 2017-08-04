@@ -1,46 +1,47 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-/**
-* 
-*/
-class Agenda extends CI_Controller
-{
-	
+class agenda extends CI_Controller {
+
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Agendamodel');
+		$this->load->model('agendaModel');
 	}
 
-	public function index(){
-		//$databerkas['json'] = $this->Berkasmodel->getJson();
-		//$data_berkas['databerkas']=$this->Berkasmodel->tampil_data_berkas();
-		//$data_berkas['datakaryawan']
+	public function index()
+	{
 		$this->load->view('agenda');
 	}
 
-	public function get_agenda()
+	public function getAgenda()
 	{
-		$data['rows']=$this->Agendamodel->getJson('rows');
-		$data['total']=$this->Agendamodel->getJson('total');
+		$data['rows']=$this->agendaModel->getJson('rows');
+		$data['total']=$this->agendaModel->getJson('total');
 		echo json_encode($data);
 	}
 
-	public function tambah_agenda(){
-		//echo "test ";
-		$result=$this->Agendamodel->tambah_agenda();
+	public function newAgenda()
+	{
+		// print_r($_POST);exit;
+		$result=$this->agendaModel->newData();
 		echo json_encode($result);
 	}
 
-	public function hapus_agenda($nomor)
+	public function deleteAgenda()
 	{
-		$result=$this->Agendamodel->hapus_agenda($nomor);
+		$ID_AGENDA_RUANG_RAPAT=$this->input->post('ID_AGENDA_RUANG_RAPAT');
+		$result=$this->agendaModel->deleteData($ID_AGENDA_RUANG_RAPAT);
 		echo json_encode($result);
 	}
 
-	public function update_agenda($nomor)
+	public function updateAgenda($ID_AGENDA_RUANG_RAPAT)
 	{
-		$result=$this->Agendamodel->update_agenda($nomor);
+		$result=$this->agendaModel->updateData($ID_AGENDA_RUANG_RAPAT);
 		echo json_encode($result);
     }
+
 }
+
+/* End of file mAsalKegiatan.php */
+/* Location: ./application/controllers/mAsalKegiatan.php */

@@ -7,7 +7,7 @@ class Agendamodel extends CI_Model {
 	{
 		$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
         $rows = isset($_POST['rows']) ? intval($_POST['rows']) : 10;
-        $sort = isset($_POST['sort']) ? strval($_POST['sort']) : 'id_agenda';
+        $sort = isset($_POST['sort']) ? strval($_POST['sort']) : 'ID_AGENDA_RUANG_RAPAT';
         $order = isset($_POST['order']) ? strval($_POST['order']) : 'asc';
         $offset = ($page-1) * $rows;
         $this->limit = $rows;
@@ -17,20 +17,22 @@ class Agendamodel extends CI_Model {
 		$searchValue=isset($_POST['searchValue']) ? strval($_POST['searchValue']) : '';
 
         if ($jenis=='total') {
-        	$result = $this->db->query("select * from agenda")->num_rows();
+        	$result = $this->db->query("select * from TBL_AGENDA_RUANG_RAPAT")->num_rows();
         	return $result;
         } elseif ($jenis=='rows') {
         	$this->db->limit($rows,$offset);
         	$this->db->order_by($sort,$order);
-			$this->db->select("a.id_agenda,a.id_ruangan,a.id_pemesan,
-				convert(varchar(20),tgl_pemesanan,120) as tgl_pemesanan,
-				a.keterangan,
-				convert(varchar(20),a.tgl_mulai,120) as tgl_mulai,
-				convert(varchar(20),a.tgl_selesai,120) as tgl_selesai, 
-				b.keterangan id_ruangan_desc, c.nama_lengkap id_pemesan_desc");
-			$this->db->from("agenda a");
-			$this->db->join("master_ruangan b", "a.id_ruangan=b.id_ruangan");
-			$this->db->join("karyawan c", "a.id_pemesan=c.nip");
+			$this->db->select("a.ID_AGENDA_RUANG_RAPAT,a.ID_JENIS_KEGIATAN,a.PEMESAN,a.ID_ASAL_KEGIATAN,a.ID_RUANG_RAPAT,
+				convert(varchar(20),TGL_PEMESANAN,120) as TGL_PEMESANAN,
+				a.KETERANGAN,
+				convert(varchar(20),a.TGL_MULAI,120) as TGL_MULAI,
+				convert(varchar(20),a.TGL_SELESAI,120) as TGL_SELESAI, 
+				b.RUANG_RAPAT ID_RUANG_RAPAT_DESC, c.nama_lengkap PEMESAN_DESC, d.JENIS_KEGIATAN ID_JENIS_KEGIATAN_DESC, e.ASAL_KEGIATAN ID_ASAL_KEGIATAN_DESC");
+			$this->db->from("TBL_AGENDA_RUANG_RAPAT a");
+			$this->db->join("TBL_M_RUANG_RAPAT b", "a.ID_RUANG_RAPAT=b.ID_RUANG_RAPAT");
+			$this->db->join("KARYAWAN c", "a.PEMESAN=c.nip");
+			$this->db->join("TBL_M_JENIS_KEGIATAN d", "a.ID_JENIS_KEGIATAN=d.ID_JENIS_KEGIATAN");
+			$this->db->join("TBL_M_ASAL_KEGIATAN e", "a.ID_ASAL_KEGIATAN=e.ID_ASAL_KEGIATAN");
         	if($searchKey<>''){
 				$this->db->where($searchKey." like '%".$searchValue."%'");	
 			}
@@ -39,63 +41,72 @@ class Agendamodel extends CI_Model {
     	}
 	}
 
-	public function tambah_agenda(){
+	public function newData(){
 
-		$id_pemesan = htmlspecialchars($_REQUEST['id_pemesan']);
-		$id_ruangan = htmlspecialchars($_REQUEST['id_ruangan']);
-		$keterangan = htmlspecialchars($_REQUEST['keterangan']);
-		$tgl_mulai = htmlspecialchars($_REQUEST['tgl_mulai']);
-		$tgl_selesai = htmlspecialchars($_REQUEST['tgl_selesai']);
+		$ID_JENIS_KEGIATAN = htmlspecialchars($_REQUEST['ID_JENIS_KEGIATAN']);
+		$PEMESAN = htmlspecialchars($_REQUEST['PEMESAN']);
+		$TGL_PEMESANAN = date('Y-m-d H:i:s');
+		$ID_ASAL_KEGIATAN = htmlspecialchars($_REQUEST['ID_ASAL_KEGIATAN']);
+		$TGL_MULAI = htmlspecialchars($_REQUEST['TGL_MULAI']);
+		$TGL_SELESAI = htmlspecialchars($_REQUEST['TGL_SELESAI']);
+		$ID_RUANG_RAPAT = htmlspecialchars($_REQUEST['ID_RUANG_RAPAT']);
+		$KETERANGAN = htmlspecialchars($_REQUEST['KETERANGAN']);
 
-		$id_agenda = $this->db->query("select dbo.getNomorAgenda() as baru")->row_array();
-		$tgl_pemesanan = $this->db->query("select getDate() as baru")->row_array();
+		$TGL_PEMESANAN = $this->db->query("select getDate() as baru")->row_array();
+		/*$id_agenda = $this->db->query("select dbo.getNomorAgenda() as baru")->row_array();
+		 */
 
 		$data = array(
-		        'id_agenda' => $id_agenda['baru'],
-		        'tgl_pemesanan' => $tgl_pemesanan['baru'],
-		        'id_ruangan' => $id_ruangan,
-		        'id_pemesan' => $id_pemesan,
-		        'tgl_mulai' => $tgl_mulai,
-		        'tgl_selesai' => $tgl_selesai,
-		        'keterangan' => $keterangan,
+		        'ID_JENIS_KEGIATAN' => $ID_JENIS_KEGIATAN,
+		        'PEMESAN' => $PEMESAN,
+		        'TGL_PEMESANAN' => $TGL_PEMESANAN['baru'],
+		        'ID_ASAL_KEGIATAN' => $ID_ASAL_KEGIATAN,
+		        'TGL_MULAI' => $TGL_MULAI,
+		        'TGL_SELESAI' => $TGL_SELESAI,
+		        'ID_RUANG_RAPAT' => $ID_RUANG_RAPAT,
+		        'KETERANGAN' => $KETERANGAN,
 		);
 
-		if ($this->db->insert('agenda', $data)) {
+		if ($this->db->insert('TBL_AGENDA_RUANG_RAPAT', $data)) {
 			return "success";
 		} else {
 			return "insert failed";
 		}
 	}
 
-	public function hapus_agenda($id_agenda)
+	public function deleteData($ID_AGENDA_RUANG_RAPAT)
 	{
-		$this->db->where('id_agenda', $id_agenda);
-		if ($this->db->delete('agenda')) {
+		$this->db->where('ID_AGENDA_RUANG_RAPAT', $ID_AGENDA_RUANG_RAPAT);
+		if ($this->db->delete('TBL_AGENDA_RUANG_RAPAT')) {
 			return "success";
 		} else {
 			return "delete failed";
 		}
 	}
 
-	public function update_agenda($id_agenda)
+	public function updateData($ID_AGENDA_RUANG_RAPAT)
 	{
-		$id_ruangan = htmlspecialchars($_REQUEST['id_ruangan']);
-		$id_pemesan = htmlspecialchars($_REQUEST['id_pemesan']);
-		$tgl_mulai = htmlspecialchars($_REQUEST['tgl_mulai']);
-		$tgl_selesai = htmlspecialchars($_REQUEST['tgl_selesai']);
-		$keterangan = htmlspecialchars($_REQUEST['keterangan']);
+		$ID_JENIS_KEGIATAN = htmlspecialchars($_REQUEST['ID_JENIS_KEGIATAN']);
+		$PEMESAN = htmlspecialchars($_REQUEST['PEMESAN']);
+		$ID_ASAL_KEGIATAN = htmlspecialchars($_REQUEST['ID_ASAL_KEGIATAN']);
+		$TGL_MULAI = htmlspecialchars($_REQUEST['TGL_MULAI']);
+		$TGL_SELESAI = htmlspecialchars($_REQUEST['TGL_SELESAI']);
+		$ID_RUANG_RAPAT = htmlspecialchars($_REQUEST['ID_RUANG_RAPAT']);
+		$KETERANGAN = htmlspecialchars($_REQUEST['KETERANGAN']);
 
 		$data = array(
-		        'id_ruangan' => $id_ruangan,
-		        'id_pemesan' => $id_pemesan,
-		        'tgl_mulai' => $tgl_mulai,
-		        'tgl_selesai' => $tgl_selesai,
-		        'keterangan' => $keterangan,
+		        'ID_JENIS_KEGIATAN' => $ID_JENIS_KEGIATAN,
+		        'PEMESAN' => $PEMESAN,
+		        'ID_ASAL_KEGIATAN' => $ID_ASAL_KEGIATAN,
+		        'TGL_MULAI' => $TGL_MULAI,
+		        'TGL_SELESAI' => $TGL_SELESAI,
+		        'ID_RUANG_RAPAT' => $ID_RUANG_RAPAT,
+		        'KETERANGAN' => $KETERANGAN,
 		);
 
-		$this->db->where('id_agenda', $id_agenda);
+		$this->db->where('ID_AGENDA_RUANG_RAPAT', $ID_AGENDA_RUANG_RAPAT);
 
-		if ($this->db->update('agenda', $data)) {
+		if ($this->db->update('TBL_AGENDA_RUANG_RAPAT', $data)) {
 			return "success";
 		} else {
 			return "update failed";

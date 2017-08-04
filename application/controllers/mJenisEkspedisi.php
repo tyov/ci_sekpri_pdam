@@ -40,6 +40,12 @@ class MJenisEkspedisi extends CI_Controller {
 		echo json_encode($result);
     }
 
+    public function getJenisEkspedisiDesc()
+	{
+		$data=$this->mJenisEkspedisiModel->getJson('rows');
+		echo json_encode($data);
+	}
+
 }
 
 /* End of file mJenisEkspedisi.php */

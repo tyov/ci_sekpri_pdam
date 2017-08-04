@@ -40,6 +40,12 @@ class MRuangRapat extends CI_Controller {
 		echo json_encode($result);
     }
 
+    public function getRuangRapatDesc()
+	{
+		$data=$this->mRuangRapatModel->getJson('rows');
+		echo json_encode($data);
+	}
+
 }
 
 /* End of file mRuangRapat.php */

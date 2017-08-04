@@ -40,6 +40,12 @@ class MJenisKegiatan extends CI_Controller {
 		echo json_encode($result);
     }
 
+    public function getJenisKegiatanDesc()
+	{
+		$data=$this->mJenisKegiatanModel->getJson('rows');
+		echo json_encode($data);
+	}
+
 }
 
 /* End of file mJenisKegiatan.php */

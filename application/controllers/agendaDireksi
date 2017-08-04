@@ -1,0 +1,49 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class agendaDireksi extends CI_Controller {
+
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('agendaDireksiModel');
+	}
+
+	public function index()
+	{
+		$this->load->view('agendaDireksiModel');
+	}
+
+	public function getAgendaDireksi()
+	{
+		$data['rows']=$this->agendaDireksiModel->getJson('rows');
+		$data['total']=$this->agendaDireksiModel->getJson('total');
+		echo json_encode($data);
+	}
+
+	public function newAgendaDireksi()
+	{
+		$result=$this->agendaDireksiModel->newData();
+		echo json_encode($result);
+	}
+
+	public function deleteAgendaDireksi()
+	{
+		$ID_AGENDA_DIREKSI=$this->input->post('ID_AGENDA_DIREKSI');
+		$result=$this->agendaDireksiModel->deleteData($ID_AGENDA_DIREKSI);
+		echo json_encode($result);
+	}
+
+	public function updateAgendaDireksi($ID_AGENDA_DIREKSI)
+	{
+		$result=$this->agendaDireksiModel->updateData($IID_AGENDA_DIREKSI);
+		echo json_encode($result);
+    }
+
+    public function getAgendaDireksiDesc()
+	{
+		$data=$this->agendaDireksiModel->getJson('rows');
+		echo json_encode($data);
+	}
+
+}
