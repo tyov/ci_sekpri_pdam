@@ -67,20 +67,10 @@
         
     var url;
     function tambahBerkas(){
-
-           $('#dlg_master_berkas').dialog('open').dialog('center').dialog('setTitle','Tambah Berkas');
-           // $('#fm_master_berkas').form('clear');
-           $('#ID_BERKAS').val('test');
-           url = '<?php echo base_url(); ?>index.php/berkas/newBerkas';
-        }
-
-        $('#dg_master_berkas').datagrid({
-            rowStyler: function(index,row){
-                if (row.status_desc=="Belum Terkirim"){
-                    return 'background-color:#48A7C9;color:#fff;';
-                }
-            }
-        });
+        $('#dlg_master_berkas').dialog('open').dialog('center').dialog('setTitle','Tambah Berkas');
+        //$('#fm_master_berkas').form('clear');
+        url = '<?php echo base_url(); ?>index.php/berkas/newBerkas';
+    }
 
     $("#dg_master_berkas").datagrid({  
         onRowContextMenu: function (e, rowIndex, rowData) { 
@@ -137,29 +127,18 @@
     $.ajax({
         url: "<?php echo base_url(); ?>index.php/berkas/getNomorBerkas",
         async: false,
-        success: function(result){
-            var text = "";
-
-            for (var i = 10; i < result.length-2; i++) {
-                text = text+result[i];
-                }
-
-            $('#ID_BERKAS').val(text);
+        dataType:"json",
+        success: function(result){        
+            $('#ID_BERKAS').val(result.nomor);
             }
     });
 
     $.ajax({
         url: "<?php echo base_url(); ?>index.php/berkas/getTanggal",
         async: false,
-        success: function(result){
-            var text = "";
-
-            for (var i = 12; i < result.length-2; i++) {
-                text = text+result[i];
-                }
-            console.log(text);
-
-            $('#TGL_TERIMA').val(text);
+        dataType:"json",
+        success: function(result){   
+            $('#TGL_TERIMA').val(result.tanggal);
             }
     });
 
