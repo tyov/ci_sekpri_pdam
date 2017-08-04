@@ -11,10 +11,13 @@ class Berkas extends CI_Controller {
 
 	public function index()
 	{
-		$data['berkas']=$this->berkasModel->getDataNomor();
-		$this->load->view('berkas',$data);
+		// $data=array();
+		// $data['nomor']	='12345678';//$this->berkasModel->getDataNomor();
+		// $data['tanggal']='asss';//$this->berkasModel->getDataTanggal();
+		// //print_r($data);
+		$this->load->view('berkas');
 	}
-
+	
 	public function getBerkas()
 	{
 		$data['rows']=$this->berkasModel->getJson('rows');

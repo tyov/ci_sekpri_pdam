@@ -26,10 +26,10 @@
         <form id="fm_master_berkas" method="post" novalidate style="margin:0;padding:20px 50px">
             <div style="margin-bottom:20px;font-size:14px;border-bottom:1px solid #ccc">Data</div>
             <div style="margin-bottom:10px">
-                <input  name="ID_BERKAS" class="easyui-textbox" readonly="true" value="<?php echo $berkas['nomor']; ?>" label="No Berkas:" style="width:100%" >
+                <input  name="ID_BERKAS" id="ID_BERKAS" class="easyui-textbox" readonly="true" value="" label="No Berkas:" style="width:100%" >
             </div>
             <div style="margin-bottom:10px">
-               <input data-options="valueField:'TANGGAL',textField:'TANGGAL',url:'<?php echo base_url(); ?>index.php/berkas/getTanggal'" name="TGL_TERIMA" class="easyui-textbox" readonly="true" label="Tanggal Terima:" style="width:100%" >
+               <input data-options="valueField:'TANGGAL',textField:'TANGGAL',url:'<?php echo base_url(); ?>index.php/berkas/getTanggal'" id=TGL_TERIMA name="TGL_TERIMA" class="easyui-textbox" readonly="true" label="Tanggal Terima:" style="width:100%" >
             </div>
             <div style="margin-bottom:10px">
                 <input data-options="valueField:'nip',textField:'nama_lengkap',url:'<?php echo base_url(); ?>index.php/karyawan/getKaryawan'" name="PENERIMA" class="easyui-combobox" required="true" label="Penerima:" style="width:100%">
@@ -69,7 +69,8 @@
     function tambahBerkas(){
 
            $('#dlg_master_berkas').dialog('open').dialog('center').dialog('setTitle','Tambah Berkas');
-           $('#fm_master_berkas').form('clear');
+           // $('#fm_master_berkas').form('clear');
+           $('#ID_BERKAS').val('test');
            url = '<?php echo base_url(); ?>index.php/berkas/newBerkas';
         }
 
@@ -81,18 +82,18 @@
             }
         });
 
-        $("#dg_master_berkas").datagrid({  
-            onRowContextMenu: function (e, rowIndex, rowData) { 
-                e.preventDefault(); 
-                $(this).datagrid("clearSelections"); 
-                $(this).datagrid("selectRow", rowIndex);
-                $('#mm_master_berkas').menu('show', {  
-                    left: e.pageX,
-                    top: e.pageY  
-                });
-                e.preventDefault();
-            }  
-        });
+    $("#dg_master_berkas").datagrid({  
+        onRowContextMenu: function (e, rowIndex, rowData) { 
+            e.preventDefault(); 
+            $(this).datagrid("clearSelections"); 
+            $(this).datagrid("selectRow", rowIndex);
+            $('#mm_master_berkas').menu('show', {  
+                left: e.pageX,
+                top: e.pageY  
+            });
+            e.preventDefault();
+        }  
+    });
 
     function updateBerkas(){
             var row = $('#dg_master_berkas').datagrid('getSelected');
@@ -125,11 +126,41 @@
             return $(this).form('validate');
             },
         success: function(result){
-        	
+            
             $('#dlg_master_berkas').dialog('close'); // close the dialog
             $('#dg_master_berkas').datagrid('reload'); // reload the user data
 
         }
         });
     }
+
+    $.ajax({
+        url: "<?php echo base_url(); ?>index.php/berkas/getNomorBerkas",
+        async: false,
+        success: function(result){
+            var text = "";
+
+            for (var i = 10; i < result.length-2; i++) {
+                text = text+result[i];
+                }
+
+            $('#ID_BERKAS').val(text);
+            }
+    });
+
+    $.ajax({
+        url: "<?php echo base_url(); ?>index.php/berkas/getTanggal",
+        async: false,
+        success: function(result){
+            var text = "";
+
+            for (var i = 12; i < result.length-2; i++) {
+                text = text+result[i];
+                }
+            console.log(text);
+
+            $('#TGL_TERIMA').val(text);
+            }
+    });
+
 </script>
