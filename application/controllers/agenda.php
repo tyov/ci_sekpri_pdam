@@ -41,6 +41,18 @@ class agenda extends CI_Controller {
 		echo json_encode($result);
     }
 
+        public function getNomorRapat()
+    {
+    	$result=$this->agendaModel->getDataRapat();
+		echo json_encode($result);
+    }
+
+    public function getTanggal()
+    {
+    	$result=$this->agendaModel->getDataTanggal();
+		echo json_encode($result);
+    }
+
 }
 
 /* End of file mAsalKegiatan.php */

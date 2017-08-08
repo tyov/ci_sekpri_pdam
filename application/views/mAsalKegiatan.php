@@ -6,8 +6,8 @@
             >
         <thead>
             <tr>
-                <th field="ID_ASAL_KEGIATAN" halign="center" align="center">No Asal Kegiatan</th>
-                <th field="ASAL_KEGIATAN" width="150" halign="center" align="center">Asal Kegiatan</th>
+                <th field="ID_ASAL_KEGIATAN" width="25" >No Asal Kegiatan</th>
+                <th field="ASAL_KEGIATAN" width="150" >Asal Kegiatan</th>
             </tr>
         </thead>
     </table>

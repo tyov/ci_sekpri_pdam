@@ -7,8 +7,8 @@
             >
         <thead>
             <tr>
-                <th field="id_jenis_ekspedisi" width="150" halign="center" align="center">No Jenis Ekspedisi</th>
-                <th field="keterangan" width="150" halign="center" align="center">Keterangan</th>
+                <th field="id_jenis_ekspedisi" width="15" >No Jenis Ekspedisi</th>
+                <th field="keterangan" width="150" >Keterangan</th>
             </tr>
         </thead>
     </table>

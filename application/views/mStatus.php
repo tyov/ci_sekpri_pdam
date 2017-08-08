@@ -6,8 +6,8 @@
             >
         <thead>
             <tr>
-                <th field="ID_STATUS"  halign="center" align="center">No Status</th>
-                <th field="STATUS" width="150" halign="center" align="center">Status</th>
+                <th field="ID_STATUS" >No Status</th>
+                <th field="STATUS" width="150">Status</th>
             </tr>
         </thead>
     </table>

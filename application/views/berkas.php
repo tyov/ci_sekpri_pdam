@@ -67,6 +67,16 @@
         
     var url;
     function tambahBerkas(){
+         $.ajax({
+        url: "<?php echo base_url(); ?>index.php/berkas/getNomorBerkas",
+        async: false,
+        dataType:"json",
+        success: function(result){        
+            $('#ID_BERKAS').val(result.nomor);
+            }
+        });
+
+     
         $('#dlg_master_berkas').dialog('open').dialog('center').dialog('setTitle','Tambah Berkas');
         //$('#fm_master_berkas').form('clear');
         url = '<?php echo base_url(); ?>index.php/berkas/newBerkas';
@@ -124,15 +134,7 @@
         });
     }
 
-    $.ajax({
-        url: "<?php echo base_url(); ?>index.php/berkas/getNomorBerkas",
-        async: false,
-        dataType:"json",
-        success: function(result){        
-            $('#ID_BERKAS').val(result.nomor);
-            }
-    });
-
+   
     $.ajax({
         url: "<?php echo base_url(); ?>index.php/berkas/getTanggal",
         async: false,

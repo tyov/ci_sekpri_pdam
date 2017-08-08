@@ -84,8 +84,8 @@ class Menu extends CI_Controller {
 				        "text":"Agenda Direksi",
 				        "checked":false,
 				        "attributes":{
-				            "url":"master_ruangan",
-				            "view":"master_ruangan"
+				            "url":"agendaDireksi",
+				            "view":"agendaDireksi"
 				        	}
 				        
 				        }]

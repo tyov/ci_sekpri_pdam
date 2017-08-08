@@ -53,10 +53,11 @@ class Agendamodel extends CI_Model {
 		$KETERANGAN = htmlspecialchars($_REQUEST['KETERANGAN']);
 
 		$TGL_PEMESANAN = $this->db->query("select getDate() as baru")->row_array();
-		/*$id_agenda = $this->db->query("select dbo.getNomorAgenda() as baru")->row_array();
-		 */
+		$id_agenda_rapat = $this->db->query("select dbo.getNomorRapat() as baru")->row_array();
+		 
 
 		$data = array(
+				'ID_AGENDA_RUANG_RAPAT'=>$id_agenda_rapat['baru'],
 		        'ID_JENIS_KEGIATAN' => $ID_JENIS_KEGIATAN,
 		        'PEMESAN' => $PEMESAN,
 		        'TGL_PEMESANAN' => $TGL_PEMESANAN['baru'],
@@ -111,5 +112,19 @@ class Agendamodel extends CI_Model {
 		} else {
 			return "update failed";
 		}
+	}
+
+		public function getDataRapat()
+	{
+		$this->db->select('dbo.getNomorRapat() as nomor');
+		$hasil=$this->db->get()->row_array();
+        return $hasil;
+	}
+
+	public function getDataTanggal()
+	{
+		$this->db->select('convert(varchar(20),getDate(),120) as tanggal');
+		$hasil=$this->db->get()->row_array();
+		return $hasil;
 	}
 }

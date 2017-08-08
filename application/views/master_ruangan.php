@@ -7,8 +7,8 @@
             >
         <thead>
             <tr>
-                <th field="id_ruangan" width="80" halign="center" align="center">No</th>
-                <th field="keterangan" width="200" halign="center" align="center">Keterangan</th>
+                <th field="id_ruangan" width="80" >No</th>
+                <th field="keterangan" width="200" >Keterangan</th>
 
             </tr>
         </thead>

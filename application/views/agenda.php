@@ -7,15 +7,15 @@
             >
         <thead>
             <tr>
-                <th field="ID_AGENDA_RUANG_RAPAT" width="50" halign="center" align="center">No</th>
-                <th field="ID_JENIS_KEGIATAN_DESC" width="0" halign="center" align="center">Jenis Kegiatan</th>
-                <th field="ID_ASAL_KEGIATAN_DESC" width="150" halign="center" align="center">Asal Kegiatan</th>
-                <th field="PEMESAN_DESC" width="150" halign="center" align="center">Pemesan</th>
-                <th field="TGL_PEMESANAN" width="150" halign="center" align="center">Tanggal Pesan</th>
-                <th field="KETERANGAN" width="300" halign="center">Keterangan</th>
-                <th field="TGL_MULAI" width="150" halign="center" align="center">Tanggal Mulai</th>
-                <th field="TGL_SELESAI" width="150" halign="center" align="center">Tanggal Selesai</th>
-                <th field="ID_RUANG_RAPAT_DESC" width="150" halign="center" align="center">Ruang Rapat</th>               
+                <th field="ID_AGENDA_RUANG_RAPAT" width="200" >No</th>
+                <th field="ID_JENIS_KEGIATAN_DESC" width="0" >Jenis Kegiatan</th>
+                <th field="ID_ASAL_KEGIATAN_DESC" width="150" >Asal Kegiatan</th>
+                <th field="PEMESAN_DESC" width="150" >Pemesan</th>
+                <th field="TGL_PEMESANAN" width="150" >Tanggal Pesan</th>
+                <th field="KETERANGAN" width="300" >Keterangan</th>
+                <th field="TGL_MULAI" width="150" >Tanggal Mulai</th>
+                <th field="TGL_SELESAI" width="150" >Tanggal Selesai</th>
+                <th field="ID_RUANG_RAPAT_DESC" width="150" >Ruang Rapat</th>               
                 
             </tr>
         </thead>
@@ -26,8 +26,14 @@
 </div>
     <div id="dlg_agenda" class="easyui-dialog" style="width:400px"
             closed="true" buttons="#dlg_agenda-buttons">
-        <form id="fm_agenda" method="post" novalidate style="margin:0;padding:20px 50px">
+                
+        <form id="fm_agenda" name='fm_agenda' method="post" novalidate style="margin:0;padding:20px 50px">
             <div style="margin-bottom:20px;font-size:14px;border-bottom:1px solid #ccc">Data</div>
+
+            <div style="margin-bottom:10px">
+                <input  name="ID_AGENDA_RUANG_RAPAT" id="ID_AGENDA_RUANG_RAPAT" class="easyui-textbox" readonly="true" label="No Agenda:" style="width:100%" >
+           
+            </div>
             <div style="margin-bottom:10px">
                 <input data-options="valueField:'ID_JENIS_KEGIATAN',textField:'JENIS_KEGIATAN',url:'<?php echo base_url(); ?>index.php/mJenisKegiatan/getJenisKegiatanDesc'" name="ID_JENIS_KEGIATAN" class="easyui-combobox" required="true" label="Jenis Kegiatan:" style="width:100%">
             </div>
@@ -70,13 +76,22 @@
         
     var url;
     function tambahAgenda(){
-
-           $('#dlg_agenda').dialog('open').dialog('center').dialog('setTitle','Tambah Agenda');
-           $('#fm_agenda').form('clear');
+        var nomor='';
+        $.ajax({
+        url: "<?php echo base_url(); ?>index.php/agenda/getNomorRapat",
+        async: false,
+        dataType:"json",
+        success: function(result){        
+            nomor=result.nomor;
+          $('#dlg_agenda').dialog('open').dialog('center').dialog('setTitle','Tambah Agenda');
+          $('#fm_agenda').form('clear');
+           $('#fm_agenda #ID_AGENDA_RUANG_RAPAT').textbox('setValue',nomor);
            url = '<?php echo base_url(); ?>index.php/agenda/newAgenda';
+      
+            }
+        });
+
         }
-
-
 
         $('#dg_agenda').datagrid({
             rowStyler: function(index,row){
@@ -101,9 +116,9 @@
         });
 
 
-        function checkTime(i) {
+        /*function checkTime(i) {
             return (i < 10) ? "0" + i : i;
-        }
+        }*/
 
         // $('#tgl_terima').datetimebox('datebox')
 
@@ -160,4 +175,16 @@
         }
         });
     }
+
+     
+
+    /*$.ajax({
+        url: "<?php echo base_url(); ?>index.php/agenda/getTanggal",
+        async: false,
+        dataType:"json",
+        success: function(result){   
+            $('#TGL_TERIMA').val(result.tanggal);
+            }
+    });*/
+
 </script>

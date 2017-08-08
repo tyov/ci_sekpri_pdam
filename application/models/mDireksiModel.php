@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class mAgendaDireksiModel extends CI_Model {
+class MDireksiModel extends CI_Model {
 
-	public function getJson($jenis)
+public function getJson($jenis)
 	{
 		$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
         $rows = isset($_POST['rows']) ? intval($_POST['rows']) : 10;
@@ -18,7 +18,7 @@ class mAgendaDireksiModel extends CI_Model {
 
 		if ($jenis=='total') {
 
-        	$result = $this->db->query("select * from TBL_M_AGENDA_DIREKSI")->num_rows();
+        	$result = $this->db->query("select * from TBL_M_DIREKSI")->num_rows();
         	return $result;
 
         } elseif ($jenis=='rows') {
@@ -26,7 +26,7 @@ class mAgendaDireksiModel extends CI_Model {
         	$this->db->limit($rows,$offset);
         	$this->db->order_by($sort,$order);
 			$this->db->select("a.*");
-			$this->db->from("TBL_M_AGENDA_DIREKSI a");
+			$this->db->from("TBL_M_DIREKSI a");
 
         if($searchKey<>''){
 			$this->db->where($searchKey." like '%".$searchValue."%'");
@@ -48,7 +48,7 @@ class mAgendaDireksiModel extends CI_Model {
 		        'DIREKSI' => $DIREKSI
 		);
 
-		if ($this->db->insert('TBL_M_AGENDA_DIREKSI', $data)) {
+		if ($this->db->insert('TBL_M_DIREKSI', $data)) {
 			return "SUCCESS";
 		} else {
 			return "FAILED";
@@ -65,7 +65,7 @@ class mAgendaDireksiModel extends CI_Model {
 
 		$this->db->where('ID_DIREKSI', $ID_DIREKSI);
 
-		if ($this->db->update('TBL_M_AGENDA_DIREKSI', $data)) {
+		if ($this->db->update('TBL_M_DIREKSI', $data)) {
 			return "SUCCESS";
 		} else {
 			return "FAILED";
@@ -76,7 +76,7 @@ class mAgendaDireksiModel extends CI_Model {
 	{
 		$this->db->where('ID_DIREKSI', $ID_DIREKSI);
 
-		if ($this->db->delete('TBL_M_AGENDA_DIREKSI')) {
+		if ($this->db->delete('TBL_M_DIREKSI')) {
 			$result['error']=false;
 		} else {
 			$result['error']=true;

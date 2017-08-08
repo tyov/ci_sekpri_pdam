@@ -6,8 +6,8 @@
             >
         <thead>
             <tr>
-                <th field="ID_RUANG_RAPAT" halign="center" align="center">No Jenis Ruang Rapat</th>
-                <th field="RUANG_RAPAT" width="150" halign="center" align="center">Jenis Ruang Rapat</th>
+                <th field="ID_RUANG_RAPAT" width="30" >No Jenis Ruang Rapat</th>
+                <th field="RUANG_RAPAT" width="150" >Jenis Ruang Rapat</th>
             </tr>
         </thead>
     </table>
