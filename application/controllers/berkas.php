@@ -11,10 +11,6 @@ class Berkas extends CI_Controller {
 
 	public function index()
 	{
-		// $data=array();
-		// $data['nomor']	='12345678';//$this->berkasModel->getDataNomor();
-		// $data['tanggal']='asss';//$this->berkasModel->getDataTanggal();
-		// //print_r($data);
 		$this->load->view('berkas');
 	}
 	
@@ -55,6 +51,12 @@ class Berkas extends CI_Controller {
     	$result=$this->berkasModel->getDataTanggal();
 		echo json_encode($result);
     }
+
+	public function getBerkasDesc()
+	{
+		$data['rows']=$this->berkasModel->getJson('rows');
+		echo json_encode($data);
+	}    
 
 }
 
