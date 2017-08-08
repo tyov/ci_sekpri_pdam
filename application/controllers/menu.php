@@ -66,6 +66,14 @@ class Menu extends CI_Controller {
 				            "url":"mAgendaDireksi",
 				            "view":"mAgendaDireksi"
 				        	}
+				        },{
+				        "id":"16",
+				        "text":"Master Direksi",
+				        "checked":false,
+				        "attributes":{
+				            "url":"mDireksi",
+				            "view":"mDireksi"
+				        	}
 				        }]
 				 },{
 				    "id":2,
@@ -106,16 +114,8 @@ class Menu extends CI_Controller {
 				        "text":"Ekspedisi",
 				        "checked":false,
 				        "attributes":{
-				            "url":"berkas",
-				            "view":"berkas"
-				        	}
-				        },{
-				       	"id":"33",
-				        "text":"Master Laporan",
-				        "checked":false,
-				        "attributes":{
-				            "url":"berkas",
-				            "view":"berkas"
+				            "url":"ekspedisi",
+				            "view":"ekspedisi"
 				        	}
 				        }]
 				 }
