@@ -66,14 +66,6 @@ class Menu extends CI_Controller {
 				            "url":"mAgendaDireksi",
 				            "view":"mAgendaDireksi"
 				        	}
-				        },{
-				        "id":"16",
-				        "text":"Master Direksi",
-				        "checked":false,
-				        "attributes":{
-				            "url":"mDireksi",
-				            "view":"mDireksi"
-				        	}
 				        }]
 				 },{
 				    "id":2,
