@@ -54,11 +54,31 @@
 <script type="text/javascript">
         
     var url;
+
     function tambahEkspedisi(){
-        $('#dlg_ekspedisi').dialog('open').dialog('center').dialog('setTitle','Tambah Ekspedisi');
-        $('#fm_ekspedisi').form('clear');
-        url = '<?php echo base_url(); ?>index.php/ekspedisi/newEkspedisi';
+        var nomor='';
+        $.ajax({
+        url: "<?php echo base_url(); ?>index.php/ekspedisi/getNomorEkspedisi",
+        async: false,
+        dataType:"json",
+        success: function(result){        
+            nomor=result.nomor;
+          $('#dlg_ekspedisi').dialog('open').dialog('center').dialog('setTitle','Tambah Agenda Direksi');
+          $('#fm_ekspedisi').form('clear');
+           $('#fm_ekspedisi #ID_EKSPEDISI').textbox('setValue',nomor);
+           url = '<?php echo base_url(); ?>index.php/ekspedisi/newEkspedisi';
+      
+            }
+        });
+
     }
+
+    // function tambahEkspedisi(){
+    //     $('#dlg_ekspedisi').dialog('open').dialog('center').dialog('setTitle','Tambah Ekspedisi');
+    //     $('#fm_ekspedisi').form('clear');
+    //     url = '<?php echo base_url(); ?>index.php/ekspedisi/newEkspedisi';
+    // }
+
     $("#dg_ekspedisi").datagrid({  
         onRowContextMenu: function (e, rowIndex, rowData) { 
             e.preventDefault(); 

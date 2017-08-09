@@ -67,20 +67,23 @@
         
     var url;
     function tambahBerkas(){
-         $.ajax({
+        var nomor='';
+        var tanggal='';
+        $.ajax({
         url: "<?php echo base_url(); ?>index.php/berkas/getNomorBerkas",
         async: false,
         dataType:"json",
         success: function(result){        
-            $('#ID_BERKAS').val(result.nomor);
+            nomor=result.nomor;
+            tanggal=result.tanggal;
+            $('#dlg_master_berkas').dialog('open').dialog('center').dialog('setTitle','Tambah Agenda Direksi');
+            $('#fm_master_berkas').form('clear');
+            $('#fm_master_berkas #ID_BERKAS').textbox('setValue',nomor);
+            $('#fm_master_berkas #TGL_TERIMA').textbox('setValue',tanggal);
+            url = '<?php echo base_url(); ?>index.php/berkas/newBerkas';      
             }
         });
-
-     
-        $('#dlg_master_berkas').dialog('open').dialog('center').dialog('setTitle','Tambah Berkas');
-        //$('#fm_master_berkas').form('clear');
-        url = '<?php echo base_url(); ?>index.php/berkas/newBerkas';
-    }
+        }
 
     $("#dg_master_berkas").datagrid({  
         onRowContextMenu: function (e, rowIndex, rowData) { 
@@ -133,15 +136,4 @@
         }
         });
     }
-
-   
-    $.ajax({
-        url: "<?php echo base_url(); ?>index.php/berkas/getTanggal",
-        async: false,
-        dataType:"json",
-        success: function(result){   
-            $('#TGL_TERIMA').val(result.tanggal);
-            }
-    });
-
 </script>

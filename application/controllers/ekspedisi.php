@@ -33,4 +33,9 @@ class Ekspedisi extends CI_Controller {
 		$result=$this->ekspedisiModel->updateData($ID_EKSPEDISI);
 		echo json_encode($result);
     }
+    public function getNomorEkspedisi()
+    {
+    	$result=$this->ekspedisiModel->getNomorEkspedisi();
+		echo json_encode($result);
+    }
 }

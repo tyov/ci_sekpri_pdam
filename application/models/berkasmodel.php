@@ -114,15 +114,17 @@ class BerkasModel extends CI_Model {
 	public function getDataNomor()
 	{
 		$this->db->select('dbo.getNomorDokumen() as nomor');
+		$this->db->select('convert(varchar(20),getDate(),120) as tanggal');
 		$hasil=$this->db->get()->row_array();
         return $hasil;
 	}
 
-	public function getDataTanggal()
+	public function getID()
 	{
-		$this->db->select('convert(varchar(20),getDate(),120) as tanggal');
-		$hasil=$this->db->get()->row_array();
-		return $hasil;
+		$this->db->select("a.ID_BERKAS");
+		$this->db->from("TBL_BERKAS a");
+		$hasil=$this->db->get()->result_array();
+        return $hasil;
 	}
 
 }

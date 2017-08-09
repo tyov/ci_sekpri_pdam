@@ -41,7 +41,11 @@ class EkspedisiModel extends CI_Model {
 		$ID_JENIS_EKSPEDISI = htmlspecialchars($_REQUEST['ID_JENIS_EKSPEDISI']);
 		$ID_STATUS = htmlspecialchars($_REQUEST['ID_STATUS']);
 		$TGL_EKSPEDISI = htmlspecialchars($_REQUEST['TGL_EKSPEDISI']);
+
+		$ID_EKSPEDISI = $this->db->query("select dbo.getNomorEkspedisi() as baru")->row_array();		
+
 		$data = array(
+		        'ID_EKSPEDISI' => $ID_EKSPEDISI['baru'],
 		        'ID_BERKAS' => $ID_BERKAS,
 		        'ID_JENIS_EKSPEDISI' => $ID_JENIS_EKSPEDISI,
 		        'ID_STATUS' => $ID_STATUS,
@@ -82,6 +86,13 @@ class EkspedisiModel extends CI_Model {
 		}
 		
 		return $result;
+	}
+
+	public function getNomorEkspedisi()
+	{
+		$this->db->select('dbo.getNomorEkspedisi() as nomor');
+		$hasil=$this->db->get()->row_array();
+        return $hasil;
 	}
 	
 }

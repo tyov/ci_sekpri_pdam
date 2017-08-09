@@ -54,7 +54,7 @@ class Berkas extends CI_Controller {
 
 	public function getBerkasDesc()
 	{
-		$data['rows']=$this->berkasModel->getJson('rows');
+		$data=$this->berkasModel->getID();
 		echo json_encode($data);
 	}    
 
