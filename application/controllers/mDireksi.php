@@ -32,7 +32,7 @@ class mDireksi extends CI_Controller {
 	public function deleteMDireksi()
 	{
 		$ID_DIREKSI=$this->input->post('ID_DIREKSI');
-		$result=$this->MDireksiModel->deleteData($ID_DIREKSI);
+		$result=$this->mDireksiModel->deleteData($ID_DIREKSI);
 		echo json_encode($result);
 	}
 

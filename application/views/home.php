@@ -6,17 +6,17 @@
     <script type="text/javascript"> 
             var base_url = "<?php echo base_url(); ?>";  
         </script>
-    <link rel="stylesheet" type="text/css" href="./assets/themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="./assets/themes/icon.css">
-    <link rel="stylesheet" type="text/css" href="./assets/themes/color.css">
-    <!--<link rel="stylesheet" type="text/css" href="./assets/demo.css">-->
-    <!--<link rel="stylesheet" type="text/css" href="./assets/fonts/fonts.css">-->
-    <script type="text/javascript" src="./assets/jquery.min.js"></script>
-    <script type="text/javascript" src="./assets/jquery.easyui.min.js"></script>
-    <!--<script type="text/javascript" src="./assets/jquery.easyui.patch.js"></script>-->
-    <link rel="stylesheet" type="text/css" href="./assets/fonts/stylesheet.css">
-    <link rel="stylesheet" type="text/css" href="./assets/fonts/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="./assets/custom.css">   
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/themes/default/easyui.css"); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/themes/icon.css"); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/themes/color.css"); ?>">
+    <!--<link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/demo.css"); ?>">-->
+    <!--<link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/fonts/fonts.css"); ?>">-->
+    <script type="text/javascript" src="<?php echo base_url("assets/jquery.min.js"); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url("assets/jquery.easyui.min.js"); ?>"></script>
+    <!--<script type="text/javascript" src="<?php echo base_url("assets/jquery.easyui.patch.js"); ?>"></script>-->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/fonts/stylesheet.css"); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/fonts/font-awesome/css/font-awesome.min.css"); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/custom.css"); ?>">   
 </head>
 
 <body class="easyui-layout" style="overflow-y: hidden;" scroll="no">
