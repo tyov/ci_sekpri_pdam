@@ -37,14 +37,12 @@ class mDireksi extends CI_Controller {
 	}
 
 	public function updateMDireksi($ID_DIREKSI)
-
 	{
 		$result=$this->mDireksiModel->updateData($ID_DIREKSI);
 		echo json_encode($result);
     }
 
     public function getMDireksiDesc()
-
 	{
 		$data=$this->mDireksiModel->getJson('rows');
 		echo json_encode($data);

@@ -109,6 +109,14 @@ class Menu extends CI_Controller {
 				            "url":"ekspedisi",
 				            "view":"ekspedisi"
 				        	}
+				        },{
+				        "id":"33",
+				        "text":"Berkas Selesai",
+				        "checked":false,
+				        "attributes":{
+				            "url":"berkasSelesai",
+				            "view":"berkasSelesai"
+				        	}
 				        }]
 				 }
 			    ]';

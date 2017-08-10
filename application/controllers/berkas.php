@@ -21,6 +21,13 @@ class Berkas extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function getBerkasSelesai()
+	{
+		$data['rows']=$this->berkasModel->getJsonSelesai('rows');
+		$data['total']=$this->berkasModel->getJsonSelesai('total');
+		echo json_encode($data);
+	}
+
 	public function newBerkas()
 	{
 		$result=$this->berkasModel->newData();
