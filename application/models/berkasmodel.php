@@ -30,10 +30,10 @@ class BerkasModel extends CI_Model {
 			$this->db->join("(SELECT left(kode_jabatan,4) as KODE, nama_bagian FROM BAGIAN group by left(kode_jabatan,4), nama_bagian) b", "a.BAGIAN = b.KODE");
 			$this->db->join("KARYAWAN c", "a.PENERIMA=c.nip");
 			$this->db->join("KARYAWAN d", "a.PENGIRIM=d.nip");
-			$this->db->or_where('PENGAMBIL IS NULL', null, false);
-			$this->db->or_where('TGL_AMBIL IS NULL', null, false);
-			$this->db->or_where('PENGAMBIL', '');
-			$this->db->or_where('TGL_AMBIL', '');
+			// $this->db->or_where('PENGAMBIL IS NULL', null, false);
+			// $this->db->or_where('TGL_AMBIL IS NULL', null, false);
+			// $this->db->or_where('PENGAMBIL', '');
+			// $this->db->or_where('TGL_AMBIL', '');
         if($searchKey<>''){
 			$this->db->where($searchKey." like '%".$searchValue."%'");
 		}
@@ -58,16 +58,10 @@ class BerkasModel extends CI_Model {
 		if ($jenis=='rows') {
     		$this->db->limit($rows,$offset);
         	$this->db->order_by($sort,$order);
-			$this->db->select("a.ID_BERKAS, a.TGL_TERIMA, convert(varchar(20),a.TGL_TERIMA,120) as TGL_TERIMA_DESC, a.PENERIMA, a.PENGIRIM, a.BAGIAN, a.PERIHAL, a.TGL_AMBIL, a.PENGAMBIL, c.nama_lengkap PENERIMA_DESC, d.nama_lengkap PENGIRIM_DESC, b.nama_bagian BAGIAN_DESC, convert(varchar(20),a.TGL_AMBIL,120) as TGL_AMBIL_DESC, e.nama_lengkap PENGAMBIL_DESC,");
-			$this->db->from("TBL_BERKAS a");
-			$this->db->join("(SELECT left(kode_jabatan,4) as KODE, nama_bagian FROM BAGIAN group by left(kode_jabatan,4), nama_bagian) b", "a.BAGIAN = b.KODE");
-			$this->db->join("KARYAWAN c", "a.PENERIMA=c.nip");
-			$this->db->join("KARYAWAN d", "a.PENGIRIM=d.nip");
-			$this->db->join("KARYAWAN e", "a.PENGAMBIL=e.nip");
-			$this->db->where('PENGAMBIL IS NOT NULL', null, false);
-			$this->db->where('TGL_AMBIL IS NOT NULL', null, false);
-			$this->db->where('PENGAMBIL !=', '');
-			$this->db->where('TGL_AMBIL !=', '');
+			$this->db->select("a.ID_BERKAS");
+			$this->db->from("EKSPEDISI a");
+			$this->db->where('ID_STATUS', '1');
+
         if($searchKey<>''){
 			$this->db->where($searchKey." like '%".$searchValue."%'");
 		}
@@ -75,7 +69,7 @@ class BerkasModel extends CI_Model {
         $hasil=$this->db->get ('',$this->limit, $this->offset)->result_array();
         return $hasil;
     	} elseif ($jenis=='total') {
-    		$result = $this->db->query("select * from TBL_BERKAS WHERE PENGAMBIL IS NOT NULL AND TGL_AMBIL IS NOT NULL AND PENGAMBIL != '' AND TGL_AMBIL != ''")->num_rows();
+    		$result = $this->db->query("select distinct ID_BERKAS from EKSPEDISI WHERE ID_STATUS='1'")->num_rows();
         	return $result;
     	}
 	}

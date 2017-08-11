@@ -36,10 +36,10 @@
                 <input data-options="valueField:'ID_STATUS',textField:'STATUS',url:'<?php echo base_url(); ?>index.php/mStatus/getStatusDesc'" name="ID_STATUS" class="easyui-combobox" required="true" label="Status:" style="width:100%">
             </div>
             <div style="margin-bottom:10px">
-                <input name="TGL_EKSPEDISI" class="easyui-datetimebox" required="true" label="Tanggal Ekspedisi:" style="width:100%">
+                <input name="TGL_EKSPEDISI" class="easyui-datetimebox" label="Tanggal Ekspedisi:" style="width:100%">
             </div>
             <div style="margin-bottom:10px">
-                <input name="TGL_SELESAI" class="easyui-datetimebox" required="true" label="Tanggal Selesai:" style="width:100%">
+                <input name="TGL_SELESAI" class="easyui-datetimebox" label="Tanggal Selesai:" style="width:100%">
             </div>
         </form>
     </div>
@@ -58,7 +58,6 @@
 <script type="text/javascript">
         
     var url;
-
     function tambahEkspedisi(){
         var nomor='';
         $.ajax({
@@ -71,10 +70,8 @@
           $('#fm_ekspedisi').form('clear');
            $('#fm_ekspedisi #ID_EKSPEDISI').textbox('setValue',nomor);
            url = '<?php echo base_url(); ?>index.php/ekspedisi/newEkspedisi';
-      
             }
         });
-
     }
 
     // function tambahEkspedisi(){

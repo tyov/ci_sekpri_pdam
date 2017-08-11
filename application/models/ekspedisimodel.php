@@ -18,7 +18,7 @@ class EkspedisiModel extends CI_Model {
         } elseif ($jenis=='rows') {
         	$this->db->limit($rows,$offset);
         	$this->db->order_by($sort,$order);
-        	$this->db->select('a.ID_EKSPEDISI, a.ID_BERKAS, a.ID_JENIS_EKSPEDISI, a.ID_STATUS, a.TGL_EKSPEDISI, convert(varchar(20),a.TGL_EKSPEDISI,120) as TGL_EKSPEDISI_DESC, b.JENIS_EKSPEDISI as ID_JENIS_EKSPEDISI_DESC, c.STATUS as ID_STATUS_DESC');
+        	$this->db->select('a.ID_EKSPEDISI, a.ID_BERKAS, a.ID_JENIS_EKSPEDISI, a.ID_STATUS, convert(varchar(20),a.TGL_EKSPEDISI,120) as TGL_EKSPEDISI_DESC, convert(varchar(20),a.TGL_SELESAI,120) as TGL_SELESAI_DESC, b.JENIS_EKSPEDISI as ID_JENIS_EKSPEDISI_DESC, c.STATUS as ID_STATUS_DESC');
         	$this->db->from('EKSPEDISI a');
         	$this->db->join("TBL_M_JENIS_EKSPEDISI b", "a.ID_JENIS_EKSPEDISI=b.ID_JENIS_EKSPEDISI");
         	$this->db->join("TBL_M_STATUS c", "a.ID_STATUS=c.ID_STATUS");
@@ -41,6 +41,7 @@ class EkspedisiModel extends CI_Model {
 		$ID_JENIS_EKSPEDISI = htmlspecialchars($_REQUEST['ID_JENIS_EKSPEDISI']);
 		$ID_STATUS = htmlspecialchars($_REQUEST['ID_STATUS']);
 		$TGL_EKSPEDISI = htmlspecialchars($_REQUEST['TGL_EKSPEDISI']);
+		$TGL_SELESAI = htmlspecialchars($_REQUEST['TGL_SELESAI']);
 
 		$ID_EKSPEDISI = $this->db->query("select dbo.getNomorEkspedisi() as baru")->row_array();		
 
@@ -49,7 +50,8 @@ class EkspedisiModel extends CI_Model {
 		        'ID_BERKAS' => $ID_BERKAS,
 		        'ID_JENIS_EKSPEDISI' => $ID_JENIS_EKSPEDISI,
 		        'ID_STATUS' => $ID_STATUS,
-		        'TGL_EKSPEDISI' => $TGL_EKSPEDISI
+		        'TGL_EKSPEDISI' => $TGL_EKSPEDISI,
+		        'TGL_SELESAI' => $TGL_SELESAI
 		);
 		if ($this->db->insert('EKSPEDISI', $data)) {
 			return "SUCCESS";
@@ -63,11 +65,13 @@ class EkspedisiModel extends CI_Model {
 		$ID_JENIS_EKSPEDISI = htmlspecialchars($_REQUEST['ID_JENIS_EKSPEDISI']);
 		$ID_STATUS = htmlspecialchars($_REQUEST['ID_STATUS']);
 		$TGL_EKSPEDISI = htmlspecialchars($_REQUEST['TGL_EKSPEDISI']);
+		$TGL_SELESAI = htmlspecialchars($_REQUEST['TGL_SELESAI']);
 		$data = array(
 		        'ID_BERKAS' => $ID_BERKAS,
 		        'ID_JENIS_EKSPEDISI' => $ID_JENIS_EKSPEDISI,
 		        'ID_STATUS' => $ID_STATUS,
-		        'TGL_EKSPEDISI' => $TGL_EKSPEDISI
+		        'TGL_EKSPEDISI' => $TGL_EKSPEDISI,
+		        'TGL_SELESAI' => $TGL_SELESAI
 		);
 		$this->db->where('ID_EKSPEDISI', $ID_EKSPEDISI);
 		if ($this->db->update('EKSPEDISI', $data)) {
