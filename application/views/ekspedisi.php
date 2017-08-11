@@ -6,11 +6,12 @@
             >
         <thead>
             <tr>
-                <th field="ID_EKSPEDISI" halign="center" align="center">No Ekspedisi</th>
+                <th field="ID_EKSPEDISI" width="150" halign="center" align="center">No Ekspedisi</th>
                 <th field="ID_BERKAS" width="150" halign="center" align="center">No Berkas</th>
                 <th field="ID_JENIS_EKSPEDISI_DESC" width="250" halign="center" align="center">Jenis Ekspedisi</th>
-                <th field="ID_STATUS_DESC" width="150" halign="center" align="center">Status</th>
                 <th field="TGL_EKSPEDISI_DESC" width="200" halign="center" align="center">Tanggal Ekspedisi</th>
+                <th field="TGL_SELESAI_DESC" width="200" halign="center" align="center">Tanggal Selesai</th>
+                <th field="ID_STATUS_DESC" width="150" halign="center" align="center">Status</th>               
             </tr>
         </thead>
     </table>
@@ -36,6 +37,9 @@
             </div>
             <div style="margin-bottom:10px">
                 <input name="TGL_EKSPEDISI" class="easyui-datetimebox" required="true" label="Tanggal Ekspedisi:" style="width:100%">
+            </div>
+            <div style="margin-bottom:10px">
+                <input name="TGL_SELESAI" class="easyui-datetimebox" required="true" label="Tanggal Selesai:" style="width:100%">
             </div>
         </form>
     </div>
@@ -63,7 +67,7 @@
         dataType:"json",
         success: function(result){        
             nomor=result.nomor;
-          $('#dlg_ekspedisi').dialog('open').dialog('center').dialog('setTitle','Tambah Agenda Direksi');
+          $('#dlg_ekspedisi').dialog('open').dialog('center').dialog('setTitle','Tambah Ekspedisi');
           $('#fm_ekspedisi').form('clear');
            $('#fm_ekspedisi #ID_EKSPEDISI').textbox('setValue',nomor);
            url = '<?php echo base_url(); ?>index.php/ekspedisi/newEkspedisi';

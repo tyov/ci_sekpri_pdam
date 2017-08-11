@@ -76,7 +76,7 @@
         success: function(result){        
             nomor=result.nomor;
             tanggal=result.tanggal;
-            $('#dlg_master_berkas_selesai').dialog('open').dialog('center').dialog('setTitle','Tambah Agenda Direksi');
+            $('#dlg_master_berkas_selesai').dialog('open').dialog('center').dialog('setTitle','Tambah Berkas');
             $('#fm_master_berkas_selesai').form('clear');
             $('#fm_master_berkas_selesai #ID_BERKAS').textbox('setValue',nomor);
             $('#fm_master_berkas_selesai #TGL_TERIMA').textbox('setValue',tanggal);

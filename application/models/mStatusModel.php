@@ -25,8 +25,8 @@ class MStatusModel extends CI_Model {
 
         	$this->db->limit($rows,$offset);
         	$this->db->order_by($sort,$order);
-			$this->db->select("a.*");
-			$this->db->from("TBL_M_STATUS a");
+			$this->db->select("ID_STATUS, STATUS");
+			$this->db->from("TBL_M_STATUS");
 
         if($searchKey<>''){
 			$this->db->where($searchKey." like '%".$searchValue."%'");
