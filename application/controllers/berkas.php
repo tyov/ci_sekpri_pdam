@@ -47,6 +47,12 @@ class Berkas extends CI_Controller {
 		echo json_encode($result);
     }
 
+    public function updateBerkasSelesai($ID_BERKAS)
+	{
+		$result=$this->berkasModel->updateDataSelesai($ID_BERKAS);
+		echo json_encode($result);
+    }
+
     public function getNomorBerkas()
     {
     	$result=$this->berkasModel->getDataNomor();

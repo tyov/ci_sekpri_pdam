@@ -33,13 +33,13 @@
                 <input data-options="valueField:'ID_JENIS_EKSPEDISI',textField:'JENIS_EKSPEDISI',url:'<?php echo base_url(); ?>index.php/mJenisEkspedisi/getJenisEkspedisiDesc'" name="ID_JENIS_EKSPEDISI" class="easyui-combobox" required="true" label="Jenis Ekspedisi:" style="width:100%">
             </div>
             <div style="margin-bottom:10px">
-                <input data-options="valueField:'ID_STATUS',textField:'STATUS',url:'<?php echo base_url(); ?>index.php/mStatus/getStatusDesc'" name="ID_STATUS" class="easyui-combobox" required="true" label="Status:" style="width:100%">
-            </div>
-            <div style="margin-bottom:10px">
                 <input name="TGL_EKSPEDISI" class="easyui-datetimebox" label="Tanggal Ekspedisi:" style="width:100%">
             </div>
             <div style="margin-bottom:10px">
                 <input name="TGL_SELESAI" class="easyui-datetimebox" label="Tanggal Selesai:" style="width:100%">
+            </div>
+            <div style="margin-bottom:10px">
+                <input data-options="valueField:'ID_STATUS',textField:'STATUS',url:'<?php echo base_url(); ?>index.php/mStatus/getStatusDesc'" name="ID_STATUS" class="easyui-combobox" required="true" label="Status:" style="width:100%">
             </div>
         </form>
     </div>

@@ -41,9 +41,14 @@ class EkspedisiModel extends CI_Model {
 		$ID_JENIS_EKSPEDISI = htmlspecialchars($_REQUEST['ID_JENIS_EKSPEDISI']);
 		$ID_STATUS = htmlspecialchars($_REQUEST['ID_STATUS']);
 		$TGL_EKSPEDISI = htmlspecialchars($_REQUEST['TGL_EKSPEDISI']);
-		$TGL_SELESAI = htmlspecialchars($_REQUEST['TGL_SELESAI']);
-
+		
 		$ID_EKSPEDISI = $this->db->query("select dbo.getNomorEkspedisi() as baru")->row_array();		
+
+		if ($_REQUEST['TGL_SELESAI']==null||$_REQUEST['TGL_SELESAI']==' ') {
+			$TGL_SELESAI = NULL;
+		} else {
+			$TGL_SELESAI = htmlspecialchars($_REQUEST['TGL_SELESAI']);
+		}
 
 		$data = array(
 		        'ID_EKSPEDISI' => $ID_EKSPEDISI['baru'],

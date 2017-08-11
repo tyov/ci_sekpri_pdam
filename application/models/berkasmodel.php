@@ -58,8 +58,13 @@ class BerkasModel extends CI_Model {
 		if ($jenis=='rows') {
     		$this->db->limit($rows,$offset);
         	$this->db->order_by($sort,$order);
-			$this->db->select("a.ID_BERKAS");
+			$this->db->select("a.ID_BERKAS, b.PENERIMA, b.PENGIRIM, b.BAGIAN, b.PERIHAL, b.PENGAMBIL, convert(varchar(20),b.TGL_TERIMA,120) as TGL_TERIMA_DESC, convert(varchar(20),b.TGL_AMBIL,120) as TGL_AMBIL_DESC, c.nama_bagian BAGIAN_DESC, d.nama_lengkap PENERIMA_DESC, e.nama_lengkap PENGIRIM_DESC, f.nama_lengkap PENGAMBIL_DESC");
 			$this->db->from("EKSPEDISI a");
+			$this->db->join('TBL_BERKAS b', 'a.ID_BERKAS = b.ID_BERKAS', 'right');
+			$this->db->join("(SELECT left(kode_jabatan,4) as KODE, nama_bagian FROM BAGIAN group by left(kode_jabatan,4), nama_bagian) c", "b.BAGIAN = c.KODE");
+			$this->db->join("KARYAWAN d", "b.PENERIMA=d.nip");
+			$this->db->join("KARYAWAN e", "b.PENGIRIM=e.nip");
+			$this->db->join("KARYAWAN f", "b.PENGAMBIL=f.nip", 'LEFT OUTER');
 			$this->db->where('ID_STATUS', '1');
 
         if($searchKey<>''){
@@ -81,18 +86,6 @@ class BerkasModel extends CI_Model {
 		$BAGIAN = htmlspecialchars($_REQUEST['BAGIAN']);
 		$PERIHAL = htmlspecialchars($_REQUEST['PERIHAL']);
 
-		if ($_REQUEST['TGL_AMBIL']==null||$_REQUEST['TGL_AMBIL']==' ') {
-			$TGL_AMBIL = NULL;
-		} else {
-			$TGL_AMBIL = htmlspecialchars($_REQUEST['TGL_AMBIL']);			
-		}
-
-		if ($_REQUEST['PENGAMBIL']==null||$_REQUEST['PENGAMBIL']==' ') {
-			$PENGAMBIL = NULL;
-		} else {
-			$PENGAMBIL = htmlspecialchars($_REQUEST['PENGAMBIL']);
-		}
-
 		$TGL_TERIMA = $this->db->query("select getDate() as baru")->row_array();
 		$ID_BERKAS = $this->db->query("select dbo.getNomorDokumen() as baru")->row_array();
 
@@ -102,9 +95,7 @@ class BerkasModel extends CI_Model {
 		        'PENERIMA' => $PENERIMA,
 		        'PENGIRIM' => $PENGIRIM,
 		        'BAGIAN' => $BAGIAN,
-		        'PERIHAL' => $PERIHAL,
-		        'TGL_AMBIL' => $TGL_AMBIL,
-		        'PENGAMBIL' => $PENGAMBIL
+		        'PERIHAL' => $PERIHAL
 		);
 
 		if ($this->db->insert('TBL_BERKAS', $data)) {
@@ -120,14 +111,41 @@ class BerkasModel extends CI_Model {
 		$PENGIRIM = htmlspecialchars($_REQUEST['PENGIRIM']);
 		$BAGIAN = htmlspecialchars($_REQUEST['BAGIAN']);
 		$PERIHAL = htmlspecialchars($_REQUEST['PERIHAL']);
-		$TGL_AMBIL = htmlspecialchars($_REQUEST['TGL_AMBIL']);
-		$PENGAMBIL = htmlspecialchars($_REQUEST['PENGAMBIL']);
 
 		$data = array(
 		        'PENERIMA' => $PENERIMA,
 		        'PENGIRIM' => $PENGIRIM,
 		        'BAGIAN' => $BAGIAN,
-		        'PERIHAL' => $PERIHAL,
+		        'PERIHAL' => $PERIHAL
+		);
+
+		$this->db->where('ID_BERKAS', $ID_BERKAS);
+
+		if ($this->db->update('TBL_BERKAS', $data)) {
+			return "SUCCESS";
+		} else {
+			return "FAILED";
+		}
+	}
+
+	public function updateDataSelesai($ID_BERKAS)
+	{
+		$TGL_AMBIL = htmlspecialchars($_REQUEST['TGL_AMBIL']);
+		$PENGAMBIL = htmlspecialchars($_REQUEST['PENGAMBIL']);
+
+		if ($_REQUEST['TGL_AMBIL']==null||$_REQUEST['TGL_AMBIL']==' ') {
+			$TGL_AMBIL = NULL;
+		} else {
+			$TGL_AMBIL = htmlspecialchars($_REQUEST['TGL_AMBIL']);
+		}
+
+		if ($_REQUEST['PENGAMBIL']==null||$_REQUEST['PENGAMBIL']==' ') {
+			$PENGAMBIL = NULL;
+		} else {
+			$PENGAMBIL = htmlspecialchars($_REQUEST['PENGAMBIL']);
+		}
+
+		$data = array(
 		        'TGL_AMBIL' => $TGL_AMBIL,
 		        'PENGAMBIL' => $PENGAMBIL
 		);
