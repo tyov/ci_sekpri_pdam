@@ -27,7 +27,7 @@
                 <input  name="ID_EKSPEDISI" id="ID_EKSPEDISI" class="easyui-textbox" readonly="true" value="" label="No Ekspedisi:" style="width:100%" >
             </div>
             <div style="margin-bottom:10px">
-                <input data-options="valueField:'ID_BERKAS',textField:'ID_BERKAS',url:'<?php echo base_url(); ?>index.php/berkas/getBerkasDesc'" name="ID_BERKAS" class="easyui-combobox" required="true" label="No Berkas:" style="width:100%">
+                <input data-options="valueField:'ID_BERKAS',textField:'ID_BERKAS',url:'<?php echo base_url(); ?>index.php/berkas/getBerkasDesc'" id="ID_BERKAS_EKS" name="ID_BERKAS_EKS" class="easyui-combobox" required="true" label="No Berkas:" style="width:100%">
             </div>
             <div style="margin-bottom:10px">
                 <input data-options="valueField:'ID_JENIS_EKSPEDISI',textField:'JENIS_EKSPEDISI',url:'<?php echo base_url(); ?>index.php/mJenisEkspedisi/getJenisEkspedisiDesc'" name="ID_JENIS_EKSPEDISI" class="easyui-combobox" required="true" label="Jenis Ekspedisi:" style="width:100%">
@@ -66,10 +66,11 @@
         dataType:"json",
         success: function(result){        
             nomor=result.nomor;
-          $('#dlg_ekspedisi').dialog('open').dialog('center').dialog('setTitle','Tambah Ekspedisi');
-          $('#fm_ekspedisi').form('clear');
-           $('#fm_ekspedisi #ID_EKSPEDISI').textbox('setValue',nomor);
+            $('#dlg_ekspedisi').dialog('open').dialog('center').dialog('setTitle','Tambah Ekspedisi');
+            $('#fm_ekspedisi').form('clear');
+            $('#fm_ekspedisi #ID_EKSPEDISI').textbox('setValue',nomor);
            url = '<?php echo base_url(); ?>index.php/ekspedisi/newEkspedisi';
+           $('#ID_BERKAS_EKS').combobox('reload');
             }
         });
     }

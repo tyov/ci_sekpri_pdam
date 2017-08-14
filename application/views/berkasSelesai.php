@@ -32,7 +32,7 @@
                 <input name="PERIHAL" class="easyui-textbox" label="Perihal:" readonly="true" style="width:100%; height:100px" data-options="multiline:true">
             </div>
             <div style="margin-bottom:10px">
-                <input name="TGL_AMBIL" class="easyui-datebox" label="Tanggal Ambil:" style="width:100%">
+                <input name="TGL_AMBIL" class="easyui-datetimebox" label="Tanggal Ambil:" style="width:100%">
             </div>
             <div style="margin-bottom:10px">
                 <input data-options="valueField:'nip',textField:'nama_lengkap',url:'<?php echo base_url(); ?>index.php/karyawan/getKaryawan'" name="PENGAMBIL" class="easyui-combobox" label="Pengambil:" style="width:100%">
