@@ -25,11 +25,14 @@ class BerkasModel extends CI_Model {
 
         	$this->db->limit($rows,$offset);
         	$this->db->order_by($sort,$order);
-			$this->db->select("a.ID_BERKAS, a.TGL_TERIMA, convert(varchar(20),a.TGL_TERIMA,120) as TGL_TERIMA_DESC, a.PENERIMA, a.PENGIRIM, a.BAGIAN, a.PERIHAL, a.TGL_AMBIL, a.PENGAMBIL, c.nama_lengkap PENERIMA_DESC, d.nama_lengkap PENGIRIM_DESC, b.nama_bagian BAGIAN_DESC, convert(varchar(20),a.TGL_AMBIL,120) as TGL_AMBIL_DESC, ");
+			$this->db->select("a.ID_BERKAS, a.TGL_TERIMA, convert(varchar(20),a.TGL_TERIMA,120) as TGL_TERIMA_DESC, a.PENERIMA, a.PENGIRIM, a.BAGIAN, a.PERIHAL, a.TGL_AMBIL, a.PENGAMBIL, c.nama_lengkap PENERIMA_DESC, d.nama_lengkap PENGIRIM_DESC, b.nama_bagian BAGIAN_DESC, convert(varchar(20),a.TGL_AMBIL,120) as TGL_AMBIL_DESC, e.ID_JENIS_EKSPEDISI,convert(varchar(20),e.TGL_EKSPEDISI,120) as TGL_EKSPEDISI_DESC, f.STATUS as ID_STATUS_DESC, g.JENIS_EKSPEDISI as ID_JENIS_EKSPEDISI_DESC");
 			$this->db->from("TBL_BERKAS a");
 			$this->db->join("(SELECT left(kode_jabatan,4) as KODE, nama_bagian FROM BAGIAN group by left(kode_jabatan,4), nama_bagian) b", "a.BAGIAN = b.KODE");
 			$this->db->join("KARYAWAN c", "a.PENERIMA=c.nip");
 			$this->db->join("KARYAWAN d", "a.PENGIRIM=d.nip");
+			$this->db->join('(SELECT ID_BERKAS, MIN(ID_JENIS_EKSPEDISI) as ID_JENIS_EKSPEDISI, MAX(TGL_EKSPEDISI) as TGL_EKSPEDISI, MIN(ID_STATUS) as ID_STATUS FROM EKSPEDISI GROUP BY ID_BERKAS) e', 'a.ID_BERKAS = e.ID_BERKAS','LEFT');
+			$this->db->join('TBL_M_STATUS f', 'f.ID_STATUS = e.ID_STATUS', 'left');
+			$this->db->join('TBL_M_JENIS_EKSPEDISI g', 'g.ID_JENIS_EKSPEDISI = e.ID_JENIS_EKSPEDISI', 'left');
 			$this->db->or_where('PENGAMBIL IS NULL', null, false);
 			$this->db->or_where('TGL_AMBIL IS NULL', null, false);
 			// $this->db->or_where('PENGAMBIL', '');

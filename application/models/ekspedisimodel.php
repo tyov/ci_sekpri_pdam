@@ -37,7 +37,7 @@ class EkspedisiModel extends CI_Model {
 	}
 	public function newData()
 	{
-		$ID_BERKAS = htmlspecialchars($_REQUEST['ID_BERKAS']);
+		$ID_BERKAS = htmlspecialchars($_REQUEST['ID_BERKAS_EKS']);
 		$ID_JENIS_EKSPEDISI = htmlspecialchars($_REQUEST['ID_JENIS_EKSPEDISI']);
 		$ID_STATUS = htmlspecialchars($_REQUEST['ID_STATUS']);
 		$TGL_EKSPEDISI = htmlspecialchars($_REQUEST['TGL_EKSPEDISI']);
@@ -66,7 +66,7 @@ class EkspedisiModel extends CI_Model {
 	}
 	public function updateData($ID_EKSPEDISI)
 	{
-		$ID_BERKAS = htmlspecialchars($_REQUEST['ID_BERKAS']);
+		$ID_BERKAS = htmlspecialchars($_REQUEST['ID_BERKAS_EKS']);
 		$ID_JENIS_EKSPEDISI = htmlspecialchars($_REQUEST['ID_JENIS_EKSPEDISI']);
 		$ID_STATUS = htmlspecialchars($_REQUEST['ID_STATUS']);
 		$TGL_EKSPEDISI = htmlspecialchars($_REQUEST['TGL_EKSPEDISI']);

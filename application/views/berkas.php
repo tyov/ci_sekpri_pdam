@@ -12,6 +12,9 @@
                 <th field="PENGIRIM_DESC" width="150" halign="center" align="center">Pengirim</th>
                 <th field="BAGIAN_DESC" width="150" halign="center" align="center">Bagian</th>
                 <th field="PERIHAL" width="250" halign="center" align="center">Perihal</th>
+                <th field="ID_JENIS_EKSPEDISI_DESC" width="250" halign="center" align="center">Posisi</th>
+                <th field="TGL_EKSPEDISI_DESC" width="200" halign="center" align="center">Tanggal Ekspedisi</th>
+                <th field="ID_STATUS_DESC" width="150" halign="center" align="center">Status</th> 
             </tr>
         </thead>
     </table>
