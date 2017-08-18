@@ -154,7 +154,6 @@
 
     function simpanAgenda(){
         console.log("test");
-        //console.log(url);
 
         $('#fm_agenda').form('submit',{
             url: url,
@@ -162,13 +161,7 @@
             return $(this).form('validate');
             },
         success: function(result){
-            // var result = eval('('+result+')');
-            // if (result.errorMsg){
-            //     $.messager.show({
-            //         title: 'Error',
-            //         msg: result.errorMsg
-            //     });
-            // } else {
+            alert(result);
             $('#dlg_agenda').dialog('close'); // close the dialog
             $('#dg_agenda').datagrid('reload'); // reload the user data
             //}
@@ -177,14 +170,5 @@
     }
 
      
-
-    /*$.ajax({
-        url: "<?php echo base_url(); ?>index.php/agenda/getTanggal",
-        async: false,
-        dataType:"json",
-        success: function(result){   
-            $('#TGL_TERIMA').val(result.tanggal);
-            }
-    });*/
 
 </script>

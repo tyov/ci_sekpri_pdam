@@ -52,26 +52,33 @@ class Agendamodel extends CI_Model {
 		$ID_RUANG_RAPAT = htmlspecialchars($_REQUEST['ID_RUANG_RAPAT']);
 		$KETERANGAN = htmlspecialchars($_REQUEST['KETERANGAN']);
 
+		$TGL_MULAI_NEW = date("Y-m-d H:i:s", strtotime($TGL_MULAI));
+		$TGL_SELESAI_NEW = date("Y-m-d H:i:s", strtotime($TGL_SELESAI));
+
 		$TGL_PEMESANAN = $this->db->query("select getDate() as baru")->row_array();
 		$id_agenda_rapat = $this->db->query("select dbo.getNomorRapat() as baru")->row_array();
 		 
+		$CEK = $this->db->query("select COUNT(ID_AGENDA_RUANG_RAPAT) AS JUMLAH from TBL_AGENDA_RUANG_RAPAT WHERE ID_RUANG_RAPAT = '$ID_RUANG_RAPAT' and (TGL_MULAI between '$TGL_MULAI_NEW' and '$TGL_SELESAI_NEW' OR TGL_SELESAI between '$TGL_MULAI_NEW' and '$TGL_SELESAI_NEW')");
+		if ($CEK->row()->JUMLAH == "0") {
+			$data = array(
+					'ID_AGENDA_RUANG_RAPAT'=>$id_agenda_rapat['baru'],
+			        'ID_JENIS_KEGIATAN' => $ID_JENIS_KEGIATAN,
+			        'PEMESAN' => $PEMESAN,
+			        'TGL_PEMESANAN' => $TGL_PEMESANAN['baru'],
+			        'ID_ASAL_KEGIATAN' => $ID_ASAL_KEGIATAN,
+			        'TGL_MULAI' => $TGL_MULAI,
+			        'TGL_SELESAI' => $TGL_SELESAI,
+			        'ID_RUANG_RAPAT' => $ID_RUANG_RAPAT,
+			        'KETERANGAN' => $KETERANGAN,
+			);
 
-		$data = array(
-				'ID_AGENDA_RUANG_RAPAT'=>$id_agenda_rapat['baru'],
-		        'ID_JENIS_KEGIATAN' => $ID_JENIS_KEGIATAN,
-		        'PEMESAN' => $PEMESAN,
-		        'TGL_PEMESANAN' => $TGL_PEMESANAN['baru'],
-		        'ID_ASAL_KEGIATAN' => $ID_ASAL_KEGIATAN,
-		        'TGL_MULAI' => $TGL_MULAI,
-		        'TGL_SELESAI' => $TGL_SELESAI,
-		        'ID_RUANG_RAPAT' => $ID_RUANG_RAPAT,
-		        'KETERANGAN' => $KETERANGAN,
-		);
-
-		if ($this->db->insert('TBL_AGENDA_RUANG_RAPAT', $data)) {
-			return "success";
+			if ($this->db->insert('TBL_AGENDA_RUANG_RAPAT', $data)) {
+				return "sukses";
+			} else {
+				return "gagal";
+			}
 		} else {
-			return "insert failed";
+			return "penuh";
 		}
 	}
 

@@ -25,7 +25,7 @@ class agenda extends CI_Controller {
 	{
 		// print_r($_POST);exit;
 		$result=$this->agendaModel->newData();
-		echo json_encode($result);
+		echo $result;
 	}
 
 	public function deleteAgenda()
