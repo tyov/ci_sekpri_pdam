@@ -118,6 +118,28 @@ class Menu extends CI_Controller {
 				            "view":"berkasSelesai"
 				        	}
 				        }]
+				 },{
+				    "id":4,
+				    "text":"Laporan",
+				    "iconCls":"icon-save",
+				    "children":[{
+				        "id":"41",
+				        "text":"Laporan Berkas",
+				        "checked":false,
+				        "attributes":{
+				            "url":"laporanBerkas",
+				            "view":"laporanBerkas"
+				        	}
+				        },{
+				        "id":"22",
+				        "text":"Laporan Agenda",
+				        "checked":false,
+				        "attributes":{
+				            "url":"laporanAgenda",
+				            "view":"laporanAgenda"
+				        	}
+				        
+				        }]
 				 }
 			    ]';
 		echo $menu;	

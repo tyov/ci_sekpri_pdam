@@ -67,7 +67,7 @@ class BerkasModel extends CI_Model {
 			$this->db->join("(SELECT left(kode_jabatan,4) as KODE, nama_bagian FROM BAGIAN group by left(kode_jabatan,4), nama_bagian) c", "b.BAGIAN = c.KODE");
 			$this->db->join("KARYAWAN d", "b.PENERIMA=d.nip");
 			$this->db->join("KARYAWAN e", "b.PENGIRIM=e.nip");
-			$this->db->join("KARYAWAN f", "b.PENGAMBIL=f.nip", 'LEFT OUTER');
+			$this->db->join("KARYAWAN f", "b.PENGAMBIL=f.nip", 'LEFT');
 			$this->db->where('ID_STATUS', '1');
 
         if($searchKey<>''){

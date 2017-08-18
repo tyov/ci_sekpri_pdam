@@ -1,0 +1,49 @@
+CREATE TABLE #Laporan
+(
+TGL_TERIMA smalldatetime,
+BAGIAN varchar(20),
+JUMLAH int
+)
+
+INSERT INTO #Laporan 
+SELECT TGL_TERIMA, BAGIAN, COUNT(ID_BERKAS) AS JUMLAH
+FROM TBL_BERKAS
+GROUP BY BAGIAN, TGL_TERIMA
+
+DECLARE @cols AS NVARCHAR(MAX),
+    @query  AS NVARCHAR(MAX);
+
+SET @cols = STUFF((SELECT distinct ',' + QUOTENAME(nama_bagian) 
+            FROM BAGIAN where nama_bagian is not null
+			and left(kode_jabatan,4) not in('1.00','2.00','3.00','9.00','9.01','8.00','8.01','8.02','8.03','1.05','1.06')
+            FOR XML PATH(''), TYPE
+            ).value('.', 'NVARCHAR(MAX)') 
+        ,1,1,'')
+
+set @query=
+'SELECT CONVERT(varchar(20), TGL_TERIMA, 105) as TGL_TERIMA, ' + @cols + ' from 
+            (
+                select CONVERT(varchar(20), TGL_TERIMA, 105) as TGL_TERIMA
+                    ,sum(JUMLAH) as JUMLAH
+
+					, d.nama_bagian
+                from #Laporan
+				join (select z.* from(
+				select distinct nama_bagian, left(kode_jabatan,4) as kode 
+				from bagian where nama_bagian is not null
+and left(kode_jabatan,4) not in(''1.00'',''2.00'',''3.00'',''9.01'',''8.01'',''8.02'',''8.03'')
+union 
+select keterangan as nama_bagian,left(kode_jabatan,4) from bagian where left(kode_jabatan,4) in(''1.00'',''2.00'',''3.00'')
+				)z) d ON BAGIAN=d.kode
+				 group by CONVERT(varchar(20), TGL_TERIMA, 105), d.nama_bagian
+           ) x
+            pivot 
+            (
+                 sum(JUMLAH)
+                for nama_bagian in (' + @cols + ')
+            ) p '
+
+
+execute(@query)
+
+drop table #Laporan
