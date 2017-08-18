@@ -5,8 +5,8 @@ class LaporanBerkasModel extends CI_Model {
 
 	public function getJson()
 	{
-		$this->db->query("DROP TABLE #Laporan");
-		$result = $this->db->query("CREATE TABLE #Laporan
+		$this->db->query("IF OBJECT_ID('tempdb.dbo.#Laporan', 'U') IS NOT NULL DROP TABLE #Laporan; ");
+		$this->db->query("CREATE TABLE #Laporan
 		(
 		TGL_TERIMA smalldatetime,
 		BAGIAN varchar(20),
@@ -16,9 +16,10 @@ class LaporanBerkasModel extends CI_Model {
 		INSERT INTO #Laporan 
 		SELECT TGL_TERIMA, BAGIAN, COUNT(ID_BERKAS) AS JUMLAH
 		FROM TBL_BERKAS
-		GROUP BY BAGIAN, TGL_TERIMA
+		GROUP BY BAGIAN, TGL_TERIMA");
 
-		DECLARE @cols AS NVARCHAR(MAX),
+		$result = $this->db->query("SET NOCOUNT ON;
+			DECLARE @cols AS NVARCHAR(MAX),
 		    @query  AS NVARCHAR(MAX);
 
 		SET @cols = STUFF((SELECT distinct ',' + QUOTENAME(nama_bagian) 
@@ -52,8 +53,7 @@ class LaporanBerkasModel extends CI_Model {
 
 
 		execute(@query)");
-		
-        return $result;
+        return print_r($result);
 	}
 
 }

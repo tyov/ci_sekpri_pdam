@@ -1,3 +1,14 @@
+alter PROCEDURE LAPORAN(
+
+    @tahun VARCHAR(4),
+	@bulan varchar(2)        
+
+)
+
+AS
+
+BEGIN
+
 CREATE TABLE #Laporan
 (
 TGL_TERIMA smalldatetime,
@@ -40,6 +51,7 @@ set @query=
 				union 
 				select keterangan as nama_bagian,left(kode_jabatan,4) from bagian where left(kode_jabatan,4) in(''1.00'',''2.00'',''3.00'')
 				)z) d ON BAGIAN=d.kode
+				WHERE CONVERT(varchar(20), TGL_TERIMA, 105) like ''__-'+@bulan+'-'+@tahun+'''
 				 group by CONVERT(varchar(20), TGL_TERIMA, 105), d.nama_bagian
            ) x
             pivot 
@@ -51,3 +63,15 @@ set @query=
 execute(@query)
 
 drop table #Laporan
+
+END 
+
+
+
+
+
+
+
+
+
+-- LAPORAN '2017','08'
