@@ -59,7 +59,7 @@
                 <input data-options="valueField:'TGL_SELESAI',textField:'TGL_SELESAI'" class="easyui-datetimebox" name="TGL_SELESAI" required="true" label="Tgl Selesai:" style="width:100%">
             </div>
             <div style="margin-bottom:10px">
-                <input data-options="valueField:'ID_RUANG_RAPAT',textField:'RUANG_RAPAT',url:'<?php echo base_url(); ?>index.php/mRuangRapat/getRuangRapatDesc'" class="easyui-combobox" name="ID_RUANG_RAPAT" required="true" label="Ruang Rapat:" style="width:100%">
+                <input data-options="valueField:'ID_RUANG_RAPAT',textField:'RUANG_RAPAT',url:'<?php echo base_url(); ?>index.php/mRuangRapat/getRuangRapatDesc'" class="easyui-combobox" name="ID_RUANG_RAPAT" required="true" id="ID_RUANG_RAPAT" label="Ruang Rapat:" style="width:100%">
             </div>
 
         </form>
@@ -93,6 +93,7 @@
                 url = '<?php echo base_url(); ?>index.php/agenda/newAgenda';
                 $('#ID_ASAL_KEGIATAN').combobox('reload');
                 $('#ID_JENIS_KEGIATAN').combobox('reload');
+                $('#ID_RUANG_RAPAT').combobox('reload');
             }
         });
 
