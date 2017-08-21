@@ -13,6 +13,7 @@
                 <th field="PEMESAN_DESC" width="150" >Pemesan</th>
                 <th field="TGL_PEMESANAN" width="150" >Tanggal Pesan</th>
                 <th field="KETERANGAN" width="300" >Keterangan</th>
+                <th field="JUMLAH" width="300" >Jumlah</th>
                 <th field="TGL_MULAI" width="150" >Tanggal Mulai</th>
                 <th field="TGL_SELESAI" width="150" >Tanggal Selesai</th>
                 <th field="ID_RUANG_RAPAT_DESC" width="150" >Ruang Rapat</th>               
@@ -46,6 +47,9 @@
             </div>
             <div style="margin-bottom:10px">
                 <input name="KETERANGAN" class="easyui-textbox" label="Keterangan:" style="width:100%; height:100px" data-options="multiline:true">
+            </div>
+            <div style="margin-bottom:10px">
+                <input name="JUMLAH" class="easyui-textbox" label="Jumlah Peserta:" style="width:100%; height:20px" data-options="multiline:true">
             </div>
 
             <div style="margin-bottom:10px">

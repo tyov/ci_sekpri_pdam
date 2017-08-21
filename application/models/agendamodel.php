@@ -24,7 +24,7 @@ class Agendamodel extends CI_Model {
         	$this->db->order_by($sort,$order);
 			$this->db->select("a.ID_AGENDA_RUANG_RAPAT,a.ID_JENIS_KEGIATAN,a.PEMESAN,a.ID_ASAL_KEGIATAN,a.ID_RUANG_RAPAT,
 				convert(varchar(20),TGL_PEMESANAN,120) as TGL_PEMESANAN,
-				a.KETERANGAN,
+				a.KETERANGAN,a.JUMLAH,
 				convert(varchar(20),a.TGL_MULAI,120) as TGL_MULAI,
 				convert(varchar(20),a.TGL_SELESAI,120) as TGL_SELESAI, 
 				b.RUANG_RAPAT ID_RUANG_RAPAT_DESC, c.nama_lengkap PEMESAN_DESC, d.JENIS_KEGIATAN ID_JENIS_KEGIATAN_DESC, e.ASAL_KEGIATAN ID_ASAL_KEGIATAN_DESC");
@@ -51,6 +51,7 @@ class Agendamodel extends CI_Model {
 		$TGL_SELESAI = htmlspecialchars($_REQUEST['TGL_SELESAI']);
 		$ID_RUANG_RAPAT = htmlspecialchars($_REQUEST['ID_RUANG_RAPAT']);
 		$KETERANGAN = htmlspecialchars($_REQUEST['KETERANGAN']);
+		$JUMLAH = htmlspecialchars($_REQUEST['JUMLAH']);
 
 		$TGL_MULAI_NEW = date("Y-m-d H:i:s", strtotime($TGL_MULAI));
 		$TGL_SELESAI_NEW = date("Y-m-d H:i:s", strtotime($TGL_SELESAI));
@@ -70,6 +71,8 @@ class Agendamodel extends CI_Model {
 			        'TGL_SELESAI' => $TGL_SELESAI,
 			        'ID_RUANG_RAPAT' => $ID_RUANG_RAPAT,
 			        'KETERANGAN' => $KETERANGAN,
+			        'JUMLAH' => $JUMLAH,
+			        
 			);
 
 			if ($this->db->insert('TBL_AGENDA_RUANG_RAPAT', $data)) {
@@ -101,6 +104,7 @@ class Agendamodel extends CI_Model {
 		$TGL_SELESAI = htmlspecialchars($_REQUEST['TGL_SELESAI']);
 		$ID_RUANG_RAPAT = htmlspecialchars($_REQUEST['ID_RUANG_RAPAT']);
 		$KETERANGAN = htmlspecialchars($_REQUEST['KETERANGAN']);
+		$JUMLAH = htmlspecialchars($_REQUEST['JUMLAH']);
 
 		$data = array(
 		        'ID_JENIS_KEGIATAN' => $ID_JENIS_KEGIATAN,
@@ -110,6 +114,8 @@ class Agendamodel extends CI_Model {
 		        'TGL_SELESAI' => $TGL_SELESAI,
 		        'ID_RUANG_RAPAT' => $ID_RUANG_RAPAT,
 		        'KETERANGAN' => $KETERANGAN,
+		        'JUMLAH' => $JUMLAH,
+		        
 		);
 
 		$this->db->where('ID_AGENDA_RUANG_RAPAT', $ID_AGENDA_RUANG_RAPAT);
