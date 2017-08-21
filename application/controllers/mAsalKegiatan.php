@@ -42,7 +42,7 @@ class MAsalKegiatan extends CI_Controller {
 
     	public function getAsalKegiatanDesc()
 	{
-		$data=$this->mAsalKegiatanModel->getJson('rows');
+		$data=$this->mAsalKegiatanModel->getAllAsalKegiatan();
 		echo json_encode($data);
 	}
 

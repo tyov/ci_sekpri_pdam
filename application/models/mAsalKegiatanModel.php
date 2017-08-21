@@ -85,6 +85,10 @@ class MAsalKegiatanModel extends CI_Model {
 		return $result;
 	}
 
+	function getAllAsalKegiatan(){
+		return $this->db->query("select * from TBL_M_ASAL_KEGIATAN order by ID_ASAL_KEGIATAN")->result_array();
+	}
+
 }
 
 /* End of file mAsalKegiatanModel.php */

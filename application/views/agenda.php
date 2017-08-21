@@ -35,10 +35,10 @@
            
             </div>
             <div style="margin-bottom:10px">
-                <input data-options="valueField:'ID_JENIS_KEGIATAN',textField:'JENIS_KEGIATAN',url:'<?php echo base_url(); ?>index.php/mJenisKegiatan/getJenisKegiatanDesc'" name="ID_JENIS_KEGIATAN" class="easyui-combobox" required="true" label="Jenis Kegiatan:" style="width:100%">
+                <input data-options="valueField:'ID_JENIS_KEGIATAN',textField:'JENIS_KEGIATAN',url:'<?php echo base_url(); ?>index.php/mJenisKegiatan/getJenisKegiatanDesc'" name="ID_JENIS_KEGIATAN" class="easyui-combobox" id="ID_JENIS_KEGIATAN" required="true" label="Jenis Kegiatan:" style="width:100%">
             </div>
             <div style="margin-bottom:10px">
-                <input data-options="valueField:'ID_ASAL_KEGIATAN',textField:'ASAL_KEGIATAN',url:'<?php echo base_url(); ?>index.php/mAsalKegiatan/getAsalKegiatanDesc'" class="easyui-combobox" name="ID_ASAL_KEGIATAN" required="true" label="Asal Kegiatan:" style="width:100%">
+                <input data-options="valueField:'ID_ASAL_KEGIATAN',textField:'ASAL_KEGIATAN',url:'<?php echo base_url(); ?>index.php/mAsalKegiatan/getAsalKegiatanDesc'" class="easyui-combobox" name="ID_ASAL_KEGIATAN" id='ID_ASAL_KEGIATAN' required="true" label="Asal Kegiatan:" style="width:100%">
             </div>
 
             <div style="margin-bottom:10px">
@@ -82,12 +82,13 @@
         async: false,
         dataType:"json",
         success: function(result){        
-            nomor=result.nomor;
-          $('#dlg_agenda').dialog('open').dialog('center').dialog('setTitle','Tambah Agenda');
-          $('#fm_agenda').form('clear');
-           $('#fm_agenda #ID_AGENDA_RUANG_RAPAT').textbox('setValue',nomor);
-           url = '<?php echo base_url(); ?>index.php/agenda/newAgenda';
-      
+                nomor=result.nomor;
+                $('#dlg_agenda').dialog('open').dialog('center').dialog('setTitle','Tambah Agenda');
+                $('#fm_agenda').form('clear');
+                $('#fm_agenda #ID_AGENDA_RUANG_RAPAT').textbox('setValue',nomor);
+                url = '<?php echo base_url(); ?>index.php/agenda/newAgenda';
+                $('#ID_ASAL_KEGIATAN').combobox('reload');
+                $('#ID_JENIS_KEGIATAN').combobox('reload');
             }
         });
 
@@ -161,9 +162,17 @@
             return $(this).form('validate');
             },
         success: function(result){
-            alert(result);
-            $('#dlg_agenda').dialog('close'); // close the dialog
-            $('#dg_agenda').datagrid('reload'); // reload the user data
+            var message = "";
+            if(result=="sukses"){
+                message = "Sukses menambahkan agenda";                
+                $('#dlg_agenda').dialog('close');
+                $('#dg_agenda').datagrid('reload');
+            }else if(result=="gagal"){
+                message = "Maaf terjadi kesalahan mohon ulangi kembali";
+            }else{
+                message = "Ruang rapat pada jam tersebut telah di pakai. mohon di jadwal ulang";
+            }
+            $.messager.alert('Konfirmasi',message);
             //}
         }
         });
