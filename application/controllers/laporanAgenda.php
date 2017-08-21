@@ -43,7 +43,7 @@ class LaporanAgenda extends CI_Controller {
 			<td width="10%" align="center"><strong>Tgl Mulai</strong></td>
 			<td width="10%" align="center"><strong>Tgl Selesai</strong></td>
 		  </tr>';
-
+		$no=1;
 		$data = $this->laporanAgendaModel->getJson();
 		foreach($data as $row){
 		//for($x=1; $x<=10; $x++){
