@@ -33,7 +33,8 @@ class LaporanBerkas extends CI_Controller {
 
 	public function getLaporan()
 	{
-		$data['rows']=$this->laporanBerkasModel->getJson();
+		$data['rows']=$this->laporanBerkasModel->getJson('rows');
+		$data['total']=$this->laporanBerkasModel->getJson('total');
 		echo json_encode($data);
 	}
 }

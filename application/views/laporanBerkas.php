@@ -6,7 +6,21 @@
             >
         <thead>
             <tr>
-                <th field="TGL_TERIMA" width="150" halign="center" align="center">Tanggal Terima</th>
+                <th field="TGL_TERIMA" width="200" halign="center" align="center">Tanggal Terima</th>
+                <th field="Keuangan" width="150" halign="center" align="center">Keu.</th>
+                <th field="Hubungan Pelanggan" width="150" halign="center" align="center">Hub.</th>
+                <th field="Pengadaan" width="150" halign="center" align="center">Pengd.</th>
+                <th field="Jaringan Pipa Pelanggan" width="150" halign="center" align="center">Jpp</th>
+                <th field="Pusat Penelitian dan Pengemban" width="150" halign="center" align="center">Litb.</th>
+                <th field="Perawatan" width="150" halign="center" align="center">Perwt.</th>
+                <th field="Kehilangan Air" width="150" halign="center" align="center">Nrw</th>
+                <th field="Perencanaan Teknik" width="150" halign="center" align="center">Prcn</th>
+                <th field="Sistem Informasi Manajemen" width="150" halign="center" align="center">Sim</th>
+                <th field="Pengawasan Pekerjaan" width="150" halign="center" align="center">Wasker</th>
+                <th field="Produksi" width="150" halign="center" align="center">Prod</th>
+                <th field="Satuan Pengawasan Internal" width="150" halign="center" align="center">Spi</th>
+                <th field="Sumber Daya Manusia" width="150" halign="center" align="center">Sdm</th>
+                <th field="Umum" width="150" halign="center" align="center">Umum</th>
             </tr>
         </thead>
     </table>    
