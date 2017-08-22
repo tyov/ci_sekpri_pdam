@@ -3,10 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class LaporanBerkasModel extends CI_Model {
 
-	public function getJson($jenis)
+	public function getJson($jenis,$bulan,$tahun)
 	{
-		$tahun = '2017';
-		$bulan = '08';
 
 		if ($jenis=='total') {
 
@@ -15,7 +13,7 @@ class LaporanBerkasModel extends CI_Model {
 
 	    } elseif ($jenis=='rows') {	
 
-			$result = $this->db->query("LAPORANBERKAS '$tahun','$bulan'")->result_array();
+			$result = $this->db->query("LAPORANBERKAS '$tahun','$bulan'")->result();
 	        return $result;
 	    }
 	}

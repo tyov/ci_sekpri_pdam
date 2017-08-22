@@ -14,7 +14,7 @@ class LaporanAgenda extends CI_Controller {
 		
 	}
 
-	public function cetakLaporan()
+	public function cetakLaporan($bulan,$tahun)
 	{
 		$this->load->library('mpdf/mPdf');
 		$mpdf = new mPDF('c','Legal-L');
@@ -44,7 +44,7 @@ class LaporanAgenda extends CI_Controller {
 			<td width="10%" align="center"><strong>Tgl Selesai</strong></td>
 		  </tr>';
 		$no=1;
-		$data = $this->laporanAgendaModel->getJson();
+		$data = $this->laporanAgendaModel->getJson($bulan,$tahun);
 		foreach($data as $row){
 		//for($x=1; $x<=10; $x++){
 		$html .='  
