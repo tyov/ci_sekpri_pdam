@@ -80,10 +80,10 @@ class LaporanBerkas extends CI_Controller {
 		$mpdf->Output();
 	}
 
-	public function getLaporan()
+	public function getLaporan($bulan,$tahun)
 	{
-		$data['rows']=$this->laporanBerkasModel->getJson('rows');
-		$data['total']=$this->laporanBerkasModel->getJson('total');
+		$data['rows']=$this->laporanBerkasModel->getJson('rows',$bulan,$tahun);
+		$data['total']=$this->laporanBerkasModel->getJson('total',$bulan,$tahun);
 		echo json_encode($data);
 	}
 }

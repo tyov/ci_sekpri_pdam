@@ -17,7 +17,6 @@ class LaporanBerkasModel extends CI_Model {
 	        return $result;
 	    }
 	}
-
 }
 
 /* End of file laporanModel.php */

@@ -1,6 +1,6 @@
 <div data-options="region:'center'" style="background:#eee;">
     <table id="dg_laporan_berkas"  class="easyui-datagrid" 
-            url="<?php echo base_url();?>index.php/laporanBerkas/getLaporan"
+            url="<?php echo base_url();?>index.php/laporanBerkas/getLaporan/08/2017"
             toolbar="#toolbar"
             border="false" striped="true" singleSelect="true" nowrap="false" pageSize="30" fitcolumns="true" style="width:auto; height: 545px;" >
         <thead>
