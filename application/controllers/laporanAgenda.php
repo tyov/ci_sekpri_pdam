@@ -14,8 +14,10 @@ class LaporanAgenda extends CI_Controller {
 		
 	}
 
-	public function cetakLaporan($bulan,$tahun)
+	public function cetakLaporan($TGL_MULAI,$TGL_SELESAI,$JENIS_KEGIATAN)
 	{
+		$TGL_MULAI = str_replace("~", "/", $TGL_MULAI);
+		$TGL_SELESAI = str_replace("~", "/", $TGL_SELESAI);
 		$this->load->library('mpdf/mPdf');
 		$mpdf = new mPDF('c','Legal-L');
 		$html = '
@@ -44,7 +46,7 @@ class LaporanAgenda extends CI_Controller {
 			<td width="10%" align="center"><strong>Tgl Selesai</strong></td>
 		  </tr>';
 		$no=1;
-		$data = $this->laporanAgendaModel->getJson($bulan,$tahun);
+		$data = $this->laporanAgendaModel->getJson($TGL_MULAI,$TGL_SELESAI,$JENIS_KEGIATAN);
 		foreach($data as $row){
 		//for($x=1; $x<=10; $x++){
 		$html .='  
@@ -68,10 +70,15 @@ class LaporanAgenda extends CI_Controller {
 		$mpdf->Output();
 	}
 
-	public function getLaporan()
+	public function getLaporan($bulan="",$tahun="")
 	{
-		$data['rows']=$this->laporanAgendaModel->getJson();
+		$TGL_SELESAI=@$this->input->post('TGL_SELESAI');
+		$TGL_MULAI=@$this->input->post('TGL_MULAI');
+		$JENIS_KEGIATAN=@$this->input->post('JENIS_KEGIATAN');
+
+		$data['rows']=$this->laporanAgendaModel->getJson($TGL_MULAI,$TGL_SELESAI,$JENIS_KEGIATAN);
 		echo json_encode($data);
+
 	}
 }
 

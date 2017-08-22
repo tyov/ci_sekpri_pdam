@@ -59,7 +59,8 @@ class Agendamodel extends CI_Model {
 		$TGL_PEMESANAN = $this->db->query("select getDate() as baru")->row_array();
 		$id_agenda_rapat = $this->db->query("select dbo.getNomorRapat() as baru")->row_array();
 		 
-		$CEK = $this->db->query("select COUNT(ID_AGENDA_RUANG_RAPAT) AS JUMLAH from TBL_AGENDA_RUANG_RAPAT WHERE ID_RUANG_RAPAT = '$ID_RUANG_RAPAT' and (TGL_MULAI between '$TGL_MULAI_NEW' and '$TGL_SELESAI_NEW' OR TGL_SELESAI between '$TGL_MULAI_NEW' and '$TGL_SELESAI_NEW')");
+		$CEK = $this->db->query("select count(*) AS JUMLAH from TBL_AGENDA_RUANG_RAPAT 
+WHERE ID_RUANG_RAPAT = '$ID_RUANG_RAPAT' AND (('$TGL_MULAI_NEW' >= TGL_MULAI AND '$TGL_MULAI_NEW' <= TGL_SELESAI) OR ('$TGL_SELESAI_NEW' >= TGL_MULAI AND '$TGL_SELESAI_NEW' <= TGL_SELESAI))");
 		if ($CEK->row()->JUMLAH == "0") {
 			$data = array(
 					'ID_AGENDA_RUANG_RAPAT'=>$id_agenda_rapat['baru'],
