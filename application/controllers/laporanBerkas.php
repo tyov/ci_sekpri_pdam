@@ -14,7 +14,7 @@ class LaporanBerkas extends CI_Controller {
 		
 	}
 
-	public function cetakLaporan($bulan,$tahun)
+	public function cetakLaporan2($bulan,$tahun)
 	{
 		$this->load->library('mpdf/mPdf');
 		$mpdf = new mPDF('c','Legal-L');
@@ -87,7 +87,7 @@ class LaporanBerkas extends CI_Controller {
 		echo json_encode($data);
 	}
 
-	public function cek()
+	public function cetakLaporan($periode)
 	{
 		$this->load->library('mpdf/mPdf');
 		$mpdf = new mPDF('c','Legal-L');
@@ -123,7 +123,7 @@ class LaporanBerkas extends CI_Controller {
 			<td width="5.625%" align="center"><strong>Umum</strong></td>
 			<td width="5.625%" align="center"><strong>Total</strong></td>
 		  </tr>';
-		$data = $this->laporanBerkasModel->getJson2('201708');
+		$data = $this->laporanBerkasModel->getJson2($periode);
 		$keuangan=0;
 		$hubunganPelanggan=0;
 		$pengadaan=0;
