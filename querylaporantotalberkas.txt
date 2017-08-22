@@ -1,26 +1,37 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+DECLARE @cols AS NVARCHAR(MAX), @colsatas AS NVARCHAR(MAX),
+    @query  AS NVARCHAR(MAX);
+SET @colsatas = STUFF((SELECT distinct ','+'coalesce('+ QUOTENAME(nama_bagian)+', ''0'') '+ QUOTENAME(nama_bagian)
+            FROM BAGIAN where nama_bagian is not null
+			and left(kode_jabatan,4) not in('1.00','2.00','3.00','9.00','9.01','8.00','8.01','8.02','8.03','1.05','1.06')
+            FOR XML PATH(''), TYPE
+            ).value('.', 'NVARCHAR(MAX)') 
+        ,1,1,'')
+select @colsatas
 
-class LaporanBerkasModel extends CI_Model {
+SELECT TGL_TERIMA, BAGIAN, COUNT(ID_BERKAS) AS JUMLAH
+FROM TBL_BERKAS
+GROUP BY BAGIAN, TGL_TERIMA
+                
 
-	public function getJson($jenis,$bulan,$tahun)
-	{
+DECLARE @cols AS NVARCHAR(MAX), @colsatas AS NVARCHAR(MAX),
+    @query  AS NVARCHAR(MAX);
+SET @cols = STUFF((SELECT distinct ',' + QUOTENAME(nama_bagian) 
+            FROM BAGIAN where nama_bagian is not null
+			and left(kode_jabatan,4) not in('1.00','2.00','3.00','9.00','9.01','8.00','8.01','8.02','8.03','1.05','1.06')
+            FOR XML PATH(''), TYPE
+            ).value('.', 'NVARCHAR(MAX)') 
+        ,1,1,'')
 
-		if ($jenis=='total') {
+--select @cols
+SET @colsatas = STUFF((SELECT distinct ','+'coalesce('+ QUOTENAME(nama_bagian)+', ''0'') '+ QUOTENAME(nama_bagian)
+            FROM BAGIAN where nama_bagian is not null
+			and left(kode_jabatan,4) not in('1.00','2.00','3.00','9.00','9.01','8.00','8.01','8.02','8.03','1.05','1.06')
+            FOR XML PATH(''), TYPE
+            ).value('.', 'NVARCHAR(MAX)') 
+        ,1,1,'')
+--select @colsatas
 
-	        $result = $this->db->query("LAPORANBERKAS '$tahun','$bulan'")->num_rows();
-	        return $result;
-
-	    } elseif ($jenis=='rows') {	
-
-			$result = $this->db->query("LAPORANBERKAS '$tahun','$bulan'")->result();
-	        return $result;
-	    }
-	}
-
-	public function getJson2($periode)
-	{
-		$result = $this->db->query("select a.*,b.Total from (
+select a.*,b.Total from (
 	SELECT CONVERT(varchar(20), TGL_TERIMA, 105) as TGL_TERIMA, coalesce([Hubungan Pelanggan], '0') [Hubungan Pelanggan],coalesce([Jaringan Pipa Pelanggan], '0') [Jaringan Pipa Pelanggan],coalesce([Kehilangan Air], '0') [Kehilangan Air],coalesce([Keuangan], '0') [Keuangan],coalesce([Pengadaan], '0') [Pengadaan],coalesce([Pengawasan Pekerjaan], '0') [Pengawasan Pekerjaan],coalesce([Perawatan], '0') [Perawatan],coalesce([Perencanaan Teknik], '0') [Perencanaan Teknik],coalesce([Produksi], '0') [Produksi],coalesce([Pusat Penelitian dan Pengembangan], '0') [Pusat Penelitian dan Pengembangan],coalesce([Satuan Pengawasan Internal], '0') [Satuan Pengawasan Internal],coalesce([Sistem Informasi Manajemen], '0') [Sistem Informasi Manajemen],coalesce([Sumber Daya Manusia], '0') [Sumber Daya Manusia],coalesce([Umum], '0') [Umum] from 
 	(	
 		select CONVERT(varchar(10), a.TGL_TERIMA, 105) as TGL_TERIMA
@@ -38,7 +49,7 @@ class LaporanBerkasModel extends CI_Model {
 			and left(kode_jabatan,4) not in('1.00','2.00','3.00','9.00','9.01','8.00','8.01','8.02','8.03','1.05','1.06')
 			)z
 		) d ON a.BAGIAN=d.kode
-		WHERE CONVERT(varchar(6), a.TGL_TERIMA, 112) ='$periode'
+		WHERE CONVERT(varchar(6), a.TGL_TERIMA, 112) ='201708'
 		group by CONVERT(varchar(10), a.TGL_TERIMA, 105), d.nama_bagian
 	)x
 	pivot 
@@ -68,7 +79,7 @@ JOIN
 				and left(kode_jabatan,4) not in('1.00','2.00','3.00','9.00','9.01','8.00','8.01','8.02','8.03','1.05','1.06')
 				)z
 			) d ON a.BAGIAN=d.kode
-			WHERE CONVERT(varchar(6), a.TGL_TERIMA, 112) ='$periode'
+			WHERE CONVERT(varchar(6), a.TGL_TERIMA, 112) ='201708'
 			group by CONVERT(varchar(10), a.TGL_TERIMA, 105), d.nama_bagian
 		)x
 		pivot 
@@ -79,10 +90,3 @@ JOIN
 	) a
 	group by TGL_TERIMA
 ) b on a.TGL_TERIMA=b.TGL_TERIMA
-")->result();
-	    return $result;
-	}
-}
-
-/* End of file laporanModel.php */
-/* Location: ./application/models/laporanModel.php */
