@@ -60,8 +60,11 @@ class LaporanDireksi extends CI_Controller {
 		</tr>';
 		}
 		$html .= '</table>';
+		$html .= '<div style="padding-top: 40px; left:0px; position:absolute; font-weight:bold; width:300px; text-align:center">Mengetahui</div>';
+		$html .= '<div style="padding-top: 100px; left:0px; position:absolute; font-weight:bold; width:300px; text-align:center">'.$dataPejabat->manajer.'</div>';
 		$html .= '<div style="margin-top: 20px; right:0px; position:absolute; font-weight:bold; width:300px; text-align:center">Malang, '.date('d M Y').'</div>';
-		$html .= '<div style="padding-top: 100px; right:0px; position:absolute; font-weight:bold; width:300px; text-align:center">Manager Kuangan</div>';
+		$html .= '<div style="padding-top: 40px; right:0px; position:absolute; font-weight:bold; width:300px; text-align:center">Dibuat Oleh</div>';
+		$html .= '<div style="padding-top: 100px; right:0px; position:absolute; font-weight:bold; width:300px; text-align:center">'.$dataPejabat->assmen.'</div>';
 		$mpdf->WriteHTML($html);
 		$mpdf->Output();
 	}
