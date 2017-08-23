@@ -30,7 +30,7 @@
         </div>
         </div>
     </div>
-    <div data-options="region:'west',title:'Menu',collapsible:false" style="width:200px;">
+    <div data-options="region:'west',title:'Menu',collapsible:true" style="width:200px;">
         <?php include('common/sidebar_menu.php') ?>
     </div>
     <div data-options="region:'south',border:false" style="background:#2980b9; color:#ecf0f1; padding:10px; text-align:center; overflow: hidden;">SIM PDAM Kota Malang</div>

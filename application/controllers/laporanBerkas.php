@@ -80,29 +80,64 @@ class LaporanBerkas extends CI_Controller {
 		$mpdf->Output();
 	}
 
-	public function getLaporan($bulan,$tahun)
+	public function getLaporan($periode)
 	{
-		$data['rows']=$this->laporanBerkasModel->getJson('rows',$bulan,$tahun);
-		$data['total']=$this->laporanBerkasModel->getJson('total',$bulan,$tahun);
+		$data['rows']=$this->laporanBerkasModel->getJson2($periode);
+		echo json_encode($data);
+	}
+
+	public function getLaporanSort($periode)
+	{
+		$data=$this->laporanBerkasModel->getJson2($periode);
 		echo json_encode($data);
 	}
 
 	public function cetakLaporan($periode)
 	{
+		$tahun = substr($periode,0,-2);
+		$number = substr($periode,4,2);
+
+		if ($number=='01') {
+			$bulan='Januari';
+		} elseif ($number=='02') {
+			$bulan='Februari';
+		} elseif ($number=='03') {
+			$bulan='Maret';
+		} elseif ($number=='04') {
+			$bulan='April';
+		} elseif ($number=='05') {
+			$bulan='Mei';
+		} elseif ($number=='06') {
+			$bulan='Juni';
+		} elseif ($number=='07') {
+			$bulan='Juli';
+		} elseif ($number=='08') {
+			$bulan='Agustus';
+		} elseif ($number=='09') {
+			$bulan='September';
+		} elseif ($number=='10') {
+			$bulan='Oktober';
+		} elseif ($number=='11') {
+			$bulan='November';
+		} else {
+			$bulan='Desember';
+		}
+
 		$this->load->library('mpdf/mPdf');
 		$mpdf = new mPDF('c','Legal-L');
 		$html = '
 		<htmlpagefooter name="MyFooter1">
 			<table width="100%" style="vertical-align: bottom; font-family: serif; font-size: 8pt; color: #000000; font-weight: bold; font-style: italic;">
 				<tr>
-					<td width="33%" align="center" style="font-weight: bold; font-style: italic;">PDAM Kota Malang - Laporan Berkas Masuk ke SEKPRI, BULAN {PAGENO} dari {nbpg}</td>
+					<td width="33%" align="center" style="font-weight: bold; font-style: italic;">PDAM Kota Malang - Laporan Berkas Masuk ke SEKPRI, Bulan '.$bulan.' Tahun '.$tahun.'</td>
 				</tr>
 			</table>
 		</htmlpagefooter>
 		<sethtmlpagefooter name="MyFooter1" value="on" />
 		<div style="font-size:20px; font-weight:bold">PDAM KOTA MALANG</div>
 		<div style="font-weight:bold;">Jl. Terusan Danau Sentani No.100 - Malang</div>
-		<div style="font-size:20px; font-weight:bold; text-align:center">Laporan Berkas Masuk ke SEKPRI</div>';
+		<div style="font-size:20px; font-weight:bold; text-align:center">Laporan Berkas Masuk ke SEKPRI</div>
+		<div style="font-size:20px; font-weight:bold; text-align:center">Bulan '.$bulan.' Tahun '.$tahun.'</div>';
 		$html .='
 		<table width="100%" border="1" cellspacing="0" cellpadding="2">
 		  <tr>

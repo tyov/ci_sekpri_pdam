@@ -5,8 +5,8 @@ class EkspedisiModel extends CI_Model {
 	{
 		$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
         $rows = isset($_POST['rows']) ? intval($_POST['rows']) : 10;
-        $sort = isset($_POST['sort']) ? strval($_POST['sort']) : 'ID_EKSPEDISI';
-        $order = isset($_POST['order']) ? strval($_POST['order']) : 'asc';
+        $sort = isset($_POST['sort']) ? strval($_POST['sort']) : 'TGL_EKSPEDISI_DESC';
+        $order = isset($_POST['order']) ? strval($_POST['order']) : 'desc';
         $offset = ($page-1) * $rows;
         $this->limit = $rows;
         $this->offset = $offset;
@@ -22,12 +22,7 @@ class EkspedisiModel extends CI_Model {
         	$this->db->from('EKSPEDISI a');
         	$this->db->join("TBL_M_JENIS_EKSPEDISI b", "a.ID_JENIS_EKSPEDISI=b.ID_JENIS_EKSPEDISI");
         	$this->db->join("TBL_M_STATUS c", "a.ID_STATUS=c.ID_STATUS");
-			// $this->db->select("a.ID_EKSPEDISI, a.TGL_TERIMA, convert(varchar(20),a.TGL_TERIMA,120) as TGL_TERIMA_DESC, a.PENERIMA, a.PENGIRIM, a.BAGIAN, a.PERIHAL, a.TGL_AMBIL, convert(varchar(20),a.TGL_AMBIL,120) as TGL_AMBIL_DESC, a.PENGAMBIL, c.nama_lengkap PENERIMA_DESC, d.nama_lengkap PENGIRIM_DESC, e.nama_lengkap PENGAMBIL_DESC, b.nama_bagian BAGIAN_DESC");
-			// $this->db->from("EKSPEDISI a");
-			// $this->db->join("(SELECT left(kode_jabatan,4) as KODE, nama_bagian FROM BAGIAN group by left(kode_jabatan,4), nama_bagian) b", "a.BAGIAN = b.KODE");
-			// $this->db->join("KARYAWAN c", "a.PENERIMA=c.nip");
-			// $this->db->join("KARYAWAN d", "a.PENGIRIM=d.nip");
-			// $this->db->join("KARYAWAN e", "a.PENGAMBIL=e.nip");
+
         if($searchKey<>''){
 			$this->db->where($searchKey." like '%".$searchValue."%'");
 		}
