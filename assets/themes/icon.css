@@ -67,6 +67,22 @@
 .icon-more{
 	background:url('icons/more.png') no-repeat center center;
 }
+.icon-date{
+	background:url('icons/date.png') no-repeat center center;
+}
+.icon-home{
+	background:url('icons/home.png') no-repeat center center;
+}
+.icon-file{
+	background:url('icons/file.png') no-repeat center center;
+}
+.icon-report{
+	background:url('icons/report.png') no-repeat center center;
+}
+.icon-key{
+	background:url('icons/key.png') no-repeat center center;
+}
+
 
 
 .icon-mini-add{

@@ -26,8 +26,9 @@
     </div>
     <div data-options="region:'center'" id="center-content" style="background:#eee; overflow: hidden;">
         <div id='content_tab' class="easyui-tabs isinya" border='false' fit="true" cache='false'>
-        <div id='isi_content' title="Main Content" style='overflow:hidden'>
-        </div>
+            <div id='isi_content' title="Dashboard" style='overflow:hidden'>
+            <?php include('dashboard.php') ?>
+            </div>
         </div>
     </div>
     <div data-options="region:'west',title:'Menu',collapsible:true" style="width:200px;">

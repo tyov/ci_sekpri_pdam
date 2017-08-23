@@ -16,6 +16,7 @@ class LaporanBerkas extends CI_Controller {
 
 	public function cetakLaporan2($bulan,$tahun)
 	{
+		$dataPejabat = $this->laporanBerkasModel->getDataPejabat();
 		$this->load->library('mpdf/mPdf');
 		$mpdf = new mPDF('c','Legal-L');
 		$html = '
@@ -139,17 +140,11 @@ class LaporanBerkas extends CI_Controller {
 		echo json_encode($data);
 	}
 
-
-	public function test($periode)
-	{
-		$data['rows']			= $this->laporanBerkasModel->getJson2($periode);
-		print_r($data['rows']);
-	}
-
 	public function cetakLaporan($periode)
 	{
 		$tahun = substr($periode,0,-2);
 		$number = substr($periode,4,2);
+		$dataPejabat = $this->laporanBerkasModel->getDataPejabat();
 
 		if ($number=='01') {
 			$bulan='Januari';
@@ -284,8 +279,11 @@ class LaporanBerkas extends CI_Controller {
 			<td align="center"><strong>'.$grandTotal.'</strong></td>
 		</tr>';
 		$html .= '</table>';
+		$html .= '<div style="padding-top: 40px; left:0px; position:absolute; font-weight:bold; width:300px; text-align:center">Mengetahui</div>';
+		$html .= '<div style="padding-top: 100px; left:0px; position:absolute; font-weight:bold; width:300px; text-align:center">'.$dataPejabat->manajer.'</div>';
 		$html .= '<div style="margin-top: 20px; right:0px; position:absolute; font-weight:bold; width:300px; text-align:center">Malang, '.date('d M Y').'</div>';
-		$html .= '<div style="padding-top: 100px; right:0px; position:absolute; font-weight:bold; width:300px; text-align:center">Manager Kuangan</div>';
+		$html .= '<div style="padding-top: 40px; right:0px; position:absolute; font-weight:bold; width:300px; text-align:center">Dibuat Oleh</div>';
+		$html .= '<div style="padding-top: 100px; right:0px; position:absolute; font-weight:bold; width:300px; text-align:center">'.$dataPejabat->assmen.'</div>';
 		$mpdf->WriteHTML($html);
 		$mpdf->Output();
 	}

@@ -15,13 +15,22 @@ class Menu extends CI_Controller {
 	public function getData()
 	{
 		$menu ='[{
+				    "id":10,
+				    "text":"Home",
+				    "iconCls":"icon-home",
+				    "attributes":{
+				            "url":"dashboard",
+				            "view":"dashboard"
+				        	}				    
+				 },{
 				    "id":1,
 				    "text":"Master Data",
-				    "iconCls":"icon-save",
+				    "iconCls":"icon-key",
 				    "children":[{
 				    	"id":"11",
 				        "text":"Master Status",
 				        "checked":true,
+				        "iconCls":"icon-mini-add",
 				        "attributes":{
 				            "url":"mStatus",
 				            "view":"mStatus"
@@ -30,6 +39,7 @@ class Menu extends CI_Controller {
 				        "id":"12",
 				        "text":"Master Ruang Rapat",
 				        "checked":false,
+				        "iconCls":"icon-mini-add",
 				        "attributes":{
 				            "url":"mRuangRapat",
 				            "view":"mRuangRapat"
@@ -38,6 +48,7 @@ class Menu extends CI_Controller {
 				        "id":"13",
 				        "text":"Master Jenis Ekspedisi",
 				        "checked":false,
+				        "iconCls":"icon-mini-add",
 				        "attributes":{
 				            "url":"mJenisEkspedisi",
 				            "view":"mJenisEkspedisi"
@@ -46,6 +57,7 @@ class Menu extends CI_Controller {
 				        "id":"14",
 				        "text":"Master Jenis Kegiatan",
 				        "checked":false,
+				        "iconCls":"icon-mini-add",
 				        "attributes":{
 				            "url":"mJenisKegiatan",
 				            "view":"mJenisKegiatan"
@@ -54,6 +66,7 @@ class Menu extends CI_Controller {
 				        "id":"15",
 				        "text":"Master Asal Kegiatan",
 				        "checked":false,
+				        "iconCls":"icon-mini-add",
 				        "attributes":{
 				            "url":"mAsalKegiatan",
 				            "view":"mAsalKegiatan"
@@ -62,6 +75,7 @@ class Menu extends CI_Controller {
 				        "id":"16",
 				        "text":"Master Agenda Direksi",
 				        "checked":false,
+				        "iconCls":"icon-mini-add",
 				        "attributes":{
 				            "url":"mAgendaDireksi",
 				            "view":"mAgendaDireksi"
@@ -70,11 +84,12 @@ class Menu extends CI_Controller {
 				 },{
 				    "id":2,
 				    "text":"Agenda",
-				    "iconCls":"icon-save",
+				    "iconCls":"icon-date",
 				    "children":[{
 				    	"id":"21",
 				        "text":"Agenda Ruang Rapat",
 				        "checked":false,
+				        "iconCls":"icon-mini-add",
 				        "attributes":{
 				            "url":"Agenda",
 				            "view":"Agenda"
@@ -83,6 +98,7 @@ class Menu extends CI_Controller {
 				        "id":"22",
 				        "text":"Agenda Direksi",
 				        "checked":false,
+				        "iconCls":"icon-mini-add",
 				        "attributes":{
 				            "url":"agendaDireksi",
 				            "view":"agendaDireksi"
@@ -92,11 +108,12 @@ class Menu extends CI_Controller {
 				 },{
 				    "id":3,
 				    "text":"Berkas",
-				    "iconCls":"icon-save",
+				    "iconCls":"icon-file",
 				    "children":[{
 				    	"id":"31",
 				        "text":"Berkas",
 				        "checked":false,
+				        "iconCls":"icon-mini-add",
 				        "attributes":{
 				            "url":"berkas",
 				            "view":"berkas"
@@ -105,6 +122,7 @@ class Menu extends CI_Controller {
 				        "id":"32",
 				        "text":"Ekspedisi",
 				        "checked":false,
+				        "iconCls":"icon-mini-add",
 				        "attributes":{
 				            "url":"ekspedisi",
 				            "view":"ekspedisi"
@@ -113,6 +131,7 @@ class Menu extends CI_Controller {
 				        "id":"33",
 				        "text":"Berkas Selesai",
 				        "checked":false,
+				        "iconCls":"icon-mini-add",
 				        "attributes":{
 				            "url":"berkasSelesai",
 				            "view":"berkasSelesai"
@@ -121,11 +140,12 @@ class Menu extends CI_Controller {
 				 },{
 				    "id":4,
 				    "text":"Laporan",
-				    "iconCls":"icon-save",
+				    "iconCls":"icon-report",
 				    "children":[{
 				        "id":"41",
 				        "text":"Laporan Berkas",
 				        "checked":false,
+				        "iconCls":"icon-mini-add",
 				        "attributes":{
 				            "url":"laporanBerkas",
 				            "view":"laporanBerkas"
@@ -134,6 +154,7 @@ class Menu extends CI_Controller {
 				        "id":"22",
 				        "text":"Laporan Agenda",
 				        "checked":false,
+				        "iconCls":"icon-mini-add",
 				        "attributes":{
 				            "url":"laporanAgenda",
 				            "view":"laporanAgenda"
@@ -142,6 +163,7 @@ class Menu extends CI_Controller {
 				        "id":"23",
 				        "text":"Laporan Direksi",
 				        "checked":false,
+				        "iconCls":"icon-mini-add",
 				        "attributes":{
 				            "url":"laporanDireksi",
 				            "view":"laporanDireksi"
