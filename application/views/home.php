@@ -21,9 +21,6 @@
 
 <body class="easyui-layout" style="overflow-y: hidden;" scroll="no">
      <div data-options="region:'north',border:false" style="height:50px;background:#a1caf4;padding:10px; background-image:url(<?php echo base_url('image/banner.png');?>); background-repeat:no-repeat; background-position:center left;"></div>
-    <div data-options="region:'east',title:'Filter',collapsed:true" style="width:200px;">
-    kanan
-    </div>
     <div data-options="region:'center'" id="center-content" style="background:#eee; overflow: hidden;">
         <div id='content_tab' class="easyui-tabs isinya" border='false' fit="true" cache='false'>
             <div id='isi_content' title="Dashboard" style='overflow:hidden'>
