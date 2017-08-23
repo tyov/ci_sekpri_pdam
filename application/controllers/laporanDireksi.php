@@ -16,6 +16,7 @@ class LaporanDireksi extends CI_Controller {
 
 	public function cetakLaporan($TGL_ACARA="",$TGL_KEMBALI="",$ID_DIREKSI="")
 	{
+		$dataPejabat = $this->laporanDireksiModel->getDataPejabat();
 		$TGL_ACARA = str_replace("~", "/", $TGL_ACARA);
 		$TGL_KEMBALI = str_replace("~", "/", $TGL_KEMBALI);
 		$this->load->library('mpdf/mPdf');
