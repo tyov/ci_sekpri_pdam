@@ -29,14 +29,14 @@
 
 <script>
     $('#JENIS_KEGIATAN').combobox({
-        onSelect: function(rec){
+        onChange: function(rec){
             //alert(rec.ID_JENIS_KEGIATAN)
             var TGL_MULAI = $('#TGL_MULAI').datebox('getValue');
             var TGL_SELESAI = $('#TGL_SELESAI').datebox('getValue');
             $('#dg_laporan_agenda').datagrid('load', {
                 TGL_MULAI: TGL_MULAI,
                 TGL_SELESAI: TGL_SELESAI,
-                JENIS_KEGIATAN:rec.ID_JENIS_KEGIATAN 
+                JENIS_KEGIATAN:rec 
             });
         }
     });

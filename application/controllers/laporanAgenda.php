@@ -14,17 +14,18 @@ class LaporanAgenda extends CI_Controller {
 		
 	}
 
-	public function cetakLaporan($TGL_MULAI,$TGL_SELESAI,$JENIS_KEGIATAN)
+	public function cetakLaporan($TGL_MULAI="",$TGL_SELESAI="",$JENIS_KEGIATAN="")
 	{
-		$TGL_MULAI = str_replace("~", "/", $TGL_MULAI);
-		$TGL_SELESAI = str_replace("~", "/", $TGL_SELESAI);
+		$dataPejabat = $this->laporanAgendaModel->getDataPejabat();
+		$TGL_MULAI = @str_replace("~", "/", $TGL_MULAI);
+		$TGL_SELESAI = @str_replace("~", "/", $TGL_SELESAI);
 		$this->load->library('mpdf/mPdf');
 		$mpdf = new mPDF('c','Legal-L');
 		$html = '
 		<htmlpagefooter name="MyFooter1">
 			<table width="100%" style="vertical-align: bottom; font-family: serif; font-size: 8pt; color: #000000; font-weight: bold; font-style: italic;">
 				<tr>
-					<td width="33%" align="center" style="font-weight: bold; font-style: italic;">eOffice PDAM Malang - Laporan Semua Kegiatan SEKPRI, BULAN {PAGENO} dari {nbpg}</td>
+					<td width="33%" align="center" style="font-weight: bold; font-style: italic;">PDAM Malang - Laporan Semua Kegiatan SEKPRI, PAGE {PAGENO} dari {nbpg}</td>
 				</tr>
 			</table>
 		</htmlpagefooter>
@@ -46,7 +47,7 @@ class LaporanAgenda extends CI_Controller {
 			<td width="10%" align="center"><strong>Tgl Selesai</strong></td>
 		  </tr>';
 		$no=1;
-		$data = $this->laporanAgendaModel->getJson($TGL_MULAI,$TGL_SELESAI,$JENIS_KEGIATAN);
+		$data = $this->laporanAgendaModel->getJson($TGL_MULAI,$TGL_SELESAI,@$JENIS_KEGIATAN);
 		foreach($data as $row){
 		//for($x=1; $x<=10; $x++){
 		$html .='  
@@ -63,9 +64,11 @@ class LaporanAgenda extends CI_Controller {
 		</tr>';
 		}
 		$html .= '</table>';
-		$html .= '<br><b>Jumlah Surat : '.($no-1).'</b></br>';
+		$html .= '<div style="padding-top: 40px; left:0px; position:absolute; font-weight:bold; width:300px; text-align:center">Mengetahui</div>';
+		$html .= '<div style="padding-top: 100px; left:0px; position:absolute; font-weight:bold; width:300px; text-align:center">'.$dataPejabat->manajer.'</div>';
 		$html .= '<div style="margin-top: 20px; right:0px; position:absolute; font-weight:bold; width:300px; text-align:center">Malang, '.date('d M Y').'</div>';
-		$html .= '<div style="padding-top: 100px; right:0px; position:absolute; font-weight:bold; width:300px; text-align:center">Manager Kuangan</div>';
+		$html .= '<div style="padding-top: 40px; right:0px; position:absolute; font-weight:bold; width:300px; text-align:center">Dibuat Oleh</div>';
+		$html .= '<div style="padding-top: 100px; right:0px; position:absolute; font-weight:bold; width:300px; text-align:center">'.$dataPejabat->assmen.'</div>';
 		$mpdf->WriteHTML($html);
 		$mpdf->Output();
 	}

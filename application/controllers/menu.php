@@ -138,6 +138,14 @@ class Menu extends CI_Controller {
 				            "url":"laporanAgenda",
 				            "view":"laporanAgenda"
 				        	}
+				        },{
+				        "id":"23",
+				        "text":"Laporan Direksi",
+				        "checked":false,
+				        "attributes":{
+				            "url":"laporanDireksi",
+				            "view":"laporanDireksi"
+				        	}
 				        
 				        }]
 				 }

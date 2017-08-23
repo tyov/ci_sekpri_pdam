@@ -19,4 +19,9 @@ class LaporanAgendaModel extends CI_Model {
 		return $data->result();
 	}
 
+	function getDataPejabat(){
+		$query = $this->db->query("SELECT nama_lengkap as manajer, (select top 1 nama_lengkap from karyawan where bagian_id = '24') as assmen from KARYAWAN where bagian_id = '23'");
+		return $query->row();
+	}
+
 }
