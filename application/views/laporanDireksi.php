@@ -12,6 +12,7 @@
                 <th field="PENGUNDANG" width="150" halign="center" align="center">Pengundang</th>
                 <th field="KETERANGAN" width="150" halign="center" align="center">Keterangan</th>
                 <th field="LOKASI" width="150" halign="center" align="center">Lokasi</th>
+                <th field="ID_DIREKSI_DESC" width="150" halign="center" align="center">Direksi</th>
             
             </tr>
         </thead>
