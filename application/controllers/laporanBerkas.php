@@ -82,14 +82,68 @@ class LaporanBerkas extends CI_Controller {
 
 	public function getLaporan($periode)
 	{
-		$data['rows']=$this->laporanBerkasModel->getJson2($periode);
+		$data['rows']			= $this->laporanBerkasModel->getJson2($periode);
+		$keuangan=0;
+		$hubunganPelanggan=0;
+		$pengadaan=0;
+		$jaringanPipaPelanggan=0;
+		$pusatPenelitianDanPengembangan=0;
+		$perawatan=0;
+		$kehilanganAir=0;
+		$perencanaanTeknik=0;
+		$sistemInformasiManajemen=0;
+		$pengawasanPekerjaan=0;
+		$produksi=0;
+		$satuanPengawasanInternal=0;
+		$sumberDayaManusia=0;
+		$umum=0;
+		$grandTotal=0;
+
+		foreach($data['rows'] as $row){
+			$keuangan+=$row->Keuangan;
+			$hubunganPelanggan+=$row->{'Hubungan Pelanggan'};
+			$pengadaan+=$row->Pengadaan;
+			$jaringanPipaPelanggan+=$row->{'Jaringan Pipa Pelanggan'};
+			$pusatPenelitianDanPengembangan+=$row->{'Pusat Penelitian dan Pengemban'};
+			$perawatan+=$row->Perawatan;
+			$kehilanganAir+=$row->{'Kehilangan Air'};
+			$perencanaanTeknik+=$row->{'Perencanaan Teknik'};
+			$sistemInformasiManajemen+=$row->{'Sistem Informasi Manajemen'};
+			$pengawasanPekerjaan+=$row->{'Pengawasan Pekerjaan'};
+			$produksi+=$row->Produksi;
+			$satuanPengawasanInternal+=$row->{'Satuan Pengawasan Internal'};
+			$sumberDayaManusia+=$row->{'Sumber Daya Manusia'};
+			$umum+=$row->Umum;
+			$grandTotal+=$row->Total;
+		}
+
+		$footer['TGL_TERIMA'] 	= 'Total';
+		$footer['Keuangan'] 	= $keuangan;
+		$footer['Hubungan Pelanggan'] 	= $hubunganPelanggan;
+		$footer['Pengadaan'] 	= $pengadaan;
+		$footer['Jaringan Pipa Pelanggan'] 	= $jaringanPipaPelanggan;
+		$footer['Pusat Penelitian dan Pengemban'] 	= $pusatPenelitianDanPengembangan;
+		$footer['Perawatan'] 	= $perawatan;
+		$footer['Kehilangan Air'] 	= $kehilanganAir;
+		$footer['Perencanaan Teknik'] 	= $perencanaanTeknik;
+		$footer['Sistem Informasi Manajemen'] 	= $sistemInformasiManajemen;
+		$footer['Pengawasan Pekerjaan'] 	= $pengawasanPekerjaan;
+		$footer['Produksi'] 	= $produksi;
+		$footer['Satuan Pengawasan Internal'] 	= $satuanPengawasanInternal;
+		$footer['Sumber Daya Manusia'] 	= $sumberDayaManusia;
+		$footer['Umum'] 	= $umum;
+		$footer['Total'] 	= $grandTotal;
+
+		$data['footer'][] 		= $footer;
+
 		echo json_encode($data);
 	}
 
-	public function getLaporanSort($periode)
+
+	public function test($periode)
 	{
-		$data=$this->laporanBerkasModel->getJson2($periode);
-		echo json_encode($data);
+		$data['rows']			= $this->laporanBerkasModel->getJson2($periode);
+		print_r($data['rows']);
 	}
 
 	public function cetakLaporan($periode)

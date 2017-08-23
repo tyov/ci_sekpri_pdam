@@ -1,7 +1,8 @@
-<div data-options="region:'center'" style="background:#eee;">
+<div class="easyui-layout" data-options="fit:true" style="background:#eee;">
+    <div data-options="region:'center',border:false">
     <table id="dg_laporan_berkas"  class="easyui-datagrid" 
             url="<?php echo base_url();?>index.php/laporanBerkas/getLaporan/<?php echo date('Y')?><?php echo date('m')?>"
-            toolbar="#toolbar" rownumbers="true"
+            toolbar="#toolbar" rownumbers="true" showFooter="true"
             border="false" striped="true" singleSelect="true" nowrap="false" pageSize="30" fitcolumns="true" style="width:auto; height: 545px;" >
         <thead>
             <tr>
@@ -50,6 +51,7 @@
                 ?>
                 </select>
             <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-print" plain="true" onclick="printLaporan()">Cetak</a>
+</div>
     <script>
 
         $('#BULAN').combobox({
