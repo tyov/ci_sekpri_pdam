@@ -47,7 +47,7 @@
 
 $active_group = 'default';
 $active_record = TRUE;
-$db['default']['hostname'] = '127.0.0.1';
+$db['default']['hostname'] = 'DESKTOP-1A5T7BR';
 $db['default']['username'] = 'sa';
 $db['default']['password'] = '1234';
 $db['default']['database'] = 'SEKPRI_PDAM';
