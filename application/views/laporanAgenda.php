@@ -25,7 +25,7 @@
             Tgl Mulai : <input id="TGL_MULAI" type="text" class="easyui-datebox" required="required">
             Tgl Selesai : <input id="TGL_SELESAI" type="text" class="easyui-datebox" required="required">
             Jenis Kegiatan : <input id="JENIS_KEGIATAN" data-options="valueField:'ID_JENIS_KEGIATAN',textField:'JENIS_KEGIATAN',url:'<?php echo base_url(); ?>index.php/mJenisKegiatan/getJenisKegiatanDesc'" name="ID_JENIS_KEGIATAN" class="easyui-combobox" style="width: 200px">
-            <a class="easyui-linkbutton" data-options="iconCls:'icon-print'" onClick="cetakLaporan()">CETAK PDF</a>
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-print'" onClick="cetakLaporan()"  style="color: #fff">CETAK PDF</a>
     </div>
     </div>
 

@@ -23,7 +23,7 @@
             Tgl Acara : <input id="TGL_ACARA" type="text" class="easyui-datebox" required="required">
             Tgl Kembali : <input id="TGL_KEMBALI" type="text" class="easyui-datebox" required="required">
             Direksi : <input id="ID_DIREKSI" data-options="valueField:'ID_DIREKSI',textField:'DIREKSI',url:'<?php echo base_url(); ?>index.php/mDireksi/getMDireksiDesc'" name="ID_DIREKSI" class="easyui-combobox" style="width: 200px">
-            <a class="easyui-linkbutton" data-options="iconCls:'icon-print'" onClick="cetakLaporan()">CETAK PDF</a>
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-print'" onClick="cetakLaporan()"  style="color: #fff">CETAK PDF</a>
     </div>
     </div>
 

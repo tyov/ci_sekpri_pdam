@@ -6,14 +6,12 @@
     <script type="text/javascript"> 
             var base_url = "<?php echo base_url(); ?>";  
         </script>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/bootstrap/css/bootstrap.min.css"); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/jeasyui/themes/metro-blue/easyui.css"); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/jeasyui/themes/icon.css"); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/jeasyui/themes/color.css"); ?>">
-    <!--<link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/jeasyui/demo.css"); ?>">-->
-    <!--<link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/jeasyui/fonts/fonts.css"); ?>">-->
     <script type="text/javascript" src="<?php echo base_url("assets/jeasyui/jquery.min.js"); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url("assets/jeasyui/jquery.easyui.min.js"); ?>"></script>
-    <!--<script type="text/javascript" src="<?php echo base_url("assets/jeasyui/jquery.easyui.patch.js"); ?>"></script>-->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/jeasyui/fonts/stylesheet.css"); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/jeasyui/fonts/font-awesome/css/font-awesome.min.css"); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/jeasyui/custom.css"); ?>">   
