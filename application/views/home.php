@@ -6,17 +6,17 @@
     <script type="text/javascript"> 
             var base_url = "<?php echo base_url(); ?>";  
         </script>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/themes/metro-blue/easyui.css"); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/themes/icon.css"); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/themes/color.css"); ?>">
-    <!--<link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/demo.css"); ?>">-->
-    <!--<link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/fonts/fonts.css"); ?>">-->
-    <script type="text/javascript" src="<?php echo base_url("assets/jquery.min.js"); ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url("assets/jquery.easyui.min.js"); ?>"></script>
-    <!--<script type="text/javascript" src="<?php echo base_url("assets/jquery.easyui.patch.js"); ?>"></script>-->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/fonts/stylesheet.css"); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/fonts/font-awesome/css/font-awesome.min.css"); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/custom.css"); ?>">   
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/jeasyui/themes/metro-blue/easyui.css"); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/jeasyui/themes/icon.css"); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/jeasyui/themes/color.css"); ?>">
+    <!--<link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/jeasyui/demo.css"); ?>">-->
+    <!--<link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/jeasyui/fonts/fonts.css"); ?>">-->
+    <script type="text/javascript" src="<?php echo base_url("assets/jeasyui/jquery.min.js"); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url("assets/jeasyui/jquery.easyui.min.js"); ?>"></script>
+    <!--<script type="text/javascript" src="<?php echo base_url("assets/jeasyui/jquery.easyui.patch.js"); ?>"></script>-->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/jeasyui/fonts/stylesheet.css"); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/jeasyui/fonts/font-awesome/css/font-awesome.min.css"); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/jeasyui/custom.css"); ?>">   
 </head>
 
 <body class="easyui-layout" style="overflow-y: hidden;" scroll="no">
