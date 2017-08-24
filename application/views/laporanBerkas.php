@@ -50,7 +50,7 @@
                     }
                 ?>
                 </select>
-            <a class="easyui-linkbutton" data-options="iconCls:'icon-print'" onClick="printLaporan()">CETAK PDF</a>
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-print'" onClick="printLaporan()" style="color: #fff">CETAK PDF</a>
 </div>
     <script>
 
