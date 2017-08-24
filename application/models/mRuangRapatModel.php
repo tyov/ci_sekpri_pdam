@@ -40,12 +40,15 @@ class MRuangRapatModel extends CI_Model {
 	public function newData()
 	{
 		$RUANG_RAPAT = htmlspecialchars($_REQUEST['RUANG_RAPAT']);
+		$KETERANGAN = htmlspecialchars($_REQUEST['KETERANGAN']);
 
 		//$ID_RUANG_RAPAT = $this->db->query("select dbo.getNomorJenisEkspedisi() as baru")->row_array();
 
 		$data = array(
 		       // 'ID_RUANG_RAPAT' => $ID_RUANG_RAPAT['baru'], -- identity
-		        'RUANG_RAPAT' => $RUANG_RAPAT
+		        'RUANG_RAPAT' => $RUANG_RAPAT,
+		        'KETERANGAN' => $KETERANGAN,
+
 		);
 
 		if ($this->db->insert('TBL_M_RUANG_RAPAT', $data)) {
@@ -60,7 +63,8 @@ class MRuangRapatModel extends CI_Model {
 		$RUANG_RAPAT = htmlspecialchars($_REQUEST['RUANG_RAPAT']);
 
 		$data = array(
-		        'RUANG_RAPAT' => $RUANG_RAPAT
+		        'RUANG_RAPAT' => $RUANG_RAPAT,
+		        'KETERANGAN' => $KETERANGAN,
 		);
 
 		$this->db->where('ID_RUANG_RAPAT', $ID_RUANG_RAPAT);

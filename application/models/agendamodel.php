@@ -58,9 +58,12 @@ class Agendamodel extends CI_Model {
 
 		$TGL_PEMESANAN = $this->db->query("select getDate() as baru")->row_array();
 		$id_agenda_rapat = $this->db->query("select dbo.getNomorRapat() as baru")->row_array();
+		$ket_ruang_rapat=$this->db->query("select keterangan 
+											from TBL_M_RUANG_RAPAT where ID_RUANG_RAPAT='".$ID_RUANG_RAPAT."'")->row_array();
 		 
 		$CEK = $this->db->query("select count(*) AS JUMLAH from TBL_AGENDA_RUANG_RAPAT 
-WHERE ID_RUANG_RAPAT = '$ID_RUANG_RAPAT' AND (('$TGL_MULAI_NEW' >= TGL_MULAI AND '$TGL_MULAI_NEW' <= TGL_SELESAI) OR ('$TGL_SELESAI_NEW' >= TGL_MULAI AND '$TGL_SELESAI_NEW' <= TGL_SELESAI))");
+WHERE ID_RUANG_RAPAT in(".$ket_ruang_rapat['keterangan'].") AND (('$TGL_MULAI_NEW' >= TGL_MULAI AND '$TGL_MULAI_NEW' <= TGL_SELESAI) OR ('$TGL_SELESAI_NEW' >= TGL_MULAI AND '$TGL_SELESAI_NEW' <= TGL_SELESAI))
+");
 		if ($CEK->row()->JUMLAH == "0") {
 			$data = array(
 					'ID_AGENDA_RUANG_RAPAT'=>$id_agenda_rapat['baru'],

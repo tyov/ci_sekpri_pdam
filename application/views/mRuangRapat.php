@@ -9,6 +9,7 @@
             <tr>
                 <th field="ID_RUANG_RAPAT" width="30" >No Jenis Ruang Rapat</th>
                 <th field="RUANG_RAPAT" width="150" >Jenis Ruang Rapat</th>
+                <th field="KETERANGAN" width="150" >Keterangan</th>
             </tr>
         </thead>
     </table>
@@ -22,6 +23,9 @@
             <div style="margin-bottom:20px;font-size:14px;border-bottom:1px solid #ccc">Data</div>
             <div style="margin-bottom:10px">
                 <input data-options="valueField:'RUANG_RAPAT',textField:'RUANG_RAPAT'" name="RUANG_RAPAT" class="easyui-textbox" required="true" label="Jenis Ruang Rapat:" style="width:100%">
+            </div>
+            <div style="margin-bottom:10px">
+                <input data-options="valueField:'KETERANGAN',textField:'KETERANGAN'" name="KETERANGAN" class="easyui-textbox" required="true" label="Keterangan:" style="width:100%">
             </div>
         </form>
     </div>
