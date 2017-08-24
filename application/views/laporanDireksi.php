@@ -1,7 +1,8 @@
-<div data-options="region:'center'" style="background:#eee;">
+<div class="easyui-layout" data-options="fit:true" style="background:#eee;">
+    <div data-options="region:'center',border:false">
     <table id="dg_laporan_direksi"  class="easyui-datagrid" 
             url="<?php echo base_url();?>index.php/laporanDireksi/getLaporan"
-            toolbar="#toolbar"
+            toolbar="#toolbar" fit="true"
             rownumbers="true" pagination="true" border="false" striped="true" singleSelect="true" nowrap="false" pageSize="10" fitcolumns="true" style="width:auto; height: 545px;" 
             >
         <thead>
@@ -23,6 +24,7 @@
             Tgl Kembali : <input id="TGL_KEMBALI" type="text" class="easyui-datebox" required="required">
             Direksi : <input id="ID_DIREKSI" data-options="valueField:'ID_DIREKSI',textField:'DIREKSI',url:'<?php echo base_url(); ?>index.php/mDireksi/getMDireksiDesc'" name="ID_DIREKSI" class="easyui-combobox" style="width: 200px">
             <a class="easyui-linkbutton" data-options="iconCls:'icon-print'" onClick="cetakLaporan()">CETAK PDF</a>
+    </div>
     </div>
 
 <script>

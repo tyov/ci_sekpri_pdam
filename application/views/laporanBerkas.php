@@ -3,7 +3,7 @@
     <table id="dg_laporan_berkas"  class="easyui-datagrid" 
             url="<?php echo base_url();?>index.php/laporanBerkas/getLaporan/<?php echo date('Y')?><?php echo date('m')?>"
             toolbar="#toolbar" rownumbers="true" showFooter="true"
-            border="false" striped="true" singleSelect="true" nowrap="false" pageSize="30" fitcolumns="true" style="width:auto; height: 545px;" >
+            border="false" striped="true" singleSelect="true" nowrap="false" pageSize="30" fitcolumns="true" fit="true" style="width:auto; height: 545px;" >
         <thead>
             <tr>
                 <th field="TGL_TERIMA" width="200" halign="center" align="center">Tanggal Terima</th>

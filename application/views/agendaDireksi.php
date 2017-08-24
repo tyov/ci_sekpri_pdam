@@ -1,8 +1,8 @@
-
-<div data-options="region:'center'" style="background:#eee;">
+<div class="easyui-layout" data-options="fit:true" style="background:#eee;">
+    <div data-options="region:'center',border:false">
         <table id="dg_agenda_direksi"  class="easyui-datagrid" 
             url="<?php echo base_url();?>index.php/agendaDireksi/getAgendaDireksi"
-            toolbar="#toolbar"
+            toolbar="#toolbar" fit="true"
             rownumbers="true" pagination="true" border="false" striped="true" singleSelect="true" nowrap="false" pageSize="10" fitColumns="true" style="width:auto; height: 545px;" 
             >
         <thead>
@@ -67,6 +67,7 @@
     <div data-options="iconCls:'icon-remove'" plain="true" onclick="hapusAgendaDireksi()">Hapus</div>
     <div class="menu-sep"></div>
     <div>Exit</div>
+    </div>
     </div>
 
 <script type="text/javascript">
