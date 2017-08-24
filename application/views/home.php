@@ -6,7 +6,7 @@
     <script type="text/javascript"> 
             var base_url = "<?php echo base_url(); ?>";  
         </script>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/themes/default/easyui.css"); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/themes/metro-blue/easyui.css"); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/themes/icon.css"); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/themes/color.css"); ?>">
     <!--<link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/demo.css"); ?>">-->
