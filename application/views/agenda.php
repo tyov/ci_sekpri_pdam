@@ -49,7 +49,7 @@
                 <input name="KETERANGAN" class="easyui-textbox" label="Keterangan:" style="width:100%; height:100px" data-options="multiline:true">
             </div>
             <div style="margin-bottom:10px">
-                <input name="JUMLAH" class="easyui-textbox" label="Jumlah Peserta:" style="width:100%; height:20px" data-options="multiline:true">
+                <input name="JUMLAH" class="easyui-textbox" label="Jumlah Peserta:" style="width:100%">
             </div>
 
             <div style="margin-bottom:10px">
