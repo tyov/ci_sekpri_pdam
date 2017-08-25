@@ -36,6 +36,9 @@
                 <div id="mm" style="width:120px;">
                     <div name="RIGHT(a.ID_BERKAS,6)">No Berkas</div>
                     <div name="PERIHAL">Perihal</div>
+                    <div name="b.nama_bagian">Nama Bagian</div>
+                    <div name="g.JENIS_EKSPEDISI">Posisi</div>
+                    <div name="f.STATUS">Status</div>
                 </div>                
         </div>
     </div>
