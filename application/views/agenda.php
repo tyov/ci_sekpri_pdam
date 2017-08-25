@@ -17,12 +17,29 @@
                 <th field="TGL_MULAI" width="150" >Tanggal Mulai</th>
                 <th field="TGL_SELESAI" width="150" >Tanggal Selesai</th>
                 <th field="ID_RUANG_RAPAT_DESC" width="150" >Ruang Rapat</th>               
-                
+
             </tr>
         </thead>
     </table>
-    <div id="toolbar">
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="tambahAgenda()">Tambah</a>
+    <div id="toolbar" style="padding: 5px;height: 36px;">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="tambahAgenda()">Tambah</a>
+        <script type="text/javascript">
+                    function searchAgenda(value,name){
+                        $('#dg_agenda').datagrid('load',{
+                            searchKey: name,
+                            searchValue: value
+                        });
+                    }
+                </script>
+                 
+                <input id="ss" class="easyui-searchbox" style="width:300px;"
+                        data-options="searcher:searchAgenda,prompt:'Cari...',menu:'#mm'"></input>
+                        
+                <div id="mm" style="width:120px;">
+                    <div name="RIGHT(a.ID_AGENDA_RUANG_RAPAT,6)">No Agenda</div>
+                    <div name="JENIS_KEGIATAN">Jenis Kegiatan</div>
+                    <div name="b.RUANG_RAPAT">Ruang</div>
+                </div>                
     </div>
 </div>
     <div id="dlg_agenda" class="easyui-dialog" style="width:400px"
@@ -183,7 +200,12 @@
         }
         });
     }
-
+function searchBerkas(){
+        $('#dg_agenda').datagrid('load',{
+            searchKey: 'RIGHT(a.ID_AGENDA_RUANG_RAPAT,6)',
+            searchValue: $('#agendaid').val()
+        });
+    }
      
 
 </script>
