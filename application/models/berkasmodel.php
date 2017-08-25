@@ -33,13 +33,14 @@ class BerkasModel extends CI_Model {
 			$this->db->join('(SELECT ID_BERKAS, MIN(ID_JENIS_EKSPEDISI) as ID_JENIS_EKSPEDISI, MAX(TGL_EKSPEDISI) as TGL_EKSPEDISI, MIN(ID_STATUS) as ID_STATUS FROM EKSPEDISI GROUP BY ID_BERKAS) e', 'a.ID_BERKAS = e.ID_BERKAS','LEFT');
 			$this->db->join('TBL_M_STATUS f', 'f.ID_STATUS = e.ID_STATUS', 'left');
 			$this->db->join('TBL_M_JENIS_EKSPEDISI g', 'g.ID_JENIS_EKSPEDISI = e.ID_JENIS_EKSPEDISI', 'left');
-			$this->db->or_where('PENGAMBIL IS NULL', null, false);
-			$this->db->or_where('TGL_AMBIL IS NULL', null, false);
+			if($searchKey<>''){
+			$this->db->where($searchKey." LIKE '%".$searchValue."%'");
+			}
+			$this->db->where('PENGAMBIL IS NULL', null, false);
+			$this->db->where('TGL_AMBIL IS NULL', null, false);
 			// $this->db->or_where('PENGAMBIL', '');
 			// $this->db->or_where('TGL_AMBIL', '');
-        if($searchKey<>''){
-			$this->db->where($searchKey." like '%".$searchValue."%'");
-		}
+
 
         $hasil=$this->db->get ('',$this->limit, $this->offset)->result_array();
         return $hasil;
