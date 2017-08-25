@@ -200,12 +200,6 @@
         }
         });
     }
-function searchBerkas(){
-        $('#dg_agenda').datagrid('load',{
-            searchKey: 'RIGHT(a.ID_AGENDA_RUANG_RAPAT,6)',
-            searchValue: $('#agendaid').val()
-        });
-    }
      
 
 </script>

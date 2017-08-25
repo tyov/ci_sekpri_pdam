@@ -21,6 +21,25 @@
     </table>
     <div id="toolbar">
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="tambahAgendaDireksi()">Tambah</a>
+
+        <script type="text/javascript">
+                    function searchAgendaDireksi(value,name){
+                        $('#dg_agenda_direksi').datagrid('load',{
+                            searchKey: name,
+                            searchValue: value
+                        });
+                    }
+                </script>
+                 
+                <input id="ss" class="easyui-searchbox" style="width:300px;"
+                        data-options="searcher:searchAgendaDireksi,prompt:'Cari...',menu:'#mm'"></input>
+                        
+                <div id="mm" style="width:120px;">
+                    <div name="RIGHT(a.ID_AGENDA_DIREKSI,6)">No Agd Direksi</div>
+                    <div name="KEGIATAN">Kegiatan</div>
+                    <div name="PENGUNDANG">Pengundang</div>
+                    <div name="b.DIREKSI">Direksi</div>
+                </div>
     </div>
 </div>
     <div id="dlg_agenda_direksi" class="easyui-dialog" style="width:400px"
