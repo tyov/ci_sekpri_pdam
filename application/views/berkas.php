@@ -20,9 +20,23 @@
             </thead>
         </table>
         <div id="toolbar" style="padding: 5px;height: 36px;">
-                <span><a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="tambahBerkas()" style="float: left">Tambah</a></span>
-                <a href="#" class="easyui-linkbutton" plain="true" onclick="searchBerkas()" style="float: right;"><i class="fa fa-search" aria-hidden="true" style="font-size:18px;"></i>No Berkas</a>
-                <input id="berkasid" style="line-height:22px;border:1px solid #ccc; float: right;" prompt="Cari....">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="tambahBerkas()">Tambah</a>
+                <script type="text/javascript">
+                    function searchBerkas(value,name){
+                        $('#dg_master_berkas').datagrid('load',{
+                            searchKey: name,
+                            searchValue: value
+                        });
+                    }
+                </script>
+                 
+                <input id="ss" class="easyui-searchbox" style="width:300px;"
+                        data-options="searcher:searchBerkas,prompt:'Cari...',menu:'#mm'"></input>
+                        
+                <div id="mm" style="width:120px;">
+                    <div name="RIGHT(a.ID_BERKAS,6)">No Berkas</div>
+                    <div name="PERIHAL">Perihal</div>
+                </div>                
         </div>
     </div>
         <div id="dlg_master_berkas" class="easyui-dialog" style="width:400px"
@@ -138,10 +152,5 @@
         });
     }
 
-    function searchBerkas(){
-        $('#dg_master_berkas').datagrid('load',{
-            searchKey: 'RIGHT(a.ID_BERKAS,6)',
-            searchValue: $('#berkasid').val()
-        });
-    }
+    
 </script>
