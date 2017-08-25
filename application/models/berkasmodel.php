@@ -188,6 +188,8 @@ class BerkasModel extends CI_Model {
 	{
 		$this->db->select("a.ID_BERKAS");
 		$this->db->from("TBL_BERKAS a");
+		$this->db->where('PENGAMBIL IS NULL', null, false);
+		$this->db->where('TGL_AMBIL IS NULL', null, false);
 		$hasil=$this->db->get()->result_array();
         return $hasil;
 	}
