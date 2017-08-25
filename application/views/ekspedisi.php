@@ -16,8 +16,24 @@
             </tr>
         </thead>
     </table>
-    <div id="toolbar">
+    <div id="toolbar" style="padding: 5px;height: 36px;">
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="tambahEkspedisi()">Tambah</a>
+        <script type="text/javascript">
+                    function searchEkspedisi(value,name){
+                        $('#dg_ekspedisi').datagrid('load',{
+                            searchKey: name,
+                            searchValue: value
+                        });
+                    }
+                </script>
+                 
+                <input id="ss" class="easyui-searchbox" style="width:300px;"
+                        data-options="searcher:searchEkspedisi,prompt:'Cari...',menu:'#mm'"></input>
+                        
+                <div id="mm" style="width:120px;">
+                    <div name="RIGHT(a.ID_BERKAS,6)">No Berkas</div>
+                    <div name="c.STATUS">Status</div>
+                </div>     
     </div>
 </div>
     <div id="dlg_ekspedisi" class="easyui-dialog" style="width:400px"
