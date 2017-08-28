@@ -19,7 +19,21 @@
         </thead>
     </table>
     <div id="toolbar">
-
+                <script type="text/javascript">
+                    function searchBerkasSelesai(value,name){
+                        $('#dg_master_berkas_selesai').datagrid('load',{
+                            searchKey: name,
+                            searchValue: value
+                        });
+                    }
+                </script>
+                 
+                <input id="ss" class="easyui-searchbox" style="width:300px;"
+                        data-options="searcher:searchBerkasSelesai,prompt:'Cari...',menu:'#mm'"></input>
+                        
+                <div id="mm" style="width:120px;">
+                    <div name="RIGHT(a.ID_BERKAS,6)">No Berkas</div>
+                </div>
     </div>
 </div>
     <div id="dlg_master_berkas_selesai" class="easyui-dialog" style="width:400px"
