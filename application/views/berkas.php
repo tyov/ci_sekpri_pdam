@@ -64,7 +64,6 @@
                 <div style="margin-bottom:10px">
                     <input name="PERIHAL" class="easyui-textbox" label="Perihal:" style="width:100%; height:100px" data-options="multiline:true">
                 </div>
-
             </form>
         </div>
         <div id="dlg_master_berkas-buttons"> 

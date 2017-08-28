@@ -6,6 +6,7 @@
     <script type="text/javascript"> 
             var base_url = "<?php echo base_url(); ?>";  
         </script>
+    <link rel="shortcut icon" href="<?php echo base_url("image/favicon.ico"); ?>"/>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/bootstrap/css/bootstrap.min.css"); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/jeasyui/themes/metro-blue/easyui.css"); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/jeasyui/themes/icon.css"); ?>">
@@ -18,7 +19,10 @@
 </head>
 
 <body class="easyui-layout" style="overflow-y: hidden;" scroll="no">
-     <div data-options="region:'north',border:false" style="height:50px;background:#a1caf4;padding:10px; background-image:url(<?php echo base_url('image/banner.png');?>); background-repeat:no-repeat; background-position:center left;"></div>
+     <div data-options="region:'north',border:false" style="height:50px;background:#a1caf4;padding:10px; background-image:url(<?php echo base_url('image/banner.png');?>); background-repeat:no-repeat; background-position:center left;">
+         <a href="user_authentication/logout" class="btn btn-info" role="button" style="float: right;">Logout</a>
+
+     </div>
     <div data-options="region:'center'" id="center-content" style="background:#eee; overflow: hidden;">
         <div id='content_tab' class="easyui-tabs isinya" border='false' fit="true" cache='false'>
             <div id='isi_content' title="Dashboard" style='overflow:hidden'>
