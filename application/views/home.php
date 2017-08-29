@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html>
+<?php
+    if (isset($this->session->userdata['logged_in'])) {
+        $username = ($this->session->userdata['logged_in']['username']);
+    } else {
+        redirect('index.php/user_authentication', 'refresh');
+    }
+?>
 <head>
     <meta charset="UTF-8">
     <title>SEKPRI PDAM</title>
@@ -38,6 +45,6 @@
    
 </body>
 <script type="text/javascript">
- 
+
 </script> 
 </html>

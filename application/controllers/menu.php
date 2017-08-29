@@ -29,7 +29,7 @@ class Menu extends CI_Controller {
 				    "state":"closed",
 				    "children":[{
 				    	"id":"11",
-				        "text":"Master Status",
+				        "text":"Status",
 				        "checked":true,
 				        "iconCls":"icon-mini-add",
 				        "attributes":{
@@ -38,7 +38,7 @@ class Menu extends CI_Controller {
 				        	}
 				        },{
 				        "id":"12",
-				        "text":"Master Ruang Rapat",
+				        "text":"Ruang Rapat",
 				        "checked":false,
 				        "iconCls":"icon-mini-add",
 				        "attributes":{
@@ -47,7 +47,7 @@ class Menu extends CI_Controller {
 				        	}
 				        },{
 				        "id":"13",
-				        "text":"Master Jenis Ekspedisi",
+				        "text":"Jenis Ekspedisi",
 				        "checked":false,
 				        "iconCls":"icon-mini-add",
 				        "attributes":{
@@ -56,7 +56,7 @@ class Menu extends CI_Controller {
 				        	}
 				        },{
 				        "id":"14",
-				        "text":"Master Jenis Kegiatan",
+				        "text":"Jenis Kegiatan",
 				        "checked":false,
 				        "iconCls":"icon-mini-add",
 				        "attributes":{
@@ -65,7 +65,7 @@ class Menu extends CI_Controller {
 				        	}
 				        },{
 				        "id":"15",
-				        "text":"Master Asal Kegiatan",
+				        "text":"Asal Kegiatan",
 				        "checked":false,
 				        "iconCls":"icon-mini-add",
 				        "attributes":{
@@ -74,7 +74,7 @@ class Menu extends CI_Controller {
 				        	}
 				        },{
 				        "id":"16",
-				        "text":"Master Agenda Direksi",
+				        "text":"Agenda Direksi",
 				        "checked":false,
 				        "iconCls":"icon-mini-add",
 				        "attributes":{
@@ -88,7 +88,7 @@ class Menu extends CI_Controller {
 				    "iconCls":"icon-date",
 				    "children":[{
 				    	"id":"21",
-				        "text":"Agenda Ruang Rapat",
+				        "text":"Ruang Rapat",
 				        "checked":false,
 				        "iconCls":"icon-mini-add",
 				        "attributes":{
@@ -97,7 +97,7 @@ class Menu extends CI_Controller {
 				        	}
 				        },{
 				        "id":"22",
-				        "text":"Agenda Direksi",
+				        "text":"Direksi",
 				        "checked":false,
 				        "iconCls":"icon-mini-add",
 				        "attributes":{
@@ -144,7 +144,7 @@ class Menu extends CI_Controller {
 				    "iconCls":"icon-report",
 				    "children":[{
 				        "id":"41",
-				        "text":"Laporan Berkas",
+				        "text":"Berkas",
 				        "checked":false,
 				        "iconCls":"icon-mini-add",
 				        "attributes":{
@@ -153,7 +153,7 @@ class Menu extends CI_Controller {
 				        	}
 				        },{
 				        "id":"22",
-				        "text":"Laporan Agenda",
+				        "text":"Agenda",
 				        "checked":false,
 				        "iconCls":"icon-mini-add",
 				        "attributes":{
@@ -162,7 +162,7 @@ class Menu extends CI_Controller {
 				        	}
 				        },{
 				        "id":"23",
-				        "text":"Laporan Direksi",
+				        "text":"Direksi",
 				        "checked":false,
 				        "iconCls":"icon-mini-add",
 				        "attributes":{
