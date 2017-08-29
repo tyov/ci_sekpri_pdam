@@ -17,6 +17,7 @@
                 <th field="TGL_MULAI" width="150" >Tanggal Mulai</th>
                 <th field="TGL_SELESAI" width="150" >Tanggal Selesai</th>
                 <th field="ID_RUANG_RAPAT_DESC" width="150" >Ruang Rapat</th>               
+                <th field="STATUS" width="150" hidden="true">STATUS</th>               
 
             </tr>
         </thead>
@@ -95,6 +96,32 @@
     <div class="menu-sep"></div>
     <div data-options="iconCls:'icon-print'" plain="true" onclick="hapusAgenda()">Cetak</div>
     </div>
+    </div>
+
+    <div id="dlg_agenda_batal" class="easyui-dialog" style="width:400px"
+            closed="true" buttons="#dlg_agenda_batal-buttons">
+                
+        <form id="fm_agenda_batal" name='fm_agenda_batal' method="post" novalidate style="margin:0;padding:20px 50px">
+            <div style="margin-bottom:20px;font-size:14px;border-bottom:1px solid #ccc">Data</div>
+
+            <div style="margin-bottom:10px">
+                <input  name="ID_AGENDA_RUANG_RAPAT" id="ID_AGENDA_RUANG_RAPAT" class="easyui-textbox" readonly="true" label="No Agenda:" style="width:100%" >
+            </div>
+            <div style="margin-bottom:10px">
+                    <select id="STATUS" class="easyui-combobox" name="STATUS" style="width:100%;" label="Status:">
+                        <option value="1" selected>Batal</option>
+                        <option value="0">Tidak Batal</option>
+                    </select>
+            </div>        
+            <div style="margin-bottom:10px">
+                <input name="CATATAN" class="easyui-textbox" label="Alasan:" style="width:100%; height:100px" data-options="multiline:true">
+            </div>            
+        </form>
+    </div>
+
+     <div id="dlg_agenda_batal-buttons">
+        <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="simpanAgendaBatal()" style="width:90px">Save</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg_agenda_batal').dialog('close')" style="width:90px">Cancel</a>
     </div>
 
 <script type="text/javascript">
@@ -200,6 +227,45 @@
     }
      
     function batalAgenda(){
-        S
+        var row = $('#dg_agenda').datagrid('getSelected');
+            if (row){
+                $('#dlg_agenda_batal').dialog('open').dialog('center').dialog('setTitle','Batal agenda');
+                $('#fm_agenda_batal').form('load',row);
+                url = '<?php echo base_url(); ?>index.php/agenda/batalAgenda/'+row.ID_AGENDA_RUANG_RAPAT;
+            }
         }
+
+    function simpanAgendaBatal(){
+        console.log("test");
+
+        $('#fm_agenda_batal').form('submit',{
+            url: url,
+            onSubmit: function(){
+            return $(this).form('validate');
+            },
+        success: function(result){
+            console.log(result);
+            var message = "";
+            if(result=="sukses"){
+                message = "Sukses mengubah agenda";                
+                $('#dlg_agenda_batal').dialog('close');
+                $('#dg_agenda').datagrid('reload');
+            }else if(result=="gagal"){
+                message = "Maaf terjadi kesalahan mohon ulangi kembali";
+            }else{
+                message = "Ruang rapat pada jam tersebut telah di pakai. mohon di jadwal ulang";
+            }
+            $.messager.alert('Konfirmasi',message);
+            //}
+        }
+        });
+    }
+
+    $('#dg_agenda').datagrid({
+        rowStyler:function(index,row){
+            if (row.STATUS!=0){
+                return 'background-color:blue;color:white;';
+            }
+        }
+    });
 </script>

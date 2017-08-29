@@ -27,7 +27,7 @@ class Agendamodel extends CI_Model {
 				a.KETERANGAN,a.JUMLAH,
 				convert(varchar(20),a.TGL_MULAI,120) as TGL_MULAI,
 				convert(varchar(20),a.TGL_SELESAI,120) as TGL_SELESAI, 
-				b.RUANG_RAPAT ID_RUANG_RAPAT_DESC, c.nama_lengkap PEMESAN_DESC, d.JENIS_KEGIATAN ID_JENIS_KEGIATAN_DESC, e.ASAL_KEGIATAN ID_ASAL_KEGIATAN_DESC");
+				b.RUANG_RAPAT ID_RUANG_RAPAT_DESC, c.nama_lengkap PEMESAN_DESC, d.JENIS_KEGIATAN ID_JENIS_KEGIATAN_DESC, e.ASAL_KEGIATAN ID_ASAL_KEGIATAN_DESC, a.STATUS");
 			$this->db->from("TBL_AGENDA_RUANG_RAPAT a");
 			$this->db->join("TBL_M_RUANG_RAPAT b", "a.ID_RUANG_RAPAT=b.ID_RUANG_RAPAT");
 			$this->db->join("KARYAWAN c", "a.PEMESAN=c.nip");
@@ -101,6 +101,7 @@ class Agendamodel extends CI_Model {
 
 	public function updateData($ID_AGENDA_RUANG_RAPAT)
 	{
+
 		$ID_JENIS_KEGIATAN = htmlspecialchars($_REQUEST['ID_JENIS_KEGIATAN']);
 		$PEMESAN = htmlspecialchars($_REQUEST['PEMESAN']);
 		$ID_ASAL_KEGIATAN = htmlspecialchars($_REQUEST['ID_ASAL_KEGIATAN']);
@@ -110,6 +111,7 @@ class Agendamodel extends CI_Model {
 		$KETERANGAN = htmlspecialchars($_REQUEST['KETERANGAN']);
 		$JUMLAH = htmlspecialchars($_REQUEST['JUMLAH']);
 
+
 		$data = array(
 		        'ID_JENIS_KEGIATAN' => $ID_JENIS_KEGIATAN,
 		        'PEMESAN' => $PEMESAN,
@@ -118,7 +120,7 @@ class Agendamodel extends CI_Model {
 		        'TGL_SELESAI' => $TGL_SELESAI,
 		        'ID_RUANG_RAPAT' => $ID_RUANG_RAPAT,
 		        'KETERANGAN' => $KETERANGAN,
-		        'JUMLAH' => $JUMLAH,
+		        'JUMLAH' => $JUMLAH
 		        
 		);
 
@@ -147,6 +149,21 @@ class Agendamodel extends CI_Model {
 
 	public function batalData($ID_AGENDA_RUANG_RAPAT)
 	{
+		$CATATAN= htmlspecialchars($_REQUEST['CATATAN']);
+		$STATUS= htmlspecialchars($_REQUEST['STATUS']);
 
+		$data = array(
+		        'STATUS' => $STATUS,
+		        'CATATAN' => $CATATAN
+		        
+		);
+
+		$this->db->where('ID_AGENDA_RUANG_RAPAT', $ID_AGENDA_RUANG_RAPAT);
+
+		if ($this->db->update('TBL_AGENDA_RUANG_RAPAT', $data)) {
+			return "sukses";
+		} else {
+			return "gagal";
+		}
 	}
 }

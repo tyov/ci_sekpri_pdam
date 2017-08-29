@@ -53,9 +53,10 @@ class agenda extends CI_Controller {
 		echo json_encode($result);
     }
 
-    public function batalAgenda()
+    public function batalAgenda($ID_AGENDA_RUANG_RAPAT)
 	{
-
+		$result=$this->agendaModel->batalData($ID_AGENDA_RUANG_RAPAT);
+		echo $result;
 	}
 
 }
