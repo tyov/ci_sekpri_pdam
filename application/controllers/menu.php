@@ -26,6 +26,7 @@ class Menu extends CI_Controller {
 				    "id":1,
 				    "text":"Master Data",
 				    "iconCls":"icon-key",
+				    "state":"closed",
 				    "children":[{
 				    	"id":"11",
 				        "text":"Master Status",
