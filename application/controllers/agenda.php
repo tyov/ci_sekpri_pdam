@@ -38,7 +38,7 @@ class agenda extends CI_Controller {
 	public function updateAgenda($ID_AGENDA_RUANG_RAPAT)
 	{
 		$result=$this->agendaModel->updateData($ID_AGENDA_RUANG_RAPAT);
-		echo json_encode($result);
+		echo $result;
     }
 
         public function getNomorRapat()
@@ -52,6 +52,11 @@ class agenda extends CI_Controller {
     	$result=$this->agendaModel->getDataTanggal();
 		echo json_encode($result);
     }
+
+    public function batalAgenda()
+	{
+
+	}
 
 }
 

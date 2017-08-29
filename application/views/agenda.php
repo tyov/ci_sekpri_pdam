@@ -39,6 +39,8 @@
                     <div name="RIGHT(a.ID_AGENDA_RUANG_RAPAT,6)">No Agenda</div>
                     <div name="JENIS_KEGIATAN">Jenis Kegiatan</div>
                     <div name="b.RUANG_RAPAT">Ruang</div>
+                    <div name="C.nama_lengkap">Pemesan</div>
+                    <div name="TGL_MULAI">Tgl Mulai</div>
                 </div>                
     </div>
 </div>
@@ -88,9 +90,10 @@
 
     <div id="mm_agenda" class="easyui-menu" style="width:120px;">
     <div data-options="iconCls:'icon-edit'" plain="true" onclick="updateAgenda()">Edit</div>
+    <div data-options="iconCls:'icon-cancel'" plain="true" onclick="batalAgenda()">Batal</div>
     <div data-options="iconCls:'icon-remove'" plain="true" onclick="hapusAgenda()">Hapus</div>
     <div class="menu-sep"></div>
-    <div>Exit</div>
+    <div data-options="iconCls:'icon-print'" plain="true" onclick="hapusAgenda()">Cetak</div>
     </div>
     </div>
 
@@ -139,13 +142,6 @@
             }  
         });
 
-
-        /*function checkTime(i) {
-            return (i < 10) ? "0" + i : i;
-        }*/
-
-        // $('#tgl_terima').datetimebox('datebox')
-
     function updateAgenda(){
             var row = $('#dg_agenda').datagrid('getSelected');
             console.log(row.TGL_PEMESANAN);
@@ -185,6 +181,7 @@
             return $(this).form('validate');
             },
         success: function(result){
+            console.log(result);
             var message = "";
             if(result=="sukses"){
                 message = "Sukses menambahkan agenda";                
@@ -201,5 +198,7 @@
         });
     }
      
-
+    function batalAgenda(){
+ 
+        }
 </script>

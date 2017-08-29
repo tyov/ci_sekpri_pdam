@@ -62,7 +62,7 @@ class Agendamodel extends CI_Model {
 											from TBL_M_RUANG_RAPAT where ID_RUANG_RAPAT='".$ID_RUANG_RAPAT."'")->row_array();
 		 
 		$CEK = $this->db->query("select count(*) AS JUMLAH from TBL_AGENDA_RUANG_RAPAT 
-WHERE ID_RUANG_RAPAT in(".$ket_ruang_rapat['keterangan'].") AND (('$TGL_MULAI_NEW' >= TGL_MULAI AND '$TGL_MULAI_NEW' <= TGL_SELESAI) OR ('$TGL_SELESAI_NEW' >= TGL_MULAI AND '$TGL_SELESAI_NEW' <= TGL_SELESAI))
+		WHERE ID_RUANG_RAPAT in(".$ket_ruang_rapat['keterangan'].") AND (('$TGL_MULAI_NEW' >= TGL_MULAI AND '$TGL_MULAI_NEW' <= TGL_SELESAI) OR ('$TGL_SELESAI_NEW' >= TGL_MULAI AND '$TGL_SELESAI_NEW' <= TGL_SELESAI))
 ");
 		if ($CEK->row()->JUMLAH == "0") {
 			$data = array(
@@ -125,13 +125,13 @@ WHERE ID_RUANG_RAPAT in(".$ket_ruang_rapat['keterangan'].") AND (('$TGL_MULAI_NE
 		$this->db->where('ID_AGENDA_RUANG_RAPAT', $ID_AGENDA_RUANG_RAPAT);
 
 		if ($this->db->update('TBL_AGENDA_RUANG_RAPAT', $data)) {
-			return "success";
+			return 'sukses';
 		} else {
-			return "update failed";
+			return "gagal";
 		}
 	}
 
-		public function getDataRapat()
+	public function getDataRapat()
 	{
 		$this->db->select('dbo.getNomorRapat() as nomor');
 		$hasil=$this->db->get()->row_array();
@@ -143,5 +143,10 @@ WHERE ID_RUANG_RAPAT in(".$ket_ruang_rapat['keterangan'].") AND (('$TGL_MULAI_NE
 		$this->db->select('convert(varchar(20),getDate(),120) as tanggal');
 		$hasil=$this->db->get()->row_array();
 		return $hasil;
+	}
+
+	public function batalData($ID_AGENDA_RUANG_RAPAT)
+	{
+
 	}
 }
