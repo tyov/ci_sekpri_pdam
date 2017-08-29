@@ -95,6 +95,7 @@ class EkspedisiModel extends CI_Model {
 	public function getNomorEkspedisi()
 	{
 		$this->db->select('dbo.getNomorEkspedisi() as nomor');
+		$this->db->select('convert(varchar(20),getDate(),120) as tanggal');
 		$hasil=$this->db->get()->row_array();
         return $hasil;
 	}

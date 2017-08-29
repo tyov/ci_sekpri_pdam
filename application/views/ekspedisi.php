@@ -50,7 +50,7 @@
                 <input data-options="valueField:'ID_JENIS_EKSPEDISI',textField:'JENIS_EKSPEDISI',url:'<?php echo base_url(); ?>index.php/mJenisEkspedisi/getJenisEkspedisiDesc'" name="ID_JENIS_EKSPEDISI" class="easyui-combobox" required="true" label="Jenis Ekspedisi:" style="width:100%">
             </div>
             <div style="margin-bottom:10px">
-                <input name="TGL_EKSPEDISI" class="easyui-datetimebox" label="Tanggal Ekspedisi:" style="width:100%">
+                <input  name="TGL_EKSPEDISI" id="TGL_EKSPEDISI" class="easyui-textbox" readonly="true" value="" label="Tgl Ekspedisi:" style="width:100%" >
             </div>
             <div style="margin-bottom:10px">
                 <input name="TGL_SELESAI" class="easyui-datetimebox" label="Tanggal Selesai:" style="width:100%">
@@ -78,15 +78,18 @@
     var url;
     function tambahEkspedisi(){
         var nomor='';
+        var tanggal='';
         $.ajax({
         url: "<?php echo base_url(); ?>index.php/ekspedisi/getNomorEkspedisi",
         async: false,
         dataType:"json",
         success: function(result){        
             nomor=result.nomor;
+            tanggal=result.tanggal;
             $('#dlg_ekspedisi').dialog('open').dialog('center').dialog('setTitle','Tambah Ekspedisi');
             $('#fm_ekspedisi').form('clear');
             $('#fm_ekspedisi #ID_EKSPEDISI').textbox('setValue',nomor);
+            $('#fm_ekspedisi #TGL_EKSPEDISI').textbox('setValue',tanggal);
            url = '<?php echo base_url(); ?>index.php/ekspedisi/newEkspedisi';
            $('#ID_BERKAS_EKS').combobox('reload');
             }

@@ -50,7 +50,7 @@
                 <input name="PERIHAL" class="easyui-textbox" label="Perihal:" readonly="true" style="width:100%; height:100px" data-options="multiline:true">
             </div>
             <div style="margin-bottom:10px">
-                <input name="TGL_AMBIL" class="easyui-datetimebox" label="Tanggal Ambil:" style="width:100%">
+                <input  name="TGL_AMBIL" id="TGL_AMBIL" class="easyui-textbox" readonly="true" value="" label="Tgl Ambil:" style="width:100%" >
             </div>
             <div style="margin-bottom:10px">
                 <input data-options="valueField:'nip',textField:'nama_lengkap',url:'<?php echo base_url(); ?>index.php/karyawan/getKaryawan'" name="PENGAMBIL" class="easyui-combobox" label="Pengambil:" style="width:100%">
@@ -91,6 +91,16 @@
             if (row){
                 $('#dlg_master_berkas_selesai').dialog('open').dialog('center').dialog('setTitle','Update Berkas');
                 $('#fm_master_berkas_selesai').form('load',row);
+                var tanggal='';
+                $.ajax({
+                url: "<?php echo base_url(); ?>index.php/berkas/getNomorBerkas",
+                async: false,
+                dataType:"json",
+                success: function(result){        
+                    tanggal=result.tanggal;
+                    $('#fm_master_berkas_selesai #TGL_AMBIL').textbox('setValue',tanggal);
+                    }
+                });
                 url = '<?php echo base_url(); ?>index.php/berkas/updateBerkasSelesai/'+row.ID_BERKAS;
             }
         }
