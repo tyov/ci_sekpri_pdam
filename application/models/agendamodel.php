@@ -125,7 +125,7 @@ class Agendamodel extends CI_Model {
 		$this->db->where('ID_AGENDA_RUANG_RAPAT', $ID_AGENDA_RUANG_RAPAT);
 
 		if ($this->db->update('TBL_AGENDA_RUANG_RAPAT', $data)) {
-			return 'sukses';
+			return "sukses";
 		} else {
 			return "gagal";
 		}

@@ -144,7 +144,8 @@
 
     function updateAgenda(){
             var row = $('#dg_agenda').datagrid('getSelected');
-            console.log(row.TGL_PEMESANAN);
+            row.STATUS=1;
+            console.log(row.STATUS);
             if (row){
                 $('#dlg_agenda').dialog('open').dialog('center').dialog('setTitle','Update agenda');
                 $('#fm_agenda').form('load',row);
@@ -199,6 +200,6 @@
     }
      
     function batalAgenda(){
- 
+        S
         }
 </script>
