@@ -32,7 +32,7 @@
 
     <div id="mm_master_kegiatan_asal" class="easyui-menu" style="width:120px;">
     <div data-options="iconCls:'icon-edit'" plain="true" onclick="updateMasterKegiatanAsal()">Edit</div>
-    <div data-options="iconCls:'icon-remove'" plain="true" onclick="hapusMasterKegiatanAsal()">Hapus</div>
+<!--     <div data-options="iconCls:'icon-remove'" plain="true" onclick="hapusMasterKegiatanAsal()">Hapus</div> -->
     <div class="menu-sep"></div>
     <div>Exit</div>
     </div>
