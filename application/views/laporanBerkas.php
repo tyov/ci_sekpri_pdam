@@ -50,6 +50,7 @@
                     }
                 ?>
                 </select>
+            Direksi : <input data-options="valueField:'ID_JENIS_EKSPEDISI',textField:'JENIS_EKSPEDISI',url:'<?php echo base_url(); ?>index.php/mJenisEkspedisi/getJenisEkspedisiDesc'" name="NAMA_DIREKSI" class="easyui-combobox" style="width:150px">
             <a class="easyui-linkbutton" data-options="iconCls:'icon-print'" onClick="printLaporan()" style="color: #fff">CETAK PDF</a>
 </div>
     <script>
