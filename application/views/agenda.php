@@ -113,7 +113,7 @@
     <div data-options="iconCls:'icon-cancel'" plain="true" onclick="batalAgenda()">Batal</div>
     <div data-options="iconCls:'icon-remove'" plain="true" onclick="hapusAgenda()">Hapus</div>
     <div class="menu-sep"></div>
-    <div data-options="iconCls:'icon-print'" plain="true" onclick="hapusAgenda()">Cetak</div>
+    <div data-options="iconCls:'icon-print'" plain="true" onclick="cetakAbsen()">Cetak</div>
     </div>
     </div>
 
@@ -191,7 +191,6 @@
     function updateAgenda(){
             var row = $('#dg_agenda').datagrid('getSelected');
             row.STATUS=1;
-            console.log(row.STATUS);
             if (row){
                 $('#dlg_agenda').dialog('open').dialog('center').dialog('setTitle','Update agenda');
                 $('#fm_agenda').form('load',row);
@@ -228,7 +227,6 @@
             return $(this).form('validate');
             },
         success: function(result){
-            console.log(result);
             var message = "";
             if(result=="sukses"){
                 message = "Sukses menambahkan agenda";                
@@ -263,7 +261,6 @@
             return $(this).form('validate');
             },
         success: function(result){
-            console.log(result);
             var message = "";
             if(result=="sukses"){
                 message = "Sukses mengubah agenda";                
@@ -287,4 +284,30 @@
             }
         }
     });
+
+    function PopupCenter(url, title, w, h) {
+        // Fixes dual-screen position                         Most browsers      Firefox
+        var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+        var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+
+        var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+        var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+        var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+        var top = ((height / 2) - (h / 2)) + dualScreenTop;
+        var newWindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+
+        // Puts focus on the newWindow
+        if (window.focus) {
+            newWindow.focus();
+        }
+    }
+
+    function cetakAbsen(){
+        var row = $('#dg_agenda').datagrid('getSelected');
+        console.log(row.JUMLAH);
+        if (row){
+        PopupCenter("http://localhost:8080/PDAM/ci_sekpri_pdam/index.php/agenda/cetakAbsensi/"+row.JUMLAH+"/"+row.ID_AGENDA_RUANG_RAPAT,"ABSENSI RAPAT","800","400");
+        }
+    }
 </script>
