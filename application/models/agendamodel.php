@@ -5,6 +5,7 @@ class Agendamodel extends CI_Model {
 
 	public function getJson($jenis)
 	{
+
 		$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
         $rows = isset($_POST['rows']) ? intval($_POST['rows']) : 10;
         $sort = isset($_POST['sort']) ? strval($_POST['sort']) : 'ID_AGENDA_RUANG_RAPAT';
@@ -15,6 +16,8 @@ class Agendamodel extends CI_Model {
         //searching
         $searchKey=isset($_POST['searchKey']) ? strval($_POST['searchKey']) : '';
 		$searchValue=isset($_POST['searchValue']) ? strval($_POST['searchValue']) : '';
+		$TGL_MULAI=isset($_POST['TGL_MULAI']) ? strval($_POST['TGL_MULAI']) : '';
+		$TGL_SELESAI=isset($_POST['TGL_SELESAI']) ? strval($_POST['TGL_SELESAI']) : '';
 
         if ($jenis=='total') {
         	$result = $this->db->query("select * from TBL_AGENDA_RUANG_RAPAT")->num_rows();
@@ -35,6 +38,9 @@ class Agendamodel extends CI_Model {
 			$this->db->join("TBL_M_ASAL_KEGIATAN e", "a.ID_ASAL_KEGIATAN=e.ID_ASAL_KEGIATAN");
         	if($searchKey<>''){
 				$this->db->where($searchKey." like '%".$searchValue."%'");	
+			}
+			if($TGL_MULAI<>''){
+				$this->db->where("CONVERT(varchar(20), A.TGL_MULAI, 101) between '$TGL_MULAI' and '$TGL_SELESAI'");
 			}
         	$hasil=$this->db->get ('',$this->limit, $this->offset)->result_array();
         	return $hasil;
@@ -166,4 +172,5 @@ class Agendamodel extends CI_Model {
 			return "gagal";
 		}
 	}
+	
 }

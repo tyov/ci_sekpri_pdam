@@ -41,7 +41,26 @@
                     <div name="JENIS_KEGIATAN">Jenis Kegiatan</div>
                     <div name="b.RUANG_RAPAT">Ruang</div>
                     <div name="C.nama_lengkap">Pemesan</div>
-                    <div name="TGL_MULAI">Tgl Mulai</div>
+                </div>
+            
+                Tgl Mulai : <input id="TGL_MULAIS" type="text" class="easyui-datebox" required="required">
+                ~ <input id="TGL_SELESAIS" type="text" class="easyui-datebox" required="required">
+                <a href="javascript:void(0)" class="easyui-linkbutton" plain="true" onclick="cariTanggal()">Search</a>
+
+                <script type="text/javascript">
+                    function cariTanggal(){
+                        var tgl_mulai = $('#TGL_MULAIS').datebox('getValue');;
+                        var tgl_selesai = $('#TGL_SELESAIS').datebox('getValue');;
+                        $('#dg_agenda').datagrid('load',{
+                            TGL_MULAI: tgl_mulai,
+                            TGL_SELESAI: tgl_selesai
+                        });
+                    }
+                </script>
+    </div>
+
+
+                    
                 </div>                
     </div>
 </div>
