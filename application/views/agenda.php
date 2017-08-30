@@ -150,7 +150,7 @@
         $('#dg_agenda').datagrid({
             rowStyler: function(index,row){
                 if (row.status_DESC=="Belum Terkirim"){
-                    return 'background-color:#48A7C9;color:#fff;';
+                    return 'background-color:red;color:#fff;';
                 }
             }
         });
@@ -264,7 +264,7 @@
     $('#dg_agenda').datagrid({
         rowStyler:function(index,row){
             if (row.STATUS!=0){
-                return 'background-color:blue;color:white;';
+                return 'background-color:#48A7C9;color:white;';
             }
         }
     });
