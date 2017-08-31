@@ -118,6 +118,20 @@
             var row = $('#dg_ekspedisi').datagrid('getSelected');
             if (row){
                 $('#dlg_ekspedisi').dialog('open').dialog('center').dialog('setTitle','Update Ekspedisi');
+                row.ID_BERKAS_EKS = row.ID_BERKAS;
+                row.TGL_EKSPEDISI = row.TGL_EKSPEDISI_DESC;
+                var thn = row.TGL_SELESAI_DESC.slice(0, 4);
+                var bln = row.TGL_SELESAI_DESC.slice(5, 7);
+                var hr = row.TGL_SELESAI_DESC.slice(8, 10);
+                var jm = row.TGL_SELESAI_DESC.slice(11, 13);
+                var min = row.TGL_SELESAI_DESC.slice(14, 16);
+                var dtk = row.TGL_SELESAI_DESC.slice(17, 19);
+                var sls = "/";
+                var ttk = ":";
+                var spc = " ";
+
+                row.TGL_SELESAI = bln.concat(sls,hr,sls,thn,spc,jm,ttk,min,ttk,dtk);
+
                 $('#fm_ekspedisi').form('load',row);
                 url = '<?php echo base_url(); ?>index.php/ekspedisi/updateEkspedisi/'+row.ID_EKSPEDISI;
             }
