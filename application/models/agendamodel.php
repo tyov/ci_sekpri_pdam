@@ -8,8 +8,8 @@ class Agendamodel extends CI_Model {
 
 		$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
         $rows = isset($_POST['rows']) ? intval($_POST['rows']) : 10;
-        $sort = isset($_POST['sort']) ? strval($_POST['sort']) : 'ID_AGENDA_RUANG_RAPAT';
-        $order = isset($_POST['order']) ? strval($_POST['order']) : 'asc';
+        $sort = isset($_POST['sort']) ? strval($_POST['sort']) : 'TGL_PEMESANAN';
+        $order = isset($_POST['order']) ? strval($_POST['order']) : 'desc';
         $offset = ($page-1) * $rows;
         $this->limit = $rows;
         $this->offset = $offset;
@@ -173,4 +173,24 @@ class Agendamodel extends CI_Model {
 		}
 	}
 	
+	public function getDataCetak($ID_AGENDA_RUANG_RAPAT)
+	{
+		
+			$this->db->select("a.ID_AGENDA_RUANG_RAPAT,a.ID_JENIS_KEGIATAN,a.PEMESAN,a.ID_ASAL_KEGIATAN,a.ID_RUANG_RAPAT,
+				convert(varchar(20),TGL_PEMESANAN,120) as TGL_PEMESANAN,
+				a.KETERANGAN,a.JUMLAH,
+				convert(varchar(20),a.TGL_MULAI,120) as TGL_MULAI,
+				convert(varchar(20),a.TGL_SELESAI,120) as TGL_SELESAI, 
+				b.RUANG_RAPAT ID_RUANG_RAPAT_DESC, c.nama_lengkap PEMESAN_DESC, d.JENIS_KEGIATAN ID_JENIS_KEGIATAN_DESC, e.ASAL_KEGIATAN ID_ASAL_KEGIATAN_DESC, a.STATUS");
+			$this->db->from("TBL_AGENDA_RUANG_RAPAT a");
+			$this->db->join("TBL_M_RUANG_RAPAT b", "a.ID_RUANG_RAPAT=b.ID_RUANG_RAPAT");
+			$this->db->join("KARYAWAN c", "a.PEMESAN=c.nip");
+			$this->db->join("TBL_M_JENIS_KEGIATAN d", "a.ID_JENIS_KEGIATAN=d.ID_JENIS_KEGIATAN");
+			$this->db->join("TBL_M_ASAL_KEGIATAN e", "a.ID_ASAL_KEGIATAN=e.ID_ASAL_KEGIATAN");
+			$this->db->where('ID_AGENDA_RUANG_RAPAT',$ID_AGENDA_RUANG_RAPAT);	
+
+        	$hasil=$this->db->get()->result_array();
+        	return $hasil;
+    	
+	}
 }

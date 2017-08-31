@@ -63,13 +63,15 @@ class agenda extends CI_Controller {
 	{
 		// $TGL_MULAI = @str_replace("~", "/", $TGL_MULAI);
 		// $TGL_SELESAI = @str_replace("~", "/", $TGL_SELESAI);
+		$data = $this->agendaModel->getDataCetak($id);
+
 		$this->load->library('mpdf/mPdf');
 		$mpdf = new mPDF('c','Legal-P');
 		$html = '
 		<htmlpagefooter name="MyFooter1">
 			<table width="100%" style="vertical-align: bottom; font-family: serif; font-size: 8pt; color: #000000; font-weight: bold; font-style: italic;">
 				<tr>
-					<td width="33%" align="center" style="font-weight: bold; font-style: italic;">PDAM Malang - DAFTAR HADIR, hal {PAGENO} dari {nbpg}</td>
+					<td width="33%" align="center" style="font-weight: bold; font-style: italic;">PDAM Kota Malang - DAFTAR HADIR, hal {PAGENO} dari {nbpg}</td>
 				</tr>
 			</table>
 		</htmlpagefooter>
@@ -77,11 +79,11 @@ class agenda extends CI_Controller {
 		<div style="font-size:20px; font-weight:bold">PDAM KOTA MALANG</div>
 		<div style="font-weight:bold;">Jl. Terusan Danau Sentani No.100 - Malang</div>
 		<div style="font-size:25px; font-weight:bold; text-align:center">DAFTAR HADIR</div>
-		<div style="font-weight:bold;">Rapat :</div>
-		<div style="font-weight:bold;">Jenis Kegiatan :</div>
-		<div style="font-weight:bold;">Asal Kegiatan :</div>
-		<div style="font-weight:bold;">Tanggal :</div>
-		<div style="font-weight:bold;">Tempat :</div>';
+		<div style="font-weight:bold;">Rapat : '.$data[0]['KETERANGAN'].'</div>
+		<div style="font-weight:bold;">Jenis Kegiatan : '.$data[0]['ID_JENIS_KEGIATAN_DESC'].'</div>
+		<div style="font-weight:bold;">Asal Kegiatan : '.$data[0]['ID_ASAL_KEGIATAN_DESC'].'</div>
+		<div style="font-weight:bold;">Tanggal : '.$data[0]['TGL_MULAI'].'</div>
+		<div style="font-weight:bold;">Tempat : '.$data[0]['ID_RUANG_RAPAT_DESC'].'</div>';
 		$html .='
 		<table width="100%" border="1" cellspacing="0" cellpadding="2">
 		  <tr>

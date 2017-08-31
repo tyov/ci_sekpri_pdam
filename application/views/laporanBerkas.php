@@ -1,7 +1,7 @@
 <div class="easyui-layout" data-options="fit:true" style="background:#eee;">
     <div data-options="region:'center',border:false">
     <table id="dg_laporan_berkas"  class="easyui-datagrid" 
-            url="<?php echo base_url();?>index.php/laporanBerkas/getLaporan/<?php echo date('Y')?><?php echo date('m')?>"
+            url="<?php echo base_url();?>index.php/laporanBerkas/getLaporan/1/<?php echo date('Y')?><?php echo date('m')?>"
             toolbar="#toolbar" rownumbers="true" showFooter="true"
             border="false" striped="true" singleSelect="true" nowrap="false" pageSize="30" fitcolumns="true" fit="true" style="width:auto; height: 545px;" >
         <thead>
@@ -34,7 +34,7 @@
                 <option value="05">Mei</option>
                 <option value="06">Juni</option>
                 <option value="07">Juli</option>
-                <option value="08" selected>Agustus</option>
+                <option value="08">Agustus</option>
                 <option value="09">September</option>
                 <option value="10">Oktober</option>
                 <option value="11">November</option>
@@ -50,15 +50,25 @@
                     }
                 ?>
                 </select>
-            Direksi : <input data-options="valueField:'ID_JENIS_EKSPEDISI',textField:'JENIS_EKSPEDISI',url:'<?php echo base_url(); ?>index.php/mJenisEkspedisi/getJenisEkspedisiDesc'" name="NAMA_DIREKSI" class="easyui-combobox" style="width:150px">
+            Direksi : <select class="easyui-combobox" name="DIREKSI" id="DIREKSI" labelPosition="top" style="width:200px;">
+                <option value="1" selected>Direktur Utama</option>
+                <option value="2">Direktur Administrasi dan Keuangan</option>
+                <option value="3">Direktur Teknik</option>
+            </select>
             <a class="easyui-linkbutton" data-options="iconCls:'icon-print'" onClick="printLaporan()" style="color: #fff">CETAK PDF</a>
 </div>
+    <script>
+        $(document).ready(function() {
+            $('#BULAN').val('<?php echo date('m')?>');
+        });
+    </script>
     <script>
 
         $('#BULAN').combobox({
             onChange: function(rec){
                 var tahun = $('#TAHUN').val();
-                var url = '<?php echo base_url();?>index.php/laporanBerkas/getLaporan/'+tahun+rec;
+                var direksi = $('#DIREKSI').val();
+                var url = '<?php echo base_url();?>index.php/laporanBerkas/getLaporan/'+direksi+'/'+tahun+rec;
                 $.ajax({
                     url: url,
                     dataType:"json",
@@ -73,7 +83,24 @@
         $('#TAHUN').combobox({
             onChange: function(rec){
                 var bulan = $('#BULAN').val();
-                var url = '<?php echo base_url();?>index.php/laporanBerkas/getLaporan/'+rec+bulan;
+                var direksi = $('#DIREKSI').val();
+                var url = '<?php echo base_url();?>index.php/laporanBerkas/getLaporan/'+direksi+'/'+rec+bulan;
+                $.ajax({
+                    url: url,
+                    dataType:"json",
+                    success: function(result){
+                        $('#dg_laporan_berkas').datagrid('loadData',result);     
+                        }
+                    });
+      
+            }
+        });
+
+        $('#DIREKSI').combobox({
+            onChange: function(rec){
+                var bulan = $('#BULAN').val();
+                var tahun = $('#TAHUN').val();
+                var url = '<?php echo base_url();?>index.php/laporanBerkas/getLaporan/'+rec+'/'+tahun+bulan;
                 $.ajax({
                     url: url,
                     dataType:"json",
@@ -88,8 +115,9 @@
         function printLaporan() {
             var bulan = $('#BULAN').val();
             var tahun = $('#TAHUN').val();
+            var direksi = $('#DIREKSI').val();
 
-            PopupCenter('<?php echo base_url("index.php/LaporanBerkas/cetakLaporan");?>/'+tahun+''+bulan, 'LAPORAN BERKAS',"800","400");
+            PopupCenter('<?php echo base_url("index.php/LaporanBerkas/cetakLaporan");?>/'+direksi+'/'+tahun+''+bulan, 'LAPORAN BERKAS',"800","400");
         }
 
         function PopupCenter(url, title, w, h) {

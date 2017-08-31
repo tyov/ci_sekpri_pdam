@@ -8,7 +8,7 @@ class agendaDireksiModel extends CI_Model {
 		$page = isset($_POST['page']) ? intval($_POST['page']) : 1;
         $rows = isset($_POST['rows']) ? intval($_POST['rows']) : 10;
         $sort = isset($_POST['sort']) ? strval($_POST['sort']) : 'ID_AGENDA_DIREKSI';
-        $order = isset($_POST['order']) ? strval($_POST['order']) : 'asc';
+        $order = isset($_POST['order']) ? strval($_POST['order']) : 'desc';
         $offset = ($page-1) * $rows;
         $this->limit = $rows;
         $this->offset = $offset;

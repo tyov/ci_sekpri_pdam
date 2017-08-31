@@ -23,7 +23,7 @@ class LaporanBerkasModel extends CI_Model {
 		return $query->row();
 	}
 
-	public function getJson2($periode)
+	public function getJson2($eksp,$periode)
 	{
 		$result = $this->db->query("select a.*,b.Total from (
 	SELECT CONVERT(varchar(20), TGL_TERIMA, 105) as TGL_TERIMA, coalesce([Hubungan Pelanggan], '0') [Hubungan Pelanggan],coalesce([Jaringan Pipa Pelanggan], '0') [Jaringan Pipa Pelanggan],coalesce([Kehilangan Air], '0') [Kehilangan Air],coalesce([Keuangan], '0') [Keuangan],coalesce([Pengadaan], '0') [Pengadaan],coalesce([Pengawasan Pekerjaan], '0') [Pengawasan Pekerjaan],coalesce([Perawatan], '0') [Perawatan],coalesce([Perencanaan Teknik], '0') [Perencanaan Teknik],coalesce([Produksi], '0') [Produksi],coalesce([Pusat Penelitian dan Pengembangan], '0') [Pusat Penelitian dan Pengembangan],coalesce([Satuan Pengawasan Internal], '0') [Satuan Pengawasan Internal],coalesce([Sistem Informasi Manajemen], '0') [Sistem Informasi Manajemen],coalesce([Sumber Daya Manusia], '0') [Sumber Daya Manusia],coalesce([Umum], '0') [Umum] from 
@@ -32,8 +32,10 @@ class LaporanBerkasModel extends CI_Model {
 			,sum(a.JUMLAH) as JUMLAH
 			, d.nama_bagian
 		FROM (
-				SELECT TGL_TERIMA, BAGIAN, COUNT(ID_BERKAS) AS JUMLAH
-				FROM TBL_BERKAS
+				SELECT TGL_TERIMA, BAGIAN, COUNT(A.ID_BERKAS) AS JUMLAH
+				FROM TBL_BERKAS A
+				JOIN EKSPEDISI B ON A.ID_BERKAS=B.ID_BERKAS
+				WHERE B.ID_JENIS_EKSPEDISI = '$eksp'
 				GROUP BY BAGIAN, TGL_TERIMA
 			 ) a
 		JOIN (
@@ -62,8 +64,10 @@ JOIN
 				,sum(a.JUMLAH) as JUMLAH
 				, d.nama_bagian
 			FROM (
-					SELECT TGL_TERIMA, BAGIAN, COUNT(ID_BERKAS) AS JUMLAH
-					FROM TBL_BERKAS
+					SELECT TGL_TERIMA, BAGIAN, COUNT(A.ID_BERKAS) AS JUMLAH
+					FROM TBL_BERKAS A
+					JOIN EKSPEDISI B ON A.ID_BERKAS=B.ID_BERKAS
+					WHERE B.ID_JENIS_EKSPEDISI = '$eksp'
 					GROUP BY BAGIAN, TGL_TERIMA
 				 ) a
 			JOIN (

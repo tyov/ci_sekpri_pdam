@@ -81,9 +81,9 @@ class LaporanBerkas extends CI_Controller {
 		$mpdf->Output();
 	}
 
-	public function getLaporan($periode)
+	public function getLaporan($eksp,$periode)
 	{
-		$data['rows']			= $this->laporanBerkasModel->getJson2($periode);
+		$data['rows']			= $this->laporanBerkasModel->getJson2($eksp,$periode);
 		$keuangan=0;
 		$hubunganPelanggan=0;
 		$pengadaan=0;
@@ -140,7 +140,7 @@ class LaporanBerkas extends CI_Controller {
 		echo json_encode($data);
 	}
 
-	public function cetakLaporan($periode)
+	public function cetakLaporan($eksp,$periode)
 	{
 		$tahun = substr($periode,0,-2);
 		$number = substr($periode,4,2);
@@ -207,7 +207,7 @@ class LaporanBerkas extends CI_Controller {
 			<td width="5.625%" align="center"><strong>Umum</strong></td>
 			<td width="5.625%" align="center"><strong>Total</strong></td>
 		  </tr>';
-		$data = $this->laporanBerkasModel->getJson2($periode);
+		$data = $this->laporanBerkasModel->getJson2($eksp,$periode);
 		$keuangan=0;
 		$hubunganPelanggan=0;
 		$pengadaan=0;
