@@ -308,7 +308,7 @@
         console.log(row.JUMLAH);
         if (row){
         //PopupCenter("http://localhost:8080/PDAM/ci_sekpri_pdam/index.php/agenda/cetakAbsensi/"+row.JUMLAH+"/"+row.ID_AGENDA_RUANG_RAPAT,"ABSENSI RAPAT","800","400");
-        PopupCenter("http://localhost:8080/PDAM/ci_sekpri_pdam/index.php/agenda/cetakAbsensi/"+row.JUMLAH+"/"+row.ID_AGENDA_RUANG_RAPAT,"ABSENSI RAPAT","800","400");
+        PopupCenter("http://localhost/ci_sekpri_pdam/index.php/agenda/cetakAbsensi/"+row.JUMLAH+"/"+row.ID_AGENDA_RUANG_RAPAT,"ABSENSI RAPAT","800","400");
         }
     }
 </script>
