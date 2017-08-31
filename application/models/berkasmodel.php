@@ -30,7 +30,12 @@ class BerkasModel extends CI_Model {
 			$this->db->join("(SELECT left(kode_jabatan,4) as KODE, nama_bagian FROM BAGIAN group by left(kode_jabatan,4), nama_bagian) b", "a.BAGIAN = b.KODE");
 			$this->db->join("KARYAWAN c", "a.PENERIMA=c.nip");
 			$this->db->join("KARYAWAN d", "a.PENGIRIM=d.nip");
-			$this->db->join('(SELECT ID_BERKAS, MIN(ID_JENIS_EKSPEDISI) as ID_JENIS_EKSPEDISI, MAX(TGL_EKSPEDISI) as TGL_EKSPEDISI, MIN(ID_STATUS) as ID_STATUS FROM EKSPEDISI GROUP BY ID_BERKAS) e', 'a.ID_BERKAS = e.ID_BERKAS','LEFT');
+			$this->db->join('(SELECT t.ID_BERKAS, t.ID_JENIS_EKSPEDISI, t.TGL_EKSPEDISI, t.ID_STATUS
+								FROM EKSPEDISI t INNER JOIN (
+									SELECT ID_BERKAS, MAX(TGL_EKSPEDISI) as Date
+									FROM EKSPEDISI
+									GROUP BY ID_BERKAS) z
+								ON t.ID_BERKAS = z.ID_BERKAS AND t.TGL_EKSPEDISI = z.Date) e', 'a.ID_BERKAS = e.ID_BERKAS','LEFT');
 			$this->db->join('TBL_M_STATUS f', 'f.ID_STATUS = e.ID_STATUS', 'left');
 			$this->db->join('TBL_M_JENIS_EKSPEDISI g', 'g.ID_JENIS_EKSPEDISI = e.ID_JENIS_EKSPEDISI', 'left');
 			if($searchKey<>''){

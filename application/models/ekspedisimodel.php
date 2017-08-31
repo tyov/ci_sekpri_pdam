@@ -64,13 +64,11 @@ class EkspedisiModel extends CI_Model {
 		$ID_BERKAS = htmlspecialchars($_REQUEST['ID_BERKAS_EKS']);
 		$ID_JENIS_EKSPEDISI = htmlspecialchars($_REQUEST['ID_JENIS_EKSPEDISI']);
 		$ID_STATUS = htmlspecialchars($_REQUEST['ID_STATUS']);
-		$TGL_EKSPEDISI = htmlspecialchars($_REQUEST['TGL_EKSPEDISI']);
 		$TGL_SELESAI = htmlspecialchars($_REQUEST['TGL_SELESAI']);
 		$data = array(
 		        'ID_BERKAS' => $ID_BERKAS,
 		        'ID_JENIS_EKSPEDISI' => $ID_JENIS_EKSPEDISI,
 		        'ID_STATUS' => $ID_STATUS,
-		        'TGL_EKSPEDISI' => $TGL_EKSPEDISI,
 		        'TGL_SELESAI' => $TGL_SELESAI
 		);
 		$this->db->where('ID_EKSPEDISI', $ID_EKSPEDISI);
