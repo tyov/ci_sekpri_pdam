@@ -6585,6 +6585,7 @@ function _getPrevChar($contentctr, $charctr, $content) {
 
 
 function WriteFlowingBlock( $s, $sOTLdata) {	// mPDF 5.7.1
+	ini_set('memory_limit', '-1');
 	$currentx = $this->x; 
 	$is_table = $this->flowingBlockAttr[ 'is_table' ];
 	$table_draft = $this->flowingBlockAttr[ 'table_draft' ];
