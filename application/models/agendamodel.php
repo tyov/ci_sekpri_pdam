@@ -30,19 +30,23 @@ class Agendamodel extends CI_Model {
 				a.KETERANGAN,a.JUMLAH,
 				convert(varchar(20),a.TGL_MULAI,120) as TGL_MULAI,
 				convert(varchar(20),a.TGL_SELESAI,120) as TGL_SELESAI, 
-				b.RUANG_RAPAT ID_RUANG_RAPAT_DESC, c.nama_lengkap PEMESAN_DESC, d.JENIS_KEGIATAN ID_JENIS_KEGIATAN_DESC, e.ASAL_KEGIATAN ID_ASAL_KEGIATAN_DESC, a.STATUS");
+				b.RUANG_RAPAT ID_RUANG_RAPAT_DESC, c.nama_lengkap PEMESAN_DESC, d.JENIS_KEGIATAN ID_JENIS_KEGIATAN_DESC, e.ASAL_KEGIATAN ID_ASAL_KEGIATAN_DESC, a.STATUS, a.CATATAN");
 			$this->db->from("TBL_AGENDA_RUANG_RAPAT a");
 			$this->db->join("TBL_M_RUANG_RAPAT b", "a.ID_RUANG_RAPAT=b.ID_RUANG_RAPAT");
 			$this->db->join("KARYAWAN c", "a.PEMESAN=c.nip");
 			$this->db->join("TBL_M_JENIS_KEGIATAN d", "a.ID_JENIS_KEGIATAN=d.ID_JENIS_KEGIATAN");
 			$this->db->join("TBL_M_ASAL_KEGIATAN e", "a.ID_ASAL_KEGIATAN=e.ID_ASAL_KEGIATAN");
+
         	if($searchKey<>''){
 				$this->db->where($searchKey." like '%".$searchValue."%'");	
 			}
-			if($TGL_MULAI<>''){
+
+			if($TGL_MULAI<>'' && $searchKey==''){
 				$this->db->where("CONVERT(varchar(20), A.TGL_MULAI, 101) between '$TGL_MULAI' and '$TGL_SELESAI'");
-			} else {
+			} elseif ($searchKey==''&& $searchKey=='') {
 				$this->db->where('a.TGL_MULAI >= getDate()');
+			} else {
+
 			}
 			
         	$hasil=$this->db->get ('',$this->limit, $this->offset)->result_array();

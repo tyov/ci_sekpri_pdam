@@ -17,6 +17,7 @@
                 <th field="TGL_MULAI" width="150" >Tanggal Mulai</th>
                 <th field="TGL_SELESAI" width="150" >Tanggal Selesai</th>
                 <th field="ID_RUANG_RAPAT_DESC" width="150" >Ruang Rapat</th>               
+                <th field="CATATAN" width="150">Alasan Batal</th>               
                 <th field="STATUS" width="150" hidden="true">STATUS</th>               
 
             </tr>
@@ -38,9 +39,9 @@
                         
                 <div id="mm" style="width:120px;">
                     <div name="RIGHT(a.ID_AGENDA_RUANG_RAPAT,6)">No Agenda</div>
-                    <div name="JENIS_KEGIATAN">Jenis Kegiatan</div>
+                    <div name="d.JENIS_KEGIATAN">Jenis Kegiatan</div>
                     <div name="b.RUANG_RAPAT">Ruang</div>
-                    <div name="C.nama_lengkap">Pemesan</div>
+                    <div name="c.nama_lengkap">Pemesan</div>
                 </div>
             
                 Tgl Mulai : <input id="TGL_MULAIS" type="text" class="easyui-datebox" required="required">
