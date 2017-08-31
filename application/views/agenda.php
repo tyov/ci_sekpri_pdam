@@ -190,6 +190,23 @@
 
     function updateAgenda(){
             var row = $('#dg_agenda').datagrid('getSelected');
+                var thn = row.TGL_MULAI.slice(0, 4);
+                var bln = row.TGL_MULAI.slice(5, 7);
+                var hr = row.TGL_MULAI.slice(8, 10);
+                var jm = row.TGL_MULAI.slice(11, 13);
+                var min = row.TGL_MULAI.slice(14, 16);
+                var dtk = row.TGL_MULAI.slice(17, 19);
+                var sls = "/";
+                var ttk = ":";
+                var spc = " ";
+                var thna = row.TGL_SELESAI.slice(0, 4);
+                var blna = row.TGL_SELESAI.slice(5, 7);
+                var hra = row.TGL_SELESAI.slice(8, 10);
+                var jma = row.TGL_SELESAI.slice(11, 13);
+                var mina = row.TGL_SELESAI.slice(14, 16);
+                var dtka = row.TGL_SELESAI.slice(17, 19);
+            row.TGL_MULAI = bln.concat(sls,hr,sls,thn,spc,jm,ttk,min,ttk,dtk);
+            row.TGL_SELESAI = blna.concat(sls,hra,sls,thna,spc,jma,ttk,mina,ttk,dtka);
             row.STATUS=1;
             if (row){
                 $('#dlg_agenda').dialog('open').dialog('center').dialog('setTitle','Update agenda');
@@ -219,7 +236,6 @@
     }
 
     function simpanAgenda(){
-        console.log("test");
 
         $('#fm_agenda').form('submit',{
             url: url,
@@ -280,7 +296,8 @@
     $('#dg_agenda').datagrid({
         rowStyler:function(index,row){
             if (row.STATUS!=0){
-                return 'background-color:#48A7C9;color:white;';
+                return 'color:red;';
+                // background-color:#48A7C9;
             }
         }
     });

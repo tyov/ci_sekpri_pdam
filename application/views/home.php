@@ -8,7 +8,7 @@
     }
 ?>
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
     <title>SEKPRI PDAM</title>
     <script type="text/javascript"> 
             var base_url = "<?php echo base_url(); ?>";  

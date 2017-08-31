@@ -20,7 +20,7 @@ class Agendamodel extends CI_Model {
 		$TGL_SELESAI=isset($_POST['TGL_SELESAI']) ? strval($_POST['TGL_SELESAI']) : '';
 
         if ($jenis=='total') {
-        	$result = $this->db->query("select * from TBL_AGENDA_RUANG_RAPAT")->num_rows();
+        	$result = $this->db->query("select * from TBL_AGENDA_RUANG_RAPAT WHERE TGL_MULAI>=getDate()")->num_rows();
         	return $result;
         } elseif ($jenis=='rows') {
         	$this->db->limit($rows,$offset);
@@ -41,7 +41,10 @@ class Agendamodel extends CI_Model {
 			}
 			if($TGL_MULAI<>''){
 				$this->db->where("CONVERT(varchar(20), A.TGL_MULAI, 101) between '$TGL_MULAI' and '$TGL_SELESAI'");
+			} else {
+				$this->db->where('a.TGL_MULAI >= getDate()');
 			}
+			
         	$hasil=$this->db->get ('',$this->limit, $this->offset)->result_array();
         	return $hasil;
     	}
@@ -68,7 +71,7 @@ class Agendamodel extends CI_Model {
 											from TBL_M_RUANG_RAPAT where ID_RUANG_RAPAT='".$ID_RUANG_RAPAT."'")->row_array();
 		 
 		$CEK = $this->db->query("select count(*) AS JUMLAH from TBL_AGENDA_RUANG_RAPAT 
-		WHERE ID_RUANG_RAPAT in(".$ket_ruang_rapat['keterangan'].") AND (('$TGL_MULAI_NEW' >= TGL_MULAI AND '$TGL_MULAI_NEW' <= TGL_SELESAI) OR ('$TGL_SELESAI_NEW' >= TGL_MULAI AND '$TGL_SELESAI_NEW' <= TGL_SELESAI))
+		WHERE ID_RUANG_RAPAT in(".$ket_ruang_rapat['keterangan'].") AND (('$TGL_MULAI_NEW' >= TGL_MULAI AND '$TGL_MULAI_NEW' <= TGL_SELESAI) OR ('$TGL_SELESAI_NEW' >= TGL_MULAI AND '$TGL_SELESAI_NEW' <= TGL_SELESAI)) AND STATUS!='1'
 ");
 		if ($CEK->row()->JUMLAH == "0") {
 			$data = array(
@@ -107,36 +110,43 @@ class Agendamodel extends CI_Model {
 
 	public function updateData($ID_AGENDA_RUANG_RAPAT)
 	{
+		// $test = $this->db->query("SELECT convert(varchar(10),TGL_SELESAI,103) as TGL FROM TBL_AGENDA_RUANG_RAPAT WHERE ID_AGENDA_RUANG_RAPAT='$ID_AGENDA_RUANG_RAPAT'")->row()->TGL;
+		// $skrg = date('d/m/Y');
+		// if ($test<$skrg) {
+			$ID_JENIS_KEGIATAN = htmlspecialchars($_REQUEST['ID_JENIS_KEGIATAN']);
+			$PEMESAN = htmlspecialchars($_REQUEST['PEMESAN']);
+			$ID_ASAL_KEGIATAN = htmlspecialchars($_REQUEST['ID_ASAL_KEGIATAN']);
+			$TGL_MULAI = htmlspecialchars($_REQUEST['TGL_MULAI']);
+			$TGL_SELESAI = htmlspecialchars($_REQUEST['TGL_SELESAI']);
+			$ID_RUANG_RAPAT = htmlspecialchars($_REQUEST['ID_RUANG_RAPAT']);
+			$KETERANGAN = htmlspecialchars($_REQUEST['KETERANGAN']);
+			$JUMLAH = htmlspecialchars($_REQUEST['JUMLAH']);
 
-		$ID_JENIS_KEGIATAN = htmlspecialchars($_REQUEST['ID_JENIS_KEGIATAN']);
-		$PEMESAN = htmlspecialchars($_REQUEST['PEMESAN']);
-		$ID_ASAL_KEGIATAN = htmlspecialchars($_REQUEST['ID_ASAL_KEGIATAN']);
-		$TGL_MULAI = htmlspecialchars($_REQUEST['TGL_MULAI']);
-		$TGL_SELESAI = htmlspecialchars($_REQUEST['TGL_SELESAI']);
-		$ID_RUANG_RAPAT = htmlspecialchars($_REQUEST['ID_RUANG_RAPAT']);
-		$KETERANGAN = htmlspecialchars($_REQUEST['KETERANGAN']);
-		$JUMLAH = htmlspecialchars($_REQUEST['JUMLAH']);
 
+			$data = array(
+			        'ID_JENIS_KEGIATAN' => $ID_JENIS_KEGIATAN,
+			        'PEMESAN' => $PEMESAN,
+			        'ID_ASAL_KEGIATAN' => $ID_ASAL_KEGIATAN,
+			        'TGL_MULAI' => $TGL_MULAI,
+			        'TGL_SELESAI' => $TGL_SELESAI,
+			        'ID_RUANG_RAPAT' => $ID_RUANG_RAPAT,
+			        'KETERANGAN' => $KETERANGAN,
+			        'JUMLAH' => $JUMLAH
+			        
+			);
 
-		$data = array(
-		        'ID_JENIS_KEGIATAN' => $ID_JENIS_KEGIATAN,
-		        'PEMESAN' => $PEMESAN,
-		        'ID_ASAL_KEGIATAN' => $ID_ASAL_KEGIATAN,
-		        'TGL_MULAI' => $TGL_MULAI,
-		        'TGL_SELESAI' => $TGL_SELESAI,
-		        'ID_RUANG_RAPAT' => $ID_RUANG_RAPAT,
-		        'KETERANGAN' => $KETERANGAN,
-		        'JUMLAH' => $JUMLAH
-		        
-		);
+			$this->db->where('ID_AGENDA_RUANG_RAPAT', $ID_AGENDA_RUANG_RAPAT);
 
-		$this->db->where('ID_AGENDA_RUANG_RAPAT', $ID_AGENDA_RUANG_RAPAT);
+			if ($this->db->update('TBL_AGENDA_RUANG_RAPAT', $data)) {
+				return "sukses";
+			} else {
+				return "gagal";
+			}
+		// } else {
+		// 	return "gagal";
+		// }
 
-		if ($this->db->update('TBL_AGENDA_RUANG_RAPAT', $data)) {
-			return "sukses";
-		} else {
-			return "gagal";
-		}
+		
 	}
 
 	public function getDataRapat()
