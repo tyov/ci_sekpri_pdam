@@ -172,20 +172,28 @@ class LaporanBerkas extends CI_Controller {
 			$bulan='Desember';
 		}
 
+		if ($eksp=='1') {
+			$DIR="Direktur Utama";
+		} elseif ($eksp=='2') {
+			$DIR="Direktur Administrasi dan Keuangan";
+		} else {
+			$DIR="Direktur Teknik";
+		}
+
 		$this->load->library('mpdf/mPdf');
 		$mpdf = new mPDF('c','Legal-L');
 		$html = '
 		<htmlpagefooter name="MyFooter1">
 			<table width="100%" style="vertical-align: bottom; font-family: serif; font-size: 8pt; color: #000000; font-weight: bold; font-style: italic;">
 				<tr>
-					<td width="33%" align="center" style="font-weight: bold; font-style: italic;">PDAM Kota Malang - Laporan Berkas Masuk ke SEKPRI, Bulan '.$bulan.' Tahun '.$tahun.'</td>
+					<td width="33%" align="center" style="font-weight: bold; font-style: italic;">PDAM Kota Malang - Laporan Berkas Masuk ke '.$DIR.', Bulan '.$bulan.' Tahun '.$tahun.'</td>
 				</tr>
 			</table>
 		</htmlpagefooter>
 		<sethtmlpagefooter name="MyFooter1" value="on" />
 		<div style="font-size:20px; font-weight:bold">PDAM KOTA MALANG</div>
 		<div style="font-weight:bold;">Jl. Terusan Danau Sentani No.100 - Malang</div>
-		<div style="font-size:20px; font-weight:bold; text-align:center">Laporan Berkas Masuk ke SEKPRI</div>
+		<div style="font-size:20px; font-weight:bold; text-align:center">Laporan Berkas Masuk ke '.$DIR.'</div>
 		<div style="font-size:20px; font-weight:bold; text-align:center">Bulan '.$bulan.' Tahun '.$tahun.'</div>';
 		$html .='
 		<table width="100%" border="1" cellspacing="0" cellpadding="2">

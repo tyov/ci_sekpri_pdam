@@ -10,8 +10,8 @@
                 <th field="TGL_PEMESANAN" width="200" halign="center" align="center">Tgl Pesan</th>
                 <th field="JENIS_KEGIATAN" width="150" halign="center" align="center">Kegiatan</th>
                 <th field="ASAL_KEGIATAN" width="150" halign="center" align="center">Asal Kegiatan</th>
-                <th field="PEMESAN" width="150" halign="center" align="center">Pemesan</th>
-                <th field="KETERANGAN" width="150" halign="center" align="center">Keterangan</th>
+                <th field="PEMESAN" width="150" halign="center" align="left">Pemesan</th>
+                <th field="KETERANGAN" width="150" halign="center" align="left">Keterangan</th>
                 <th field="JUMLAH" width="150" halign="center" align="center">Jumlah</th>
                 <th field="RUANG_RAPAT" width="150" halign="center" align="center">Ruangan</th>
                 <th field="TGL_MULAI" width="150" halign="center" align="center">Tgl Mulai</th>

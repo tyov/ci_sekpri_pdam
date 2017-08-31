@@ -9,10 +9,10 @@
             <tr>
                 <th field="TGL_ACARA" width="200" halign="center" align="center">Tgl Acara</th>
                 <th field="TGL_KEMBALI" width="150" halign="center" align="center">Tgl Kembali</th>
-                <th field="KEGIATAN" width="150" halign="center" align="center">Kegiatan</th>
-                <th field="PENGUNDANG" width="150" halign="center" align="center">Pengundang</th>
-                <th field="KETERANGAN" width="150" halign="center" align="center">Keterangan</th>
-                <th field="LOKASI" width="150" halign="center" align="center">Lokasi</th>
+                <th field="KEGIATAN" width="150" halign="center" align="left">Kegiatan</th>
+                <th field="PENGUNDANG" width="150" halign="center" align="left">Pengundang</th>
+                <th field="KETERANGAN" width="150" halign="center" align="left">Keterangan</th>
+                <th field="LOKASI" width="150" halign="center" align="left">Lokasi</th>
                 <th field="ID_DIREKSI_DESC" width="150" halign="center" align="center">Direksi</th>
             
             </tr>
