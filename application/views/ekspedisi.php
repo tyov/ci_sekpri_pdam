@@ -3,7 +3,7 @@
         <table id="dg_ekspedisi"  class="easyui-datagrid" 
             url="<?php echo base_url();?>index.php/ekspedisi/getEkspedisi"
             toolbar="#toolbar" fit="true"
-            rownumbers="true" pagination="true" border="false" striped="true" singleSelect="true" nowrap="false" pageSize="10" fitcolumns="true" style="width:auto; height: 545px;" 
+            rownumbers="true" pagination="true" border="false" striped="true" singleSelect="true" nowrap="false" pageSize="20" fitcolumns="true" style="width:auto; height: 545px;" 
             >
         <thead>
             <tr>
@@ -33,7 +33,21 @@
                 <div id="mm" style="width:120px;">
                     <div name="RIGHT(a.ID_BERKAS,6)">No Berkas</div>
                     <div name="c.STATUS">Status</div>
-                </div>     
+                </div>
+            Tgl Ekspedisi : <input id="TGL_MULAID" type="text" class="easyui-datebox" required="required">
+                ~ <input id="TGL_SELESAID" type="text" class="easyui-datebox" required="required">
+                <a href="javascript:void(0)" class="easyui-linkbutton" plain="true" onclick="cariTanggal()">Search</a>
+
+                <script type="text/javascript">
+                    function cariTanggal(){
+                        var tgl_mulai = $('#TGL_MULAID').datebox('getValue');;
+                        var tgl_selesai = $('#TGL_SELESAID').datebox('getValue');;
+                        $('#dg_ekspedisi').datagrid('load',{
+                            TGL_MULAI: tgl_mulai,
+                            TGL_SELESAI: tgl_selesai
+                        });
+                    }
+                </script>     
     </div>
 </div>
     <div id="dlg_ekspedisi" class="easyui-dialog" style="width:400px"

@@ -64,6 +64,8 @@ class BerkasModel extends CI_Model {
 
         $searchKey=isset($_POST['searchKey']) ? strval($_POST['searchKey']) : '';
 		$searchValue=isset($_POST['searchValue']) ? strval($_POST['searchValue']) : '';
+		$TGL_MULAI=isset($_POST['TGL_MULAI']) ? strval($_POST['TGL_MULAI']) : '';
+		$TGL_SELESAI=isset($_POST['TGL_SELESAI']) ? strval($_POST['TGL_SELESAI']) : '';
 		if ($jenis=='rows') {
     		$this->db->limit($rows,$offset);
         	$this->db->order_by($sort,$order);
@@ -75,6 +77,10 @@ class BerkasModel extends CI_Model {
 			$this->db->join("KARYAWAN e", "b.PENGIRIM=e.nip");
 			$this->db->join("KARYAWAN f", "b.PENGAMBIL=f.nip", 'LEFT');
 			$this->db->where('ID_STATUS', '1');
+
+		if($TGL_MULAI<>'' && $searchKey==''){
+				$this->db->where("CONVERT(varchar(20), b.TGL_AMBIL, 101) between '$TGL_MULAI' and '$TGL_SELESAI'");
+			}
 
         if($searchKey<>''){
 			$this->db->where($searchKey." like '%".$searchValue."%'");

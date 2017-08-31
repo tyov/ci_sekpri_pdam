@@ -12,6 +12,8 @@ class EkspedisiModel extends CI_Model {
         $this->offset = $offset;
         $searchKey=isset($_POST['searchKey']) ? strval($_POST['searchKey']) : '';
 		$searchValue=isset($_POST['searchValue']) ? strval($_POST['searchValue']) : '';
+		$TGL_MULAI=isset($_POST['TGL_MULAI']) ? strval($_POST['TGL_MULAI']) : '';
+		$TGL_SELESAI=isset($_POST['TGL_SELESAI']) ? strval($_POST['TGL_SELESAI']) : '';
 		if ($jenis=='total') {
         	$result = $this->db->query("select * from EKSPEDISI")->num_rows();
         	return $result;
@@ -22,6 +24,9 @@ class EkspedisiModel extends CI_Model {
         	$this->db->from('EKSPEDISI a');
         	$this->db->join("TBL_M_JENIS_EKSPEDISI b", "a.ID_JENIS_EKSPEDISI=b.ID_JENIS_EKSPEDISI");
         	$this->db->join("TBL_M_STATUS c", "a.ID_STATUS=c.ID_STATUS");
+        if($TGL_MULAI<>'' && $searchKey==''){
+				$this->db->where("CONVERT(varchar(20), a.TGL_EKSPEDISI, 101) between '$TGL_MULAI' and '$TGL_SELESAI'");
+			}
 
         if($searchKey<>''){
 			$this->db->where($searchKey." like '%".$searchValue."%'");

@@ -9,12 +9,12 @@
             <tr>
                 <th field="ID_BERKAS" halign="center" align="center">No Berkas</th>
                 <th field="TGL_TERIMA_DESC" width="150" halign="center" align="center">Tanggal Terima</th>
-                <th field="PENERIMA_DESC" width="150" halign="center" align="center">Penerima</th>
-                <th field="PENGIRIM_DESC" width="150" halign="center" align="center">Pengirim</th>
-                <th field="BAGIAN_DESC" width="150" halign="center" align="center">Bagian</th>
-                <th field="PERIHAL" width="250" halign="center" align="center">Perihal</th>
+                <th field="PENERIMA_DESC" width="150" halign="center" align="left">Penerima</th>
+                <th field="PENGIRIM_DESC" width="150" halign="center" align="left">Pengirim</th>
+                <th field="BAGIAN_DESC" width="150" halign="center" align="left">Bagian</th>
+                <th field="PERIHAL" width="250" halign="center" align="left">Perihal</th>
                 <th field="TGL_AMBIL_DESC" width="250" halign="center" align="center">Tanggal Ambil</th>
-                <th field="PENGAMBIL_DESC" width="250" halign="center" align="center">Pengambil</th>
+                <th field="PENGAMBIL_DESC" width="250" halign="center" align="left">Pengambil</th>
             </tr>
         </thead>
     </table>
@@ -37,6 +37,21 @@
                     <div name="c.nama_bagian">Nama Bagian</div>
                     <div name="e.nama_lengkap">Nama Pengirim</div>
                 </div>
+
+                Tgl Ambil : <input id="TGL_MULAIF" type="text" class="easyui-datebox" required="required">
+                ~ <input id="TGL_SELESAIF" type="text" class="easyui-datebox" required="required">
+                <a href="javascript:void(0)" class="easyui-linkbutton" plain="true" onclick="cariTanggal()">Search</a>
+
+                <script type="text/javascript">
+                    function cariTanggal(){
+                        var tgl_mulai = $('#TGL_MULAIF').datebox('getValue');;
+                        var tgl_selesai = $('#TGL_SELESAIF').datebox('getValue');;
+                        $('#dg_master_berkas_selesai').datagrid('load',{
+                            TGL_MULAI: tgl_mulai,
+                            TGL_SELESAI: tgl_selesai
+                        });
+                    }
+                </script>    
     </div>
 </div>
     <div id="dlg_master_berkas_selesai" class="easyui-dialog" style="width:400px"

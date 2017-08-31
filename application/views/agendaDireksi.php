@@ -40,6 +40,21 @@
                     <div name="PENGUNDANG">Pengundang</div>
                     <div name="b.DIREKSI">Direksi</div>
                 </div>
+
+                Tgl Acara : <input id="TGL_MULAIG" type="text" class="easyui-datebox" required="required">
+                ~ <input id="TGL_SELESAIG" type="text" class="easyui-datebox" required="required">
+                <a href="javascript:void(0)" class="easyui-linkbutton" plain="true" onclick="cariTanggal()">Search</a>
+
+                <script type="text/javascript">
+                    function cariTanggal(){
+                        var tgl_mulai = $('#TGL_MULAIG').datebox('getValue');;
+                        var tgl_selesai = $('#TGL_SELESAIG').datebox('getValue');;
+                        $('#dg_agenda_direksi').datagrid('load',{
+                            TGL_MULAI: tgl_mulai,
+                            TGL_SELESAI: tgl_selesai
+                        });
+                    }
+                </script>    
     </div>
 </div>
     <div id="dlg_agenda_direksi" class="easyui-dialog" style="width:400px"

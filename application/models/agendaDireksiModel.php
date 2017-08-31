@@ -15,6 +15,8 @@ class agendaDireksiModel extends CI_Model {
         //searching
         $searchKey=isset($_POST['searchKey']) ? strval($_POST['searchKey']) : '';
 		$searchValue=isset($_POST['searchValue']) ? strval($_POST['searchValue']) : '';
+		$TGL_MULAI=isset($_POST['TGL_MULAI']) ? strval($_POST['TGL_MULAI']) : '';
+		$TGL_SELESAI=isset($_POST['TGL_SELESAI']) ? strval($_POST['TGL_SELESAI']) : '';
 
         if ($jenis=='total') {
         	$result = $this->db->query("select * from TBL_AGENDA_DIREKSI")->num_rows();
@@ -28,6 +30,9 @@ class agendaDireksiModel extends CI_Model {
 				b.DIREKSI ID_DIREKSI_DESC");
 			$this->db->from("TBL_AGENDA_DIREKSI a");
 			$this->db->join("TBL_M_DIREKSI b", "a.ID_DIREKSI=b.ID_DIREKSI");
+			if($TGL_MULAI<>'' && $searchKey==''){
+				$this->db->where("CONVERT(varchar(20), TGL_ACARA, 101) between '$TGL_MULAI' and '$TGL_SELESAI'");
+			}
         	if($searchKey<>''){
 				$this->db->where($searchKey." like '%".$searchValue."%'");	
 			}
