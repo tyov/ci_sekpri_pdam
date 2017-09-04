@@ -79,11 +79,33 @@ class agenda extends CI_Controller {
 		<div style="font-size:20px; font-weight:bold">PDAM KOTA MALANG</div>
 		<div style="font-weight:bold;">Jl. Terusan Danau Sentani No.100 - Malang</div>
 		<div style="font-size:25px; font-weight:bold; text-align:center">DAFTAR HADIR</div>
-		<div style="font-weight:bold;">Rapat : '.$data[0]['KETERANGAN'].'</div>
-		<div style="font-weight:bold;">Jenis Kegiatan : '.$data[0]['ID_JENIS_KEGIATAN_DESC'].'</div>
-		<div style="font-weight:bold;">Asal Kegiatan : '.$data[0]['ID_ASAL_KEGIATAN_DESC'].'</div>
-		<div style="font-weight:bold;">Tanggal : '.$data[0]['TGL_MULAI'].'</div>
-		<div style="font-weight:bold;">Tempat : '.$data[0]['ID_RUANG_RAPAT_DESC'].'</div>';
+		<table width="100%" border="0" cellspacing="0" cellpadding="2">
+		<tr>
+		<td style="font-weight:bold; width:17%">Rapat</td>
+		<td style="width:3%">:</td>
+		<td>'.$data[0]['KETERANGAN'].'</td>
+		</tr>
+		<tr>
+		<td style="font-weight:bold;">Jenis Kegiatan</td>
+		<td>:</td>
+		<td>'.$data[0]['ID_JENIS_KEGIATAN_DESC'].'</td>
+		</tr>
+		<tr>
+		<td style="font-weight:bold;">Asal Kegiatan</td>
+		<td>:</td>
+		<td>'.$data[0]['ID_ASAL_KEGIATAN_DESC'].'</td>
+		</tr>
+		<tr>
+		<td style="font-weight:bold;">Tanggal</td>
+		<td>:</td>
+		<td>'.$data[0]['TGL_MULAI'].'</td>
+		</tr>
+		<tr>
+		<td style="font-weight:bold;">Tempat</td>
+		<td>:</td>
+		<td>'.$data[0]['ID_RUANG_RAPAT_DESC'].'</td>
+		</tr>
+		</table>';
 		$html .='
 		<table width="100%" border="1" cellspacing="0" cellpadding="2">
 		  <tr>
